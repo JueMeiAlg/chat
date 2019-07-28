@@ -62,9 +62,12 @@ class ChatServerManage extends Command
             if ($this->option == false) {
                 $this->option = $this->choice('是否以守护进程模式运行?', ['true', 'false'], 0);
             }
+            if ($this->option == 'false') {
+                config(['chat.settings.daemonize' => false]);
+            } else {
+                config(['chat.settings.daemonize' => true]);
+            }
         }
-
-        config(['chat.settings.daemonize' => (bool)$this->option]);
 
         $this->setSwoole();
 
