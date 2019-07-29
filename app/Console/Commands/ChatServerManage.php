@@ -91,6 +91,10 @@ class ChatServerManage extends Command
         $this->swoole->on('Open', [$event, 'OnOpen']);
         $this->swoole->on('Message', [$event, 'OnMessage']);
         $this->swoole->on('Close', [$event, 'OnClose']);
+        $this->swoole->on('ManagerStart', [$event, 'onManagerStart']);
+        $this->swoole->on('WorkerStart', [$event, 'onWorkerStart']);
+        $this->swoole->on('WorkerError', [$event, 'onWorkerError']);
+        $this->swoole->on('Start', [$event, 'onStart']);
         $this->info('服务已启动!');
         $this->swoole->start();
     }
@@ -108,7 +112,6 @@ class ChatServerManage extends Command
     /**
      * 设置初始化swoole
      *
-     * @param $swoole
      */
     public function setSwoole()
     {

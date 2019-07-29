@@ -2,7 +2,7 @@
 
 return [
     'listen_ip'                => env('CHAT_LISTEN_IP', '0.0.0.0'),
-    'listen_port'              => env('CHAT_LISTEN_PORT', 9200),
+    'listen_port'              => env('CHAT_LISTEN_PORT', 9502),
     'socket_type'              => defined('SWOOLE_SOCK_TCP') ? SWOOLE_SOCK_TCP : 1,
     'settings'=>[
         'daemonize'=>false,
