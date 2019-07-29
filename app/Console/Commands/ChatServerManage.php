@@ -56,15 +56,15 @@ class ChatServerManage extends Command
     public function handle()
     {
         $action = $this->argument('action');
-        $this->option = $this->option('d');
+        $option = $this->option('d');
         if (is_null($action)) {
             $action = $this->choice('选择具体执行的命令?', ['start', 'stop', 'restart'], 2);
-            if ($this->option == false) {
-                $this->option = $this->choice('是否以守护进程模式运行?', ['true', 'false'], 0);
+            if ($option == false) {
+                $option = $this->choice('是否以守护进程模式运行?', ['true', 'false'], 0);
             }
         }
 
-        if ($this->option == 'false' || $this->option == false) {
+        if ($option == 'false' || $option == false) {
             config(['chat.settings.daemonize' => false]);
         } else {
             config(['chat.settings.daemonize' => true]);

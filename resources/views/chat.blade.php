@@ -5,35 +5,29 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>在线聊天</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+        }
+        #app{
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-聊天界面
-<button onclick="send()">发送消息</button>
-<script>
-    var wsServer = 'ws://127.0.0.1:9502';
-    var websocket = new WebSocket(wsServer);
 
-    websocket.onopen = function (evt) {
-        websocket.send('123');
-        console.log("Connected to WebSocket server.");
-    };
+<div id="app">
+    <router-view/>
+</div>
 
-    websocket.onclose = function (evt) {
-        console.log("Disconnected");
-    };
+<script src="{{ mix('js/app.js') }}"></script>
 
-    websocket.onmessage = function (evt) {
-        console.log('Retrieved data from server: ' + evt.data);
-    };
-
-    websocket.onerror = function (evt, e) {
-        console.log('Error occured: ' + evt.data);
-    };
-
-    function send() {
-        websocket.send('123')
-    }
-</script>
 </body>
 </html>
