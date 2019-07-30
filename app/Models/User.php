@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -29,11 +29,13 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
+     * 正常用户
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    const NORMAL = 1;
+
+    /**
+     * 禁止登录用户
+     */
+    const PROHIBIT = 0;
+
 }

@@ -98,6 +98,15 @@ return [
     |
     */
 
-    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'),
+    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_cache'),
 
+    /**
+     * token过期时间
+     */
+    'tokenExpire' => 60 * 60 * 24,
+
+    /**
+     * 正常缓存过期时间
+     */
+    'expire'=>900
 ];

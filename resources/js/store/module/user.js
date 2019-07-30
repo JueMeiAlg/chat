@@ -7,7 +7,6 @@ export default {
         userName: '',
         userId: '',
         avatar: '',
-        access:null
     },
     mutations: {
         setAvatar (state, avatar) {

@@ -99824,8 +99824,7 @@ __webpack_require__.r(__webpack_exports__);
     token: Object(_libs_util__WEBPACK_IMPORTED_MODULE_1__["getToken"])(),
     userName: '',
     userId: '',
-    avatar: '',
-    access: null
+    avatar: ''
   },
   mutations: {
     setAvatar: function setAvatar(state, avatar) {
