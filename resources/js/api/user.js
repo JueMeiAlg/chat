@@ -16,27 +16,19 @@ export const logout = (token) => {
     })
 };
 
-export const userInfo = () => {
+/**
+ * 查看用户信息
+ *
+ * @param id
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>>}
+ */
+export const userInfo = (id) => {
     return axios.request({
-        url: 'userInfo',
+        url: 'user/' + id + '/info',
         method: 'get',
     })
 };
 
-export const addUser = (data) => {
-    return axios.request({
-        url: 'user',
-        data,
-        method: 'post',
-    })
-};
-export const editUser = (data, id) => {
-    return axios.request({
-        url: 'user/' + id,
-        data,
-        method: 'put',
-    })
-};
 
 
 

@@ -99393,7 +99393,7 @@ module.exports = function(module) {
 /*!**********************************!*\
   !*** ./resources/js/api/user.js ***!
   \**********************************/
-/*! exports provided: login, logout, userInfo, addUser, editUser */
+/*! exports provided: login, logout, userInfo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99401,8 +99401,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userInfo", function() { return userInfo; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addUser", function() { return addUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editUser", function() { return editUser; });
 /* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/libs/axios */ "./resources/js/libs/axios.js");
  //import {getToken} from "@/libs/util";
 
@@ -99419,24 +99417,17 @@ var logout = function logout(token) {
     method: 'get'
   });
 };
-var userInfo = function userInfo() {
+/**
+ * 查看用户信息
+ *
+ * @param id
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>>}
+ */
+
+var userInfo = function userInfo(id) {
   return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
-    url: 'userInfo',
+    url: 'user/' + id + '/info',
     method: 'get'
-  });
-};
-var addUser = function addUser(data) {
-  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
-    url: 'user',
-    data: data,
-    method: 'post'
-  });
-};
-var editUser = function editUser(data, id) {
-  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
-    url: 'user/' + id,
-    data: data,
-    method: 'put'
   });
 };
 
@@ -99762,14 +99753,15 @@ router.beforeEach(function (to, from, next) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
+  name: 'home',
   component: function component(resolve) {
-    return __webpack_require__.e(/*! AMD require */ 1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(/*! @/view/home */ "./resources/js/view/home.vue")]; (resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__);}.bind(this)).catch(__webpack_require__.oe);
+    return __webpack_require__.e(/*! AMD require */ 0).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(/*! @/view/home */ "./resources/js/view/home.vue")]; (resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__);}.bind(this)).catch(__webpack_require__.oe);
   }
 }, {
   path: '/login',
   name: 'login',
   component: function component(resolve) {
-    return __webpack_require__.e(/*! AMD require */ 0).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(/*! @/view/login */ "./resources/js/view/login.vue")]; (resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__);}.bind(this)).catch(__webpack_require__.oe);
+    return __webpack_require__.e(/*! AMD require */ 1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(/*! @/view/login */ "./resources/js/view/login.vue")]; (resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__);}.bind(this)).catch(__webpack_require__.oe);
   }
 }]);
 

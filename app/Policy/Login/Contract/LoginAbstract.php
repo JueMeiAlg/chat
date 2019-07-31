@@ -60,7 +60,7 @@ abstract class LoginAbstract implements LoginInterface
     {
         $userId = $this->user->id;
         //拼出存储键
-        $storeKey = 'user:token:' . $userId;
-        Redis::setex($storeKey, config('cache.tokenExpire'), $tokne);
+        $storeKey = 'user:token:' . $tokne;
+        Redis::setex($storeKey, config('cache.tokenExpire'), $userId);
     }
 }
