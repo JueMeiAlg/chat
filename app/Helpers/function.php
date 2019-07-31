@@ -17,10 +17,10 @@ function randomEnSTR($length)
         's', 't', 'u', 'v', 'w', 'x',
         'y', 'x'
     ];
-    shuffle($STR);
     $temp = [];
     for ($i = 0; $i< $length; $i++) {
-        $temp[] = $STR[$i];
+        shuffle($STR);
+        $temp[] = $STR[0];
     }
     shuffle($temp);
     return implode('', $temp);

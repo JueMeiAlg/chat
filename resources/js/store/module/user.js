@@ -28,9 +28,9 @@ export default {
             return new Promise((resolve, reject) => {
                 login(from).then(res => {
                     const data = res.data;
-                    if (data.code == 0){
-                        commit('setToken', data.Authorization);
-                        setToken(data.Authorization);
+                    if (data.code === 0){
+                        commit('setToken', data.data.token);
+                        setToken(data.data.token);
                         resolve(data)
                     }else{
                         reject('code is not 0')

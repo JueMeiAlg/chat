@@ -5,6 +5,7 @@ namespace App\Repository\User;
 
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository
 {
@@ -32,5 +33,20 @@ class UserRepository
        return User::query()
             ->where('id', $id)
             ->firstOrFail();
+    }
+
+    /**
+     * 添加用户
+     *
+     * @param array $userInfo [string phone, string password]
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     */
+    public function addUser(array $userInfo)
+    {
+        return User::query()->create([
+            'name'=>randomEnSTR(mt_rand(10,18)),
+            'phone'=>$userInfo['phone'],
+            'password'=>Hash::make($userInfo['password']),
+        ]);
     }
 }

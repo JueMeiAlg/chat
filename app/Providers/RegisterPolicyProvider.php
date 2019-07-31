@@ -11,6 +11,13 @@ use Illuminate\Support\ServiceProvider;
 class RegisterPolicyProvider extends ServiceProvider
 {
     /**
+     * 延迟加载
+     *
+     * @var bool
+     */
+    protected $defer = true;
+
+    /**
      * Register services.
      *
      * @return void
@@ -40,5 +47,17 @@ class RegisterPolicyProvider extends ServiceProvider
             }
             throw new \Exception('登录策略不存在');
         });
+    }
+
+    /**
+     * 延迟加载
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [
+            LoginInterface::class
+        ];
     }
 }

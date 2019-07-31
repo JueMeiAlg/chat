@@ -2,30 +2,44 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
-     * The attributes that are mass assignable.
+     * 置操作表
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
+    /**
+     * 置可操作字段
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id',//主键Id
+        'name',//用户名
+        'phone',//注册手机号码
+        'status',//default(1) 用户状态 1:正常 0封禁
+        'password',//密码
+        'signature',// nullable() 个性签名
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * 主动隐藏字段
      *
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'status'
     ];
 
     /**
@@ -37,5 +51,4 @@ class User extends Authenticatable
      * 禁止登录用户
      */
     const PROHIBIT = 0;
-
 }

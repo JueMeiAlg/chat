@@ -45,7 +45,7 @@ abstract class LoginAbstract implements LoginInterface
      */
     public function createToken()
     {
-        $str = randomEnSTR(rand(25.38));
+        $str = randomEnSTR(rand(108,255));
         $this->storeToken($str);
         return $str;
     }

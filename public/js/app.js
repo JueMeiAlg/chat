@@ -99848,9 +99848,9 @@ __webpack_require__.r(__webpack_exports__);
         Object(_api_user__WEBPACK_IMPORTED_MODULE_0__["login"])(from).then(function (res) {
           var data = res.data;
 
-          if (data.code == 0) {
-            commit('setToken', data.Authorization);
-            Object(_libs_util__WEBPACK_IMPORTED_MODULE_1__["setToken"])(data.Authorization);
+          if (data.code === 0) {
+            commit('setToken', data.data.token);
+            Object(_libs_util__WEBPACK_IMPORTED_MODULE_1__["setToken"])(data.data.token);
             resolve(data);
           } else {
             reject('code is not 0');
