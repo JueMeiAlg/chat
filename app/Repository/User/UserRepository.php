@@ -44,9 +44,11 @@ class UserRepository
     public function addUser(array $userInfo)
     {
         return User::query()->create([
-            'name'=>randomEnSTR(mt_rand(10,18)),
+            'name'=>$userInfo['name'],
             'phone'=>$userInfo['phone'],
             'password'=>Hash::make($userInfo['password']),
+            'avatar'=>$userInfo['avatar']??"",
+            'signature'=>$userInfo['signature']??"",
         ]);
     }
 }

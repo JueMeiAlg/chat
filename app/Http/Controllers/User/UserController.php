@@ -40,4 +40,6 @@ class UserController extends Controller
         $user = $this->userRepository->idGetUser($id);
         return $this->Json(StatusCode::SUCCESS, ['data'=>$user]);
     }
+
+
 }
