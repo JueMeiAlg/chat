@@ -48,6 +48,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "chatWindow"
 });
@@ -140,7 +168,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.chat-window[data-v-81b787da] {\n    height: 600px;\n    background: #ffed4a;\n    margin-right: 50px;\n}\n", ""]);
+exports.push([module.i, "\n.chat-window[data-v-81b787da] {\n    height: 600px;\n    margin-right: 50px;\n}\n.chat-list[data-v-81b787da] {\n    background: #d9d9d9;\n    height: 580px !important;\n    padding: 10px;\n}\n.user-name-main[data-v-81b787da] {\n    padding-top: 15px;\n    color: #404040;\n}\n.userInfo[data-v-81b787da] {\n    background: #ececec;\n    padding: 10px;\n}\n.userStatus[data-v-81b787da]{\n    padding-top: 5px;\n}\n.username[data-v-81b787da] {\n    font-size: 18px;\n}\n.status[data-v-81b787da] {\n    font-size: 14px;\n    color: #a6a6a6;\n}\n.minus[data-v-81b787da] {\n    margin-right: 5px\n}\n.close[data-v-81b787da]{\n}\n.talk[data-v-81b787da] {\n    height: 340px;\n    background: #fbfbfb;\n}\n.tool[data-v-81b787da] {\n    height: 44px;\n    background: #fbfbfb;\n}\n.message-main[data-v-81b787da] {\n    background: #fbfbfb;\n}\n.message[data-v-81b787da] {\n    height: 100px;\n}\n.send-button[data-v-81b787da]{\n    background: #5fb878;\n    color:#ecf7f0;\n    width: 100px;\n    margin-bottom: 10px;\n}\n.close-button[data-v-81b787da]{\n    background: #5fb878;\n    color:#ecf7f0;\n    margin-bottom: 10px;\n}\n", ""]);
 
 // exports
 
@@ -298,9 +326,38 @@ var render = function() {
         "el-row",
         [
           _c("el-col", { attrs: { span: 6 } }, [
-            _c("div", [_vm._v("头像")]),
-            _vm._v(" "),
-            _c("div", [_vm._v("用户名")])
+            _c(
+              "div",
+              { staticClass: "chat-list" },
+              [
+                _c(
+                  "el-row",
+                  [
+                    _c(
+                      "el-col",
+                      { attrs: { span: 8 } },
+                      [
+                        _c("el-avatar", {
+                          attrs: {
+                            size: 50,
+                            src: "https://lorempixel.com/200/200/cats/?74058"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-col",
+                      { staticClass: "user-name-main", attrs: { span: 12 } },
+                      [_c("span", [_vm._v("用户名")])]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
           ]),
           _vm._v(" "),
           _c(
@@ -310,40 +367,115 @@ var render = function() {
               _c(
                 "el-row",
                 [
-                  _c("el-col", { attrs: { span: 20 } }, [
-                    _c("div", [_vm._v("头像")]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _c("p", [_vm._v("用户名")]),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("登录状态")])
+                  _c(
+                    "el-col",
+                    { attrs: { span: 24 } },
+                    [
+                      _c(
+                        "el-row",
+                        { staticClass: "userInfo" },
+                        [
+                          _c(
+                            "el-col",
+                            { attrs: { span: 3 } },
+                            [
+                              _c("el-avatar", {
+                                attrs: {
+                                  size: 50,
+                                  src:
+                                    "https://lorempixel.com/200/200/cats/?74058"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("el-col", { attrs: { span: 19 } }, [
+                            _c("div", { staticClass: "userStatus" }, [
+                              _c("p", { staticClass: "username" }, [
+                                _vm._v("用户名")
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "status" }, [
+                                _vm._v("离线")
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("el-col", { attrs: { span: 2 } }, [
+                            _c("i", { staticClass: "el-icon-minus minus" }),
+                            _vm._v(" "),
+                            _c("i", { staticClass: "el-icon-close close" })
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("el-col", { attrs: { span: 24 } }, [
+                    _c("div", { staticClass: "talk" })
+                  ]),
+                  _vm._v(" "),
+                  _c("el-col", { attrs: { span: 24 } }, [
+                    _c("div", { staticClass: "tool" }, [
+                      _vm._v(
+                        "\n                       聊天工具条\n                   "
+                      )
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("el-col", { attrs: { span: 2 } }, [
-                    _c("span", [_vm._v("缩小")]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("关闭")])
-                  ]),
-                  _vm._v(" "),
-                  _c("el-col", { attrs: { span: 24 } }, [
-                    _vm._v("\n                   聊天主窗口\n               ")
-                  ]),
-                  _vm._v(" "),
-                  _c("el-col", { attrs: { span: 24 } }, [
-                    _vm._v("\n                   聊天工具条\n               ")
-                  ]),
-                  _vm._v(" "),
-                  _c("el-col", { attrs: { span: 24 } }, [
-                    _vm._v("\n                   消息编辑器\n               ")
                   ]),
                   _vm._v(" "),
                   _c(
                     "el-col",
+                    { attrs: { span: 24 } },
                     [
-                      _c("el-button", [_vm._v("发送")]),
-                      _vm._v(" "),
-                      _c("el-button", [_vm._v("关闭")])
+                      _c(
+                        "el-row",
+                        { staticClass: "message-main" },
+                        [
+                          _c("el-col", { attrs: { span: 24 } }, [
+                            _c("div", { staticClass: "message" }, [
+                              _vm._v(
+                                "\n                               消息编辑器\n                           "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            { attrs: { offset: 16, span: 2 } },
+                            [
+                              _c(
+                                "el-button",
+                                {
+                                  staticClass: "close-button",
+                                  attrs: { size: "small" }
+                                },
+                                [_vm._v("关闭")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            { attrs: { offset: 1, span: 2 } },
+                            [
+                              _c(
+                                "el-button",
+                                {
+                                  staticClass: "send-button",
+                                  attrs: { size: "small" }
+                                },
+                                [_vm._v("发送")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
