@@ -19,8 +19,7 @@
                    <el-col :span="24">
                        <el-row class="userInfo">
                            <el-col :span="3">
-                               <el-avatar :size="50" :src="'https://lorempixel.com/200/200/cats/?74058'">
-                               </el-avatar>
+                               <el-avatar :size="50" :src="'https://lorempixel.com/200/200/cats/?74058'"></el-avatar>
                            </el-col>
                            <el-col :span="19">
                                <div class="userStatus">

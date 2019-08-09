@@ -75,7 +75,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "chatWindow"
 });
@@ -112,8 +111,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "friendPanel"
+  name: "friendPanel",
+  data: function data() {
+    return {};
+  },
+  methods: {
+    console: function (_console) {
+      function console(_x) {
+        return _console.apply(this, arguments);
+      }
+
+      console.toString = function () {
+        return _console.toString();
+      };
+
+      return console;
+    }(function (praented) {
+      console.log(praented);
+    })
+  }
 });
 
 /***/ }),
@@ -187,7 +243,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #2fa360;\n}\n", ""]);
+exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #d6d6d6;\n}\n.panelBox[data-v-8d22802a] {\n    padding: 15px;\n}\n.head[data-v-8d22802a] {\n    background: #d6d6d6;\n    height: 120px;\n}\n.Signature[data-v-8d22802a] {\n    margin-top: 10px;\n    margin-bottom: 25px;\n}\n.friendIcon[data-v-8d22802a] {\n    font-size: 25px;\n}\n.friendButton .el-col-8[data-v-8d22802a] {\n    padding-bottom: 5px;\n    text-align: center;\n}\n.friendList[data-v-8d22802a] .el-tree-node__content {\n    height: auto !important;\n    padding-left: 0 !important;\n}\n.friendButton .el-col-8[data-v-8d22802a]:hover {\n    border-bottom: 3px solid #6cdb9e;\n}\n.userSignature[data-v-8d22802a]{\n    color: #b7b7b7;\n}\n.username[data-v-8d22802a]{\n    font-size: 18px;\n}\n.column[data-v-8d22802a] {\n    margin-bottom: 15px;\n}\n.corners[data-v-8d22802a] {\n    color: #6fa7d6;\n}\n\n", ""]);
 
 // exports
 
@@ -514,51 +570,150 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "Panel-main" },
-    [
-      _c(
-        "el-row",
-        [
-          _c(
-            "el-col",
-            { attrs: { span: 24 } },
-            [
-              _c(
-                "el-row",
-                [
-                  _c("el-col", { attrs: { span: 12 } }, [_vm._v("用户名")]),
+  return _c("div", { staticClass: "Panel-main" }, [
+    _c(
+      "div",
+      { staticClass: "panelBox" },
+      [
+        _c(
+          "el-row",
+          [
+            _c(
+              "div",
+              { staticClass: "head" },
+              [
+                _c(
+                  "el-col",
+                  { attrs: { span: 24 } },
+                  [
+                    _c(
+                      "el-row",
+                      [
+                        _c("el-col", { attrs: { span: 8 } }, [
+                          _vm._v(
+                            "\n                            Alg\n                        "
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("el-col", { attrs: { span: 24 } }, [
+                  _c("div", { staticClass: "Signature" }, [_vm._v("个性签名")])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "friendButton" },
+                  [
+                    _c("el-col", { attrs: { span: 8 } }, [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "icon friendIcon",
+                          attrs: { "aria-hidden": "true" }
+                        },
+                        [_c("use", { attrs: { "xlink:href": "#icon-ren" } })]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("el-col", { attrs: { span: 8 } }, [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "icon friendIcon",
+                          attrs: { "aria-hidden": "true" }
+                        },
+                        [_c("use", { attrs: { "xlink:href": "#icon-users" } })]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("el-col", { attrs: { span: 8 } }, [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "icon friendIcon",
+                          attrs: { "aria-hidden": "true" }
+                        },
+                        [_c("use", { attrs: { "xlink:href": "#icon-xinxi" } })]
+                      )
+                    ])
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("el-col", { attrs: { span: 24 } }, [
+              _c("div", { staticClass: "friendList" }, [
+                _c("ul", [
+                  _c("li", { staticClass: "column" }, [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "icon corners",
+                        attrs: { "aria-hidden": "true" }
+                      },
+                      [
+                        _c("use", {
+                          attrs: { "xlink:href": "#icon-yousanjiaoxing" }
+                        })
+                      ]
+                    ),
+                    _vm._v(
+                      "\n                            我的好友(40/80)\n                        "
+                    )
+                  ]),
                   _vm._v(" "),
-                  _c("el-col", { attrs: { span: 12 } }, [_vm._v("登录状态")])
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("el-col", { attrs: { span: 24 } }, [
-            _vm._v("\n            个性签名\n        ")
-          ]),
-          _vm._v(" "),
-          _c("el-col", { attrs: { span: 8 } }, [_vm._v("好友")]),
-          _vm._v(" "),
-          _c("el-col", { attrs: { span: 8 } }, [_vm._v("群聊")]),
-          _vm._v(" "),
-          _c("el-col", { attrs: { span: 8 } }, [_vm._v("消息记录")]),
-          _vm._v(" "),
-          _c("el-col", { attrs: { span: 24 } }, [
-            _vm._v("好友或者群聊或消息记录列表")
-          ]),
-          _vm._v(" "),
-          _c("el-col", { attrs: { span: 24 } }, [_vm._v("系统设置")])
-        ],
-        1
-      )
-    ],
-    1
-  )
+                  _c("li", [
+                    _c(
+                      "div",
+                      { staticClass: "userInfo" },
+                      [
+                        _c("el-avatar", {
+                          staticClass: "fl",
+                          attrs: {
+                            size: 50,
+                            src: "https://lorempixel.com/200/200/cats/?74058"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "fl",
+                            staticStyle: { "margin-left": "10px" }
+                          },
+                          [
+                            _c("div", { staticClass: "username" }, [
+                              _vm._v("用户名")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "userSignature" }, [
+                              _vm._v("用户个性签名")
+                            ])
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("el-col", { attrs: { span: 24 } }, [_vm._v("系统设置")])
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
