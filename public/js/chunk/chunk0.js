@@ -150,10 +150,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "friendPanel",
   data: function data() {
-    return {};
+    return {
+      friend: [{
+        column: "我的好友(40/80)",
+        userInfo: [{
+          avatar: "https://lorempixel.com/200/200/cats/?74058",
+          username: "我的好友1",
+          signature: "我的好友1个性签名"
+        }, {
+          avatar: "https://lorempixel.com/200/200/cats/?74058",
+          username: "我的好友2",
+          signature: "我的好友2个性签名"
+        }]
+      }, {
+        column: "编程达人(25/42)",
+        userInfo: [{
+          avatar: "https://lorempixel.com/200/200/cats/?74058",
+          username: "编程达人1",
+          signature: "编程达人1个性签名"
+        }, {
+          avatar: "https://lorempixel.com/200/200/cats/?74058",
+          username: "编程达人2",
+          signature: "编程达人2个性签名"
+        }, {
+          avatar: "https://lorempixel.com/200/200/cats/?74058",
+          username: "编程达人2",
+          signature: "编程达人2个性签名"
+        }, {
+          avatar: "https://lorempixel.com/200/200/cats/?74058",
+          username: "编程达人2",
+          signature: "编程达人2个性签名"
+        }, {
+          avatar: "https://lorempixel.com/200/200/cats/?74058",
+          username: "编程达人2",
+          signature: "编程达人2个性签名"
+        }, {
+          avatar: "https://lorempixel.com/200/200/cats/?74058",
+          username: "编程达人2",
+          signature: "编程达人2个性签名"
+        }, {
+          avatar: "https://lorempixel.com/200/200/cats/?74058",
+          username: "编程达人2",
+          signature: "编程达人2个性签名"
+        }]
+      }]
+    };
   },
   methods: {
     console: function (_console) {
@@ -168,7 +216,20 @@ __webpack_require__.r(__webpack_exports__);
       return console;
     }(function (praented) {
       console.log(praented);
-    })
+    }),
+
+    /**
+     * 打开好友列表
+     */
+    openList: function openList(index) {
+      if (window.document.getElementById('sj' + index).getAttribute('xlink:href') === "#icon-sanjiao") {
+        window.document.getElementById('friendColumn' + index).style.display = "none";
+        window.document.getElementById('sj' + index).setAttribute('xlink:href', '#icon-yousanjiaoxing');
+      } else {
+        window.document.getElementById('sj' + index).setAttribute('xlink:href', '#icon-sanjiao');
+        window.document.getElementById('friendColumn' + index).style.display = "";
+      }
+    }
   }
 });
 
@@ -243,7 +304,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #d6d6d6;\n}\n.panelBox[data-v-8d22802a] {\n    padding: 15px;\n}\n.head[data-v-8d22802a] {\n    background: #d6d6d6;\n    height: 120px;\n}\n.Signature[data-v-8d22802a] {\n    margin-top: 10px;\n    margin-bottom: 25px;\n}\n.friendIcon[data-v-8d22802a] {\n    font-size: 25px;\n}\n.friendButton .el-col-8[data-v-8d22802a] {\n    padding-bottom: 5px;\n    text-align: center;\n}\n.friendList[data-v-8d22802a] .el-tree-node__content {\n    height: auto !important;\n    padding-left: 0 !important;\n}\n.friendButton .el-col-8[data-v-8d22802a]:hover {\n    border-bottom: 3px solid #6cdb9e;\n}\n.userSignature[data-v-8d22802a]{\n    color: #b7b7b7;\n}\n.username[data-v-8d22802a]{\n    font-size: 18px;\n}\n.column[data-v-8d22802a] {\n    margin-bottom: 15px;\n}\n.corners[data-v-8d22802a] {\n    color: #6fa7d6;\n}\n\n", ""]);
+exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #f9f9f9;\n}\n.head[data-v-8d22802a] {\n    background: #d6d6d6;\n    height: 100px;\n    padding: 15px;\n}\n.Signature[data-v-8d22802a] {\n    margin-top: 10px;\n    margin-bottom: 25px;\n}\n.friendIcon[data-v-8d22802a] {\n    font-size: 25px;\n}\n.friendList[data-v-8d22802a] {\n    background: #f9f9f9;\n    height: 400px;\n    padding: 15px;\n    /*overflow: hidden;*/\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.friendList[data-v-8d22802a]::-webkit-scrollbar {\n    display: none;\n}\n.friendButton .el-col-8[data-v-8d22802a] {\n    padding-bottom: 5px;\n    text-align: center;\n}\n.friendList[data-v-8d22802a] .el-tree-node__content {\n    height: auto !important;\n    padding-left: 0 !important;\n}\n.friendButton .el-col-8[data-v-8d22802a]:hover {\n    border-bottom: 3px solid #6cdb9e;\n}\n.userSignature[data-v-8d22802a] {\n    color: #b7b7b7;\n}\n.username[data-v-8d22802a] {\n    font-size: 18px;\n}\n.column[data-v-8d22802a] {\n    margin-bottom: 15px;\n}\n.corners[data-v-8d22802a] {\n    color: #6fa7d6;\n}\n.list[data-v-8d22802a] {\n    margin-top: 15px;\n    padding-left: 10px;\n}\n.userInfo[data-v-8d22802a] {\n    clear: both;\n    height: 55px;\n    padding: 5px;\n}\n.userInfo[data-v-8d22802a]:hover{\n    /*border: 1px solid #1b1e21;*/\n    background: #f2f2f2;\n}\n\n", ""]);
 
 // exports
 
@@ -573,7 +634,6 @@ var render = function() {
   return _c("div", { staticClass: "Panel-main" }, [
     _c(
       "div",
-      { staticClass: "panelBox" },
       [
         _c(
           "el-row",
@@ -650,59 +710,96 @@ var render = function() {
             _vm._v(" "),
             _c("el-col", { attrs: { span: 24 } }, [
               _c("div", { staticClass: "friendList" }, [
-                _c("ul", [
-                  _c("li", { staticClass: "column" }, [
-                    _c(
-                      "svg",
+                _c(
+                  "ul",
+                  _vm._l(_vm.friend, function(item, index) {
+                    return _c(
+                      "li",
                       {
-                        staticClass: "icon corners",
-                        attrs: { "aria-hidden": "true" }
+                        staticClass: "column",
+                        staticStyle: { overflow: "hidden" }
                       },
                       [
-                        _c("use", {
-                          attrs: { "xlink:href": "#icon-yousanjiaoxing" }
-                        })
-                      ]
-                    ),
-                    _vm._v(
-                      "\n                            我的好友(40/80)\n                        "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c(
-                      "div",
-                      { staticClass: "userInfo" },
-                      [
-                        _c("el-avatar", {
-                          staticClass: "fl",
-                          attrs: {
-                            size: 50,
-                            src: "https://lorempixel.com/200/200/cats/?74058"
-                          }
-                        }),
-                        _vm._v(" "),
                         _c(
-                          "div",
+                          "span",
                           {
-                            staticClass: "fl",
-                            staticStyle: { "margin-left": "10px" }
+                            on: {
+                              click: function($event) {
+                                return _vm.openList(index)
+                              }
+                            }
                           },
                           [
-                            _c("div", { staticClass: "username" }, [
-                              _vm._v("用户名")
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "userSignature" }, [
-                              _vm._v("用户个性签名")
-                            ])
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "icon corners",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [
+                                _c("use", {
+                                  attrs: {
+                                    id: "sj" + index,
+                                    "xlink:href": "#icon-yousanjiaoxing"
+                                  }
+                                })
+                              ]
+                            )
                           ]
+                        ),
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(item.column) +
+                            "\n                            "
+                        ),
+                        _c(
+                          "ul",
+                          {
+                            staticClass: "list",
+                            staticStyle: { display: "none" },
+                            attrs: { id: "friendColumn" + index }
+                          },
+                          _vm._l(item.userInfo, function(friendItem, index) {
+                            return _c("li", [
+                              _c(
+                                "div",
+                                { staticClass: "userInfo" },
+                                [
+                                  _c("el-avatar", {
+                                    staticClass: "fl",
+                                    attrs: { size: 50, src: friendItem.avatar }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "fl",
+                                      staticStyle: { "margin-left": "10px" }
+                                    },
+                                    [
+                                      _c("div", { staticClass: "username" }, [
+                                        _vm._v(_vm._s(friendItem.username))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "userSignature" },
+                                        [_vm._v(_vm._s(friendItem.signature))]
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          }),
+                          0
                         )
-                      ],
-                      1
+                      ]
                     )
-                  ])
-                ])
+                  }),
+                  0
+                )
               ])
             ]),
             _vm._v(" "),
