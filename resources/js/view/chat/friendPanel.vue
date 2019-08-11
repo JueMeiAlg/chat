@@ -33,20 +33,42 @@
                 </div>
                 <el-col :span="24">
                     <div class="friendList" @contextmenu.prevent="openSystemMenu">
-                        <div class="systemMenu" id="systemMenu" style="display: none;">
-                            <div class="systemMenu-item" @click="addColumnBoxOpen">
+                        <div class="contextMenu" id="systemMenu" style="display: none;">
+                            <div class="contextMenu-item" @click="addColumnBoxOpen">
                                 添加新分栏
                             </div>
-                            <div class="systemMenu-item" @click="feedBack">
+                            <div class="contextMenu-item" @click="feedBack">
                                 系统反馈
                             </div>
-                            <div class="systemMenu-item">
+                            <div class="contextMenu-item">
                                 <a href="https://github.com/JueMeiAlg/chat" target="_blank">gitHub点个星</a>
                             </div>
                         </div>
-
+                        <div class="contextMenu" id="columnMenu" style="display: none;">
+                            <div class="contextMenu-item" @click="addColumnBoxOpen">
+                                删除分栏
+                            </div>
+                            <div class="contextMenu-item" @click="feedBack">
+                                展开分栏
+                            </div>
+                            <div class="contextMenu-item">
+                                刷新在线列表
+                            </div>
+                        </div>
+                        <div class="contextMenu" id="userMenu" style="display: none;">
+                            <div class="contextMenu-item" @click="addColumnBoxOpen">
+                                发送消息
+                            </div>
+                            <div class="contextMenu-item" @click="feedBack">
+                                删除好友
+                            </div>
+                            <div class="contextMenu-item">
+                                查看信息
+                            </div>
+                        </div>
                         <ul>
-                            <li class="column" v-for="(item, index) in friend">
+                            <li class="column columnHover" v-for="(item, index) in friend"
+                                @contextmenu.prevent="openColumnMenu">
                                 <span @click="openList(index)">
                                     <svg class="icon corners" aria-hidden="true">
                                         <use :id="'sj'+index" xlink:href="#icon-yousanjiaoxing"></use>
@@ -54,7 +76,7 @@
                                 </span>
                                 {{item.column}}
                                 <ul :id="'friendColumn'+index" class="list" style="display: none;">
-                                    <li v-for="(friendItem, index) in item.userInfo">
+                                    <li v-for="(friendItem, index) in item.userInfo" @contextmenu.prevent="openUserMenu">
                                         <div class="userInfo">
                                             <el-avatar class="fl" :size="50" :src="friendItem.avatar"></el-avatar>
                                             <div class="fl" style="margin-left: 10px;">
@@ -171,14 +193,16 @@
                     }
                 ],
                 systemMenu: [],
-                newColumnBox:false,
-                newColumnName:""
+                newColumnBox: false,
+                newColumnName: ""
             }
         },
 
         created() {
             window.onclick = function (e) {
                 window.document.querySelector('#systemMenu').style.display = "none";
+                window.document.querySelector('#columnMenu').style.display = "none";
+                window.document.querySelector('#userMenu').style.display = "none";
             };
         },
 
@@ -187,12 +211,53 @@
              * 打开好友列表
              */
             openList(index) {
-                if (window.document.getElementById('sj' + index).getAttribute('xlink:href') === "#icon-sanjiao") {
-                    window.document.getElementById('friendColumn' + index).style.display = "none";
-                    window.document.getElementById('sj' + index).setAttribute('xlink:href', '#icon-yousanjiaoxing');
+
+                if (this.getIdDom('sj' + index).getAttribute('xlink:href') === "#icon-sanjiao") {
+                    this.getIdDom('friendColumn' + index).style.display = "none";
+                    this.getIdDom('sj' + index).setAttribute('xlink:href', '#icon-yousanjiaoxing');
+                    let domAll = this.getClassDomAll('column');
+                    domAll.forEach(item => {
+                        item.className = 'column columnHover';
+                    })
                 } else {
-                    window.document.getElementById('sj' + index).setAttribute('xlink:href', '#icon-sanjiao');
-                    window.document.getElementById('friendColumn' + index).style.display = "";
+                    this.getIdDom('sj' + index).setAttribute('xlink:href', '#icon-sanjiao');
+                    this.getIdDom('friendColumn' + index).style.display = "";
+                    //移除 class 让他找不到元素就不触发hover了
+                    let domAll = this.getClassDomAll('columnHover');
+                    domAll.forEach(item => {
+                        item.className = 'column';
+                    });
+                }
+            },
+
+            /**
+             * 关闭右键菜单
+             */
+            closeMenu(menuId = 'all') {
+                if (menuId === 'all') {
+                    this.getIdDom('systemMenu').style.display = "none";
+                    this.getIdDom('columnMenu').style.display = "none";
+                    this.getIdDom('userMenu').style.display = "none";
+                } else {
+                    this.getIdDom(menuId).style.display = "none";
+                }
+            },
+
+            /**
+             * 打开右键菜单
+             */
+            openMenu(menuId = 'all', event) {
+                if (menuId === 'all') {
+                    this.getIdDom('systemMenu').style.display = "";
+                    this.getIdDom('columnMenu').style.display = "";
+                } else {
+                    let menu = this.getIdDom(menuId);
+                    //根据事件对象中鼠标点击的位置，进行定位
+                    menu.style.left = event.layerX + 'px';
+                    menu.style.top = event.clientY + 'px';
+                    menu.style.display = '';
+                    //阻止事件冒泡
+                    event.stopPropagation();
                 }
             },
 
@@ -202,47 +267,81 @@
              * @param e
              */
             openSystemMenu(e) {
-                let menu = window.document.getElementById('systemMenu');
-                if (menu.className == 'systemMenu') {
-                    menu.className = 'hidden';
-                    menu.style.display = 'none';
-                } else {
-                    //根据事件对象中鼠标点击的位置，进行定位
-                    menu.style.left = e.layerX + 'px';
-                    menu.style.top = e.clientY + 'px';
-                    menu.className = "systemMenu";
-                    menu.style.display = '';
-                }
+                //关闭所有右键菜单
+                this.closeMenu();
+                this.openMenu('systemMenu', e);
+            },
+
+            //打开栏目菜单
+            openColumnMenu(e) {
+                //关闭所有右键菜单
+                this.closeMenu();
+                this.openMenu('columnMenu', e);
+            },
+            /**
+             * 打开用户层的右键菜单
+             */
+            openUserMenu(e){
+                //关闭所有右键菜单
+                this.closeMenu();
+                this.openMenu('userMenu', e);
             },
 
             /**
              * 系统反馈
              */
-            feedBack(){
+            feedBack() {
                 this.$message.info('暂未开放')
             },
 
             /**
              * 添加新分栏
              */
-            addColumnBoxOpen(){
+            addColumnBoxOpen() {
                 this.newColumnBox = true;
             },
+
             /**
              * 存储栏目
              */
-            storeColumn(){
+            storeColumn() {
                 if (this.newColumnName == '') {
                     this.$message.warning('新分栏的名字不应该为空');
                     return;
                 }
                 this.friend.push({
-                    column: this.newColumnName+"(0/0)",
-                    userInfo:[]
+                    column: this.newColumnName + "(0/0)",
+                    userInfo: []
                 });
                 this.newColumnName = "";
                 this.newColumnBox = false;
-            }
+            },
+
+            /**
+             * 根据class名找dom
+             *
+             * @param className
+             * @returns {Element}
+             */
+            getClassDom(className) {
+                return window.document.querySelector('.' + className)
+            },
+            /**
+             * 根据class名称查找所有Dom
+             */
+            getClassDomAll(className) {
+                return window.document.querySelectorAll('.' + className)
+            },
+
+            /**
+             * 根据domId查找元素
+             *
+             * @param id
+             * @returns {Element}
+             */
+            getIdDom(id) {
+                return window.document.querySelector('#' + id)
+            },
         }
     }
 </script>
@@ -304,8 +403,13 @@
     }
 
     .column {
-        margin-bottom: 15px;
-        overflow: hidden;
+        padding: 10px 0 10px 0;
+        /*overflow: hidden;*/
+        /*height: 20px;*/
+    }
+
+    .columnHover:hover {
+        background: #eeeeee;
     }
 
     .corners {
@@ -338,19 +442,18 @@
         background: #d5d5d5;
     }
 
-    .systemMenu {
+    .contextMenu {
         position: absolute; /*自定义菜单相对与body元素进行定位*/
         width: 180px;
         height: 100px;
         background: #d5d5d5;
     }
-
-    .systemMenu-item {
+    .contextMenu-item {
         padding: 5px;
         border: 1px solid #e0e5ea;
     }
 
-    .systemMenu-item:hover {
+    .contextMenu-item:hover {
         background: #f5f5f5;
     }
 

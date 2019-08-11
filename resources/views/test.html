@@ -1,57 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        #menu {
-            width: 0; /*设置为0 隐藏自定义菜单*/
-            height: 125px;
-            overflow: hidden; /*隐藏溢出的元素*/
-            box-shadow: 0 1px 1px #888, 1px 0 1px #ccc;
-            position: absolute; /*自定义菜单相对与body元素进行定位*/
+    <style type="text/css" media="screen">
+        body{
+            margin: 0;
+            padding: 0;
         }
-
-        .menu {
-            width: 130px;
-            height: 25px;
-            line-height: 25px;
-            padding: 0 10px;
+        .container .ul li{
+            width: 100px;
+            height: 20px;
+            /*background: #eee;*/
+            margin-bottom: 10px;
+            list-style: none;
+        }
+        .container{
+            border: 1px solid #000;
+        }
+        .container:hover{
+            background: #1b1e21;
+        }
+        li:hover{
+            background: green;
         }
     </style>
-    <script>
-        window.oncontextmenu = function (e) {
-//取消默认的浏览器自带右键 很重要！！
-            e.preventDefault();
-
-//获取我们自定义的右键菜单
-            var menu = document.querySelector("#menu");
-
-//根据事件对象中鼠标点击的位置，进行定位
-            menu.style.left = e.clientX + 'px';
-            menu.style.top = e.clientY + 'px';
-
-//改变自定义菜单的宽，让它显示出来
-            menu.style.width = '125px';
-        }
-        //关闭右键菜单，很简单
-        window.onclick = function (e) {
-//用户触发click事件就可以关闭了，因为绑定在window上，按事件冒泡处理，不会影响菜单的功能
-            document.querySelector('#menu').style.height = 0;
-        }
-    </script>
 </head>
 <body>
-<!--自定义右键菜单html代码-->
-<div id="menu">
-    <div class="menu">功能1</div>
-    <div class="menu">功能2</div>
-    <div class="menu">功能3</div>
-    <div class="menu">功能4</div>
-    <div class="menu">功能5</div>
+<div class="container">
+    <ul class="ul">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
 </div>
 </body>
 </html>

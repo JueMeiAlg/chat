@@ -200,6 +200,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "friendPanel",
   data: function data() {
@@ -255,6 +277,8 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     window.onclick = function (e) {
       window.document.querySelector('#systemMenu').style.display = "none";
+      window.document.querySelector('#columnMenu').style.display = "none";
+      window.document.querySelector('#userMenu').style.display = "none";
     };
   },
   methods: {
@@ -262,12 +286,58 @@ __webpack_require__.r(__webpack_exports__);
      * 打开好友列表
      */
     openList: function openList(index) {
-      if (window.document.getElementById('sj' + index).getAttribute('xlink:href') === "#icon-sanjiao") {
-        window.document.getElementById('friendColumn' + index).style.display = "none";
-        window.document.getElementById('sj' + index).setAttribute('xlink:href', '#icon-yousanjiaoxing');
+      if (this.getIdDom('sj' + index).getAttribute('xlink:href') === "#icon-sanjiao") {
+        this.getIdDom('friendColumn' + index).style.display = "none";
+        this.getIdDom('sj' + index).setAttribute('xlink:href', '#icon-yousanjiaoxing');
+        var domAll = this.getClassDomAll('column');
+        domAll.forEach(function (item) {
+          item.className = 'column columnHover';
+        });
       } else {
-        window.document.getElementById('sj' + index).setAttribute('xlink:href', '#icon-sanjiao');
-        window.document.getElementById('friendColumn' + index).style.display = "";
+        this.getIdDom('sj' + index).setAttribute('xlink:href', '#icon-sanjiao');
+        this.getIdDom('friendColumn' + index).style.display = ""; //移除 class 让他找不到元素就不触发hover了
+
+        var _domAll = this.getClassDomAll('columnHover');
+
+        _domAll.forEach(function (item) {
+          item.className = 'column';
+        });
+      }
+    },
+
+    /**
+     * 关闭右键菜单
+     */
+    closeMenu: function closeMenu() {
+      var menuId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'all';
+
+      if (menuId === 'all') {
+        this.getIdDom('systemMenu').style.display = "none";
+        this.getIdDom('columnMenu').style.display = "none";
+        this.getIdDom('userMenu').style.display = "none";
+      } else {
+        this.getIdDom(menuId).style.display = "none";
+      }
+    },
+
+    /**
+     * 打开右键菜单
+     */
+    openMenu: function openMenu() {
+      var menuId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'all';
+      var event = arguments.length > 1 ? arguments[1] : undefined;
+
+      if (menuId === 'all') {
+        this.getIdDom('systemMenu').style.display = "";
+        this.getIdDom('columnMenu').style.display = "";
+      } else {
+        var menu = this.getIdDom(menuId); //根据事件对象中鼠标点击的位置，进行定位
+
+        menu.style.left = event.layerX + 'px';
+        menu.style.top = event.clientY + 'px';
+        menu.style.display = ''; //阻止事件冒泡
+
+        event.stopPropagation();
       }
     },
 
@@ -277,18 +347,24 @@ __webpack_require__.r(__webpack_exports__);
      * @param e
      */
     openSystemMenu: function openSystemMenu(e) {
-      var menu = window.document.getElementById('systemMenu');
+      //关闭所有右键菜单
+      this.closeMenu();
+      this.openMenu('systemMenu', e);
+    },
+    //打开栏目菜单
+    openColumnMenu: function openColumnMenu(e) {
+      //关闭所有右键菜单
+      this.closeMenu();
+      this.openMenu('columnMenu', e);
+    },
 
-      if (menu.className == 'systemMenu') {
-        menu.className = 'hidden';
-        menu.style.display = 'none';
-      } else {
-        //根据事件对象中鼠标点击的位置，进行定位
-        menu.style.left = e.layerX + 'px';
-        menu.style.top = e.clientY + 'px';
-        menu.className = "systemMenu";
-        menu.style.display = '';
-      }
+    /**
+     * 打开用户层的右键菜单
+     */
+    openUserMenu: function openUserMenu(e) {
+      //关闭所有右键菜单
+      this.closeMenu();
+      this.openMenu('userMenu', e);
     },
 
     /**
@@ -320,6 +396,33 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.newColumnName = "";
       this.newColumnBox = false;
+    },
+
+    /**
+     * 根据class名找dom
+     *
+     * @param className
+     * @returns {Element}
+     */
+    getClassDom: function getClassDom(className) {
+      return window.document.querySelector('.' + className);
+    },
+
+    /**
+     * 根据class名称查找所有Dom
+     */
+    getClassDomAll: function getClassDomAll(className) {
+      return window.document.querySelectorAll('.' + className);
+    },
+
+    /**
+     * 根据domId查找元素
+     *
+     * @param id
+     * @returns {Element}
+     */
+    getIdDom: function getIdDom(id) {
+      return window.document.querySelector('#' + id);
     }
   }
 });
@@ -395,7 +498,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #f9f9f9;\n}\n.head[data-v-8d22802a] {\n    background: #d6d6d6;\n    height: 100px;\n    padding: 15px;\n}\n.Signature[data-v-8d22802a] {\n    margin-top: 10px;\n    margin-bottom: 25px;\n}\n.friendIcon[data-v-8d22802a] {\n    font-size: 25px;\n}\n.friendList[data-v-8d22802a] {\n    background: #f9f9f9;\n    height: 400px;\n    padding: 15px;\n    /*overflow: hidden;*/\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.friendList[data-v-8d22802a]::-webkit-scrollbar {\n    display: none;\n}\n.friendButton .el-col-8[data-v-8d22802a] {\n    padding-bottom: 5px;\n    text-align: center;\n}\n.friendList[data-v-8d22802a] .el-tree-node__content {\n    height: auto !important;\n    padding-left: 0 !important;\n}\n.friendButton .el-col-8[data-v-8d22802a]:hover {\n    border-bottom: 3px solid #6cdb9e;\n}\n.userSignature[data-v-8d22802a] {\n    color: #b7b7b7;\n}\n.username[data-v-8d22802a] {\n    font-size: 18px;\n}\n.column[data-v-8d22802a] {\n    margin-bottom: 15px;\n    overflow: hidden;\n}\n.corners[data-v-8d22802a] {\n    color: #6fa7d6;\n}\n.list[data-v-8d22802a] {\n    margin-top: 15px;\n    padding-left: 10px;\n}\n.userInfo[data-v-8d22802a] {\n    clear: both;\n    height: 55px;\n    padding: 5px;\n}\n.userInfo[data-v-8d22802a]:hover {\n    /*border: 1px solid #1b1e21;*/\n    background: #f2f2f2;\n}\n.tool[data-v-8d22802a] {\n    border-top: 1px solid #eee;\n    font-size: 25px;\n    text-align: center;\n}\n.tool .el-col-6[data-v-8d22802a]:hover {\n    background: #d5d5d5;\n}\n.systemMenu[data-v-8d22802a] {\n    position: absolute; /*自定义菜单相对与body元素进行定位*/\n    width: 180px;\n    height: 100px;\n    background: #d5d5d5;\n}\n.systemMenu-item[data-v-8d22802a] {\n    padding: 5px;\n    border: 1px solid #e0e5ea;\n}\n.systemMenu-item[data-v-8d22802a]:hover {\n    background: #f5f5f5;\n}\n.hidden[data-v-8d22802a] {\n    display: none;\n}\n\n", ""]);
+exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #f9f9f9;\n}\n.head[data-v-8d22802a] {\n    background: #d6d6d6;\n    height: 100px;\n    padding: 15px;\n}\n.Signature[data-v-8d22802a] {\n    margin-top: 10px;\n    margin-bottom: 25px;\n}\n.friendIcon[data-v-8d22802a] {\n    font-size: 25px;\n}\n.friendList[data-v-8d22802a] {\n    background: #f9f9f9;\n    height: 400px;\n    padding: 15px;\n    /*overflow: hidden;*/\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.friendList[data-v-8d22802a]::-webkit-scrollbar {\n    display: none;\n}\n.friendButton .el-col-8[data-v-8d22802a] {\n    padding-bottom: 5px;\n    text-align: center;\n}\n.friendList[data-v-8d22802a] .el-tree-node__content {\n    height: auto !important;\n    padding-left: 0 !important;\n}\n.friendButton .el-col-8[data-v-8d22802a]:hover {\n    border-bottom: 3px solid #6cdb9e;\n}\n.userSignature[data-v-8d22802a] {\n    color: #b7b7b7;\n}\n.username[data-v-8d22802a] {\n    font-size: 18px;\n}\n.column[data-v-8d22802a] {\n    padding: 10px 0 10px 0;\n    /*overflow: hidden;*/\n    /*height: 20px;*/\n}\n.columnHover[data-v-8d22802a]:hover {\n    background: #eeeeee;\n}\n.corners[data-v-8d22802a] {\n    color: #6fa7d6;\n}\n.list[data-v-8d22802a] {\n    margin-top: 15px;\n    padding-left: 10px;\n}\n.userInfo[data-v-8d22802a] {\n    clear: both;\n    height: 55px;\n    padding: 5px;\n}\n.userInfo[data-v-8d22802a]:hover {\n    /*border: 1px solid #1b1e21;*/\n    background: #f2f2f2;\n}\n.tool[data-v-8d22802a] {\n    border-top: 1px solid #eee;\n    font-size: 25px;\n    text-align: center;\n}\n.tool .el-col-6[data-v-8d22802a]:hover {\n    background: #d5d5d5;\n}\n.contextMenu[data-v-8d22802a] {\n    position: absolute; /*自定义菜单相对与body元素进行定位*/\n    width: 180px;\n    height: 100px;\n    background: #d5d5d5;\n}\n.contextMenu-item[data-v-8d22802a] {\n    padding: 5px;\n    border: 1px solid #e0e5ea;\n}\n.contextMenu-item[data-v-8d22802a]:hover {\n    background: #f5f5f5;\n}\n.hidden[data-v-8d22802a] {\n    display: none;\n}\n\n", ""]);
 
 // exports
 
@@ -828,7 +931,7 @@ var render = function() {
                     _c(
                       "div",
                       {
-                        staticClass: "systemMenu",
+                        staticClass: "contextMenu",
                         staticStyle: { display: "none" },
                         attrs: { id: "systemMenu" }
                       },
@@ -836,7 +939,7 @@ var render = function() {
                         _c(
                           "div",
                           {
-                            staticClass: "systemMenu-item",
+                            staticClass: "contextMenu-item",
                             on: { click: _vm.addColumnBoxOpen }
                           },
                           [
@@ -849,7 +952,7 @@ var render = function() {
                         _c(
                           "div",
                           {
-                            staticClass: "systemMenu-item",
+                            staticClass: "contextMenu-item",
                             on: { click: _vm.feedBack }
                           },
                           [
@@ -859,7 +962,7 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "systemMenu-item" }, [
+                        _c("div", { staticClass: "contextMenu-item" }, [
                           _c(
                             "a",
                             {
@@ -875,88 +978,210 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c(
+                      "div",
+                      {
+                        staticClass: "contextMenu",
+                        staticStyle: { display: "none" },
+                        attrs: { id: "columnMenu" }
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "contextMenu-item",
+                            on: { click: _vm.addColumnBoxOpen }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            删除分栏\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "contextMenu-item",
+                            on: { click: _vm.feedBack }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            展开分栏\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "contextMenu-item" }, [
+                          _vm._v(
+                            "\n                            刷新在线列表\n                        "
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "contextMenu",
+                        staticStyle: { display: "none" },
+                        attrs: { id: "userMenu" }
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "contextMenu-item",
+                            on: { click: _vm.addColumnBoxOpen }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            发送消息\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "contextMenu-item",
+                            on: { click: _vm.feedBack }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            删除好友\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "contextMenu-item" }, [
+                          _vm._v(
+                            "\n                            查看信息\n                        "
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
                       "ul",
                       _vm._l(_vm.friend, function(item, index) {
-                        return _c("li", { staticClass: "column" }, [
-                          _c(
-                            "span",
-                            {
-                              on: {
-                                click: function($event) {
-                                  return _vm.openList(index)
-                                }
+                        return _c(
+                          "li",
+                          {
+                            staticClass: "column columnHover",
+                            on: {
+                              contextmenu: function($event) {
+                                $event.preventDefault()
+                                return _vm.openColumnMenu($event)
                               }
-                            },
-                            [
-                              _c(
-                                "svg",
-                                {
-                                  staticClass: "icon corners",
-                                  attrs: { "aria-hidden": "true" }
-                                },
-                                [
-                                  _c("use", {
-                                    attrs: {
-                                      id: "sj" + index,
-                                      "xlink:href": "#icon-yousanjiaoxing"
-                                    }
-                                  })
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(item.column) +
-                              "\n                            "
-                          ),
-                          _c(
-                            "ul",
-                            {
-                              staticClass: "list",
-                              staticStyle: { display: "none" },
-                              attrs: { id: "friendColumn" + index }
-                            },
-                            _vm._l(item.userInfo, function(friendItem, index) {
-                              return _c("li", [
+                            }
+                          },
+                          [
+                            _c(
+                              "span",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    return _vm.openList(index)
+                                  }
+                                }
+                              },
+                              [
                                 _c(
-                                  "div",
-                                  { staticClass: "userInfo" },
+                                  "svg",
+                                  {
+                                    staticClass: "icon corners",
+                                    attrs: { "aria-hidden": "true" }
+                                  },
                                   [
-                                    _c("el-avatar", {
-                                      staticClass: "fl",
+                                    _c("use", {
                                       attrs: {
-                                        size: 50,
-                                        src: friendItem.avatar
+                                        id: "sj" + index,
+                                        "xlink:href": "#icon-yousanjiaoxing"
                                       }
-                                    }),
-                                    _vm._v(" "),
+                                    })
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(item.column) +
+                                "\n                            "
+                            ),
+                            _c(
+                              "ul",
+                              {
+                                staticClass: "list",
+                                staticStyle: { display: "none" },
+                                attrs: { id: "friendColumn" + index }
+                              },
+                              _vm._l(item.userInfo, function(
+                                friendItem,
+                                index
+                              ) {
+                                return _c(
+                                  "li",
+                                  {
+                                    on: {
+                                      contextmenu: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.openUserMenu($event)
+                                      }
+                                    }
+                                  },
+                                  [
                                     _c(
                                       "div",
-                                      {
-                                        staticClass: "fl",
-                                        staticStyle: { "margin-left": "10px" }
-                                      },
+                                      { staticClass: "userInfo" },
                                       [
-                                        _c("div", { staticClass: "username" }, [
-                                          _vm._v(_vm._s(friendItem.username))
-                                        ]),
+                                        _c("el-avatar", {
+                                          staticClass: "fl",
+                                          attrs: {
+                                            size: 50,
+                                            src: friendItem.avatar
+                                          }
+                                        }),
                                         _vm._v(" "),
                                         _c(
                                           "div",
-                                          { staticClass: "userSignature" },
-                                          [_vm._v(_vm._s(friendItem.signature))]
+                                          {
+                                            staticClass: "fl",
+                                            staticStyle: {
+                                              "margin-left": "10px"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "username" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(friendItem.username)
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "userSignature" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(friendItem.signature)
+                                                )
+                                              ]
+                                            )
+                                          ]
                                         )
-                                      ]
+                                      ],
+                                      1
                                     )
-                                  ],
-                                  1
+                                  ]
                                 )
-                              ])
-                            }),
-                            0
-                          )
-                        ])
+                              }),
+                              0
+                            )
+                          ]
+                        )
                       }),
                       0
                     )
