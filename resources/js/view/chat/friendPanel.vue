@@ -32,9 +32,21 @@
                     </div>
                 </div>
                 <el-col :span="24">
-                    <div class="friendList">
+                    <div class="friendList" @contextmenu.prevent="openSystemMenu">
+                        <div class="systemMenu" id="systemMenu" style="display: none;">
+                            <div class="systemMenu-item" @click="addColumnBoxOpen">
+                                添加新分栏
+                            </div>
+                            <div class="systemMenu-item" @click="feedBack">
+                                系统反馈
+                            </div>
+                            <div class="systemMenu-item">
+                                <a href="https://github.com/JueMeiAlg/chat" target="_blank">gitHub点个星</a>
+                            </div>
+                        </div>
+
                         <ul>
-                            <li class="column" v-for="(item, index) in friend" style="overflow: hidden">
+                            <li class="column" v-for="(item, index) in friend">
                                 <span @click="openList(index)">
                                     <svg class="icon corners" aria-hidden="true">
                                         <use :id="'sj'+index" xlink:href="#icon-yousanjiaoxing"></use>
@@ -56,9 +68,43 @@
                         </ul>
                     </div>
                 </el-col>
-                <el-col :span="24">系统设置</el-col>
+                <el-col :span="24" class="tool">
+                    <el-row>
+
+                        <el-col title="系统消息通知" :span="6">
+                            <el-badge :value="12">
+                                <svg class="icon " aria-hidden="true">
+                                    <use xlink:href="#icon-iconset0274"></use>
+                                </svg>
+                            </el-badge>
+                        </el-col>
+
+
+                        <el-col title="添加好友" :span="6">
+                            <el-badge :value="12">
+                                <svg class="icon " aria-hidden="true">
+                                    <use xlink:href="#icon-add"></use>
+                                </svg>
+                            </el-badge>
+                        </el-col>
+                        <el-col title="分享聊天室给你的好友" :span="6">
+                            <el-badge :value="12">
+                                <svg class="icon " aria-hidden="true">
+                                    <use xlink:href="#icon-fenxiang2"></use>
+                                </svg>
+                            </el-badge>
+                        </el-col>
+                    </el-row>
+                </el-col>
             </el-row>
         </div>
+        <el-dialog title="添加新分栏" :visible.sync="newColumnBox" :close-on-click-modal="false" width="30%">
+            <el-input v-model="newColumnName"></el-input>
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="newColumnBox = false">取 消</el-button>
+              <el-button type="primary" @click="storeColumn">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -123,13 +169,20 @@
                             },
                         ]
                     }
-                ]
+                ],
+                systemMenu: [],
+                newColumnBox:false,
+                newColumnName:""
             }
         },
+
+        created() {
+            window.onclick = function (e) {
+                window.document.querySelector('#systemMenu').style.display = "none";
+            };
+        },
+
         methods: {
-            console(praented) {
-                console.log(praented)
-            },
             /**
              * 打开好友列表
              */
@@ -141,6 +194,54 @@
                     window.document.getElementById('sj' + index).setAttribute('xlink:href', '#icon-sanjiao');
                     window.document.getElementById('friendColumn' + index).style.display = "";
                 }
+            },
+
+            /**
+             * 系统右键菜单开关
+             *
+             * @param e
+             */
+            openSystemMenu(e) {
+                let menu = window.document.getElementById('systemMenu');
+                if (menu.className == 'systemMenu') {
+                    menu.className = 'hidden';
+                    menu.style.display = 'none';
+                } else {
+                    //根据事件对象中鼠标点击的位置，进行定位
+                    menu.style.left = e.layerX + 'px';
+                    menu.style.top = e.clientY + 'px';
+                    menu.className = "systemMenu";
+                    menu.style.display = '';
+                }
+            },
+
+            /**
+             * 系统反馈
+             */
+            feedBack(){
+                this.$message.info('暂未开放')
+            },
+
+            /**
+             * 添加新分栏
+             */
+            addColumnBoxOpen(){
+                this.newColumnBox = true;
+            },
+            /**
+             * 存储栏目
+             */
+            storeColumn(){
+                if (this.newColumnName == '') {
+                    this.$message.warning('新分栏的名字不应该为空');
+                    return;
+                }
+                this.friend.push({
+                    column: this.newColumnName+"(0/0)",
+                    userInfo:[]
+                });
+                this.newColumnName = "";
+                this.newColumnBox = false;
             }
         }
     }
@@ -204,6 +305,7 @@
 
     .column {
         margin-bottom: 15px;
+        overflow: hidden;
     }
 
     .corners {
@@ -220,9 +322,40 @@
         height: 55px;
         padding: 5px;
     }
-    .userInfo:hover{
+
+    .userInfo:hover {
         /*border: 1px solid #1b1e21;*/
         background: #f2f2f2;
+    }
+
+    .tool {
+        border-top: 1px solid #eee;
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .tool .el-col-6:hover {
+        background: #d5d5d5;
+    }
+
+    .systemMenu {
+        position: absolute; /*自定义菜单相对与body元素进行定位*/
+        width: 180px;
+        height: 100px;
+        background: #d5d5d5;
+    }
+
+    .systemMenu-item {
+        padding: 5px;
+        border: 1px solid #e0e5ea;
+    }
+
+    .systemMenu-item:hover {
+        background: #f5f5f5;
+    }
+
+    .hidden {
+        display: none;
     }
 
 </style>

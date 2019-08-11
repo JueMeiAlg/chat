@@ -154,6 +154,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "friendPanel",
   data: function data() {
@@ -200,24 +246,18 @@ __webpack_require__.r(__webpack_exports__);
           username: "编程达人2",
           signature: "编程达人2个性签名"
         }]
-      }]
+      }],
+      systemMenu: [],
+      newColumnBox: false,
+      newColumnName: ""
+    };
+  },
+  created: function created() {
+    window.onclick = function (e) {
+      window.document.querySelector('#systemMenu').style.display = "none";
     };
   },
   methods: {
-    console: function (_console) {
-      function console(_x) {
-        return _console.apply(this, arguments);
-      }
-
-      console.toString = function () {
-        return _console.toString();
-      };
-
-      return console;
-    }(function (praented) {
-      console.log(praented);
-    }),
-
     /**
      * 打开好友列表
      */
@@ -229,6 +269,57 @@ __webpack_require__.r(__webpack_exports__);
         window.document.getElementById('sj' + index).setAttribute('xlink:href', '#icon-sanjiao');
         window.document.getElementById('friendColumn' + index).style.display = "";
       }
+    },
+
+    /**
+     * 系统右键菜单开关
+     *
+     * @param e
+     */
+    openSystemMenu: function openSystemMenu(e) {
+      var menu = window.document.getElementById('systemMenu');
+
+      if (menu.className == 'systemMenu') {
+        menu.className = 'hidden';
+        menu.style.display = 'none';
+      } else {
+        //根据事件对象中鼠标点击的位置，进行定位
+        menu.style.left = e.layerX + 'px';
+        menu.style.top = e.clientY + 'px';
+        menu.className = "systemMenu";
+        menu.style.display = '';
+      }
+    },
+
+    /**
+     * 系统反馈
+     */
+    feedBack: function feedBack() {
+      this.$message.info('暂未开放');
+    },
+
+    /**
+     * 添加新分栏
+     */
+    addColumnBoxOpen: function addColumnBoxOpen() {
+      this.newColumnBox = true;
+    },
+
+    /**
+     * 存储栏目
+     */
+    storeColumn: function storeColumn() {
+      if (this.newColumnName == '') {
+        this.$message.warning('新分栏的名字不应该为空');
+        return;
+      }
+
+      this.friend.push({
+        column: this.newColumnName + "(0/0)",
+        userInfo: []
+      });
+      this.newColumnName = "";
+      this.newColumnBox = false;
     }
   }
 });
@@ -304,7 +395,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #f9f9f9;\n}\n.head[data-v-8d22802a] {\n    background: #d6d6d6;\n    height: 100px;\n    padding: 15px;\n}\n.Signature[data-v-8d22802a] {\n    margin-top: 10px;\n    margin-bottom: 25px;\n}\n.friendIcon[data-v-8d22802a] {\n    font-size: 25px;\n}\n.friendList[data-v-8d22802a] {\n    background: #f9f9f9;\n    height: 400px;\n    padding: 15px;\n    /*overflow: hidden;*/\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.friendList[data-v-8d22802a]::-webkit-scrollbar {\n    display: none;\n}\n.friendButton .el-col-8[data-v-8d22802a] {\n    padding-bottom: 5px;\n    text-align: center;\n}\n.friendList[data-v-8d22802a] .el-tree-node__content {\n    height: auto !important;\n    padding-left: 0 !important;\n}\n.friendButton .el-col-8[data-v-8d22802a]:hover {\n    border-bottom: 3px solid #6cdb9e;\n}\n.userSignature[data-v-8d22802a] {\n    color: #b7b7b7;\n}\n.username[data-v-8d22802a] {\n    font-size: 18px;\n}\n.column[data-v-8d22802a] {\n    margin-bottom: 15px;\n}\n.corners[data-v-8d22802a] {\n    color: #6fa7d6;\n}\n.list[data-v-8d22802a] {\n    margin-top: 15px;\n    padding-left: 10px;\n}\n.userInfo[data-v-8d22802a] {\n    clear: both;\n    height: 55px;\n    padding: 5px;\n}\n.userInfo[data-v-8d22802a]:hover{\n    /*border: 1px solid #1b1e21;*/\n    background: #f2f2f2;\n}\n\n", ""]);
+exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #f9f9f9;\n}\n.head[data-v-8d22802a] {\n    background: #d6d6d6;\n    height: 100px;\n    padding: 15px;\n}\n.Signature[data-v-8d22802a] {\n    margin-top: 10px;\n    margin-bottom: 25px;\n}\n.friendIcon[data-v-8d22802a] {\n    font-size: 25px;\n}\n.friendList[data-v-8d22802a] {\n    background: #f9f9f9;\n    height: 400px;\n    padding: 15px;\n    /*overflow: hidden;*/\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.friendList[data-v-8d22802a]::-webkit-scrollbar {\n    display: none;\n}\n.friendButton .el-col-8[data-v-8d22802a] {\n    padding-bottom: 5px;\n    text-align: center;\n}\n.friendList[data-v-8d22802a] .el-tree-node__content {\n    height: auto !important;\n    padding-left: 0 !important;\n}\n.friendButton .el-col-8[data-v-8d22802a]:hover {\n    border-bottom: 3px solid #6cdb9e;\n}\n.userSignature[data-v-8d22802a] {\n    color: #b7b7b7;\n}\n.username[data-v-8d22802a] {\n    font-size: 18px;\n}\n.column[data-v-8d22802a] {\n    margin-bottom: 15px;\n    overflow: hidden;\n}\n.corners[data-v-8d22802a] {\n    color: #6fa7d6;\n}\n.list[data-v-8d22802a] {\n    margin-top: 15px;\n    padding-left: 10px;\n}\n.userInfo[data-v-8d22802a] {\n    clear: both;\n    height: 55px;\n    padding: 5px;\n}\n.userInfo[data-v-8d22802a]:hover {\n    /*border: 1px solid #1b1e21;*/\n    background: #f2f2f2;\n}\n.tool[data-v-8d22802a] {\n    border-top: 1px solid #eee;\n    font-size: 25px;\n    text-align: center;\n}\n.tool .el-col-6[data-v-8d22802a]:hover {\n    background: #d5d5d5;\n}\n.systemMenu[data-v-8d22802a] {\n    position: absolute; /*自定义菜单相对与body元素进行定位*/\n    width: 180px;\n    height: 100px;\n    background: #d5d5d5;\n}\n.systemMenu-item[data-v-8d22802a] {\n    padding: 5px;\n    border: 1px solid #e0e5ea;\n}\n.systemMenu-item[data-v-8d22802a]:hover {\n    background: #f5f5f5;\n}\n.hidden[data-v-8d22802a] {\n    display: none;\n}\n\n", ""]);
 
 // exports
 
@@ -631,186 +722,393 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "Panel-main" }, [
-    _c(
-      "div",
-      [
-        _c(
-          "el-row",
-          [
-            _c(
-              "div",
-              { staticClass: "head" },
-              [
-                _c(
-                  "el-col",
-                  { attrs: { span: 24 } },
-                  [
-                    _c(
-                      "el-row",
-                      [
-                        _c("el-col", { attrs: { span: 8 } }, [
-                          _vm._v(
-                            "\n                            Alg\n                        "
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("el-col", { attrs: { span: 24 } }, [
-                  _c("div", { staticClass: "Signature" }, [_vm._v("个性签名")])
-                ]),
-                _vm._v(" "),
+  return _c(
+    "div",
+    { staticClass: "Panel-main" },
+    [
+      _c(
+        "div",
+        [
+          _c(
+            "el-row",
+            [
+              _c(
+                "div",
+                { staticClass: "head" },
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 24 } },
+                    [
+                      _c(
+                        "el-row",
+                        [
+                          _c("el-col", { attrs: { span: 8 } }, [
+                            _vm._v(
+                              "\n                            Alg\n                        "
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("el-col", { attrs: { span: 24 } }, [
+                    _c("div", { staticClass: "Signature" }, [
+                      _vm._v("个性签名")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "friendButton" },
+                    [
+                      _c("el-col", { attrs: { span: 8 } }, [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "icon friendIcon",
+                            attrs: { "aria-hidden": "true" }
+                          },
+                          [_c("use", { attrs: { "xlink:href": "#icon-ren" } })]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("el-col", { attrs: { span: 8 } }, [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "icon friendIcon",
+                            attrs: { "aria-hidden": "true" }
+                          },
+                          [
+                            _c("use", {
+                              attrs: { "xlink:href": "#icon-users" }
+                            })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("el-col", { attrs: { span: 8 } }, [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "icon friendIcon",
+                            attrs: { "aria-hidden": "true" }
+                          },
+                          [
+                            _c("use", {
+                              attrs: { "xlink:href": "#icon-xinxi" }
+                            })
+                          ]
+                        )
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("el-col", { attrs: { span: 24 } }, [
                 _c(
                   "div",
-                  { staticClass: "friendButton" },
+                  {
+                    staticClass: "friendList",
+                    on: {
+                      contextmenu: function($event) {
+                        $event.preventDefault()
+                        return _vm.openSystemMenu($event)
+                      }
+                    }
+                  },
                   [
-                    _c("el-col", { attrs: { span: 8 } }, [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "icon friendIcon",
-                          attrs: { "aria-hidden": "true" }
-                        },
-                        [_c("use", { attrs: { "xlink:href": "#icon-ren" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("el-col", { attrs: { span: 8 } }, [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "icon friendIcon",
-                          attrs: { "aria-hidden": "true" }
-                        },
-                        [_c("use", { attrs: { "xlink:href": "#icon-users" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("el-col", { attrs: { span: 8 } }, [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "icon friendIcon",
-                          attrs: { "aria-hidden": "true" }
-                        },
-                        [_c("use", { attrs: { "xlink:href": "#icon-xinxi" } })]
-                      )
-                    ])
-                  ],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("el-col", { attrs: { span: 24 } }, [
-              _c("div", { staticClass: "friendList" }, [
-                _c(
-                  "ul",
-                  _vm._l(_vm.friend, function(item, index) {
-                    return _c(
-                      "li",
+                    _c(
+                      "div",
                       {
-                        staticClass: "column",
-                        staticStyle: { overflow: "hidden" }
+                        staticClass: "systemMenu",
+                        staticStyle: { display: "none" },
+                        attrs: { id: "systemMenu" }
                       },
                       [
                         _c(
-                          "span",
+                          "div",
                           {
-                            on: {
-                              click: function($event) {
-                                return _vm.openList(index)
-                              }
-                            }
+                            staticClass: "systemMenu-item",
+                            on: { click: _vm.addColumnBoxOpen }
                           },
                           [
+                            _vm._v(
+                              "\n                            添加新分栏\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "systemMenu-item",
+                            on: { click: _vm.feedBack }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            系统反馈\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "systemMenu-item" }, [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: "https://github.com/JueMeiAlg/chat",
+                                target: "_blank"
+                              }
+                            },
+                            [_vm._v("gitHub点个星")]
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      _vm._l(_vm.friend, function(item, index) {
+                        return _c("li", { staticClass: "column" }, [
+                          _c(
+                            "span",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.openList(index)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass: "icon corners",
+                                  attrs: { "aria-hidden": "true" }
+                                },
+                                [
+                                  _c("use", {
+                                    attrs: {
+                                      id: "sj" + index,
+                                      "xlink:href": "#icon-yousanjiaoxing"
+                                    }
+                                  })
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(item.column) +
+                              "\n                            "
+                          ),
+                          _c(
+                            "ul",
+                            {
+                              staticClass: "list",
+                              staticStyle: { display: "none" },
+                              attrs: { id: "friendColumn" + index }
+                            },
+                            _vm._l(item.userInfo, function(friendItem, index) {
+                              return _c("li", [
+                                _c(
+                                  "div",
+                                  { staticClass: "userInfo" },
+                                  [
+                                    _c("el-avatar", {
+                                      staticClass: "fl",
+                                      attrs: {
+                                        size: 50,
+                                        src: friendItem.avatar
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "fl",
+                                        staticStyle: { "margin-left": "10px" }
+                                      },
+                                      [
+                                        _c("div", { staticClass: "username" }, [
+                                          _vm._v(_vm._s(friendItem.username))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "userSignature" },
+                                          [_vm._v(_vm._s(friendItem.signature))]
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ])
+                            }),
+                            0
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "el-col",
+                { staticClass: "tool", attrs: { span: 24 } },
+                [
+                  _c(
+                    "el-row",
+                    [
+                      _c(
+                        "el-col",
+                        { attrs: { title: "系统消息通知", span: 6 } },
+                        [
+                          _c("el-badge", { attrs: { value: 12 } }, [
                             _c(
                               "svg",
                               {
-                                staticClass: "icon corners",
+                                staticClass: "icon ",
                                 attrs: { "aria-hidden": "true" }
                               },
                               [
                                 _c("use", {
-                                  attrs: {
-                                    id: "sj" + index,
-                                    "xlink:href": "#icon-yousanjiaoxing"
-                                  }
+                                  attrs: { "xlink:href": "#icon-iconset0274" }
                                 })
                               ]
                             )
-                          ]
-                        ),
-                        _vm._v(
-                          "\n                            " +
-                            _vm._s(item.column) +
-                            "\n                            "
-                        ),
-                        _c(
-                          "ul",
-                          {
-                            staticClass: "list",
-                            staticStyle: { display: "none" },
-                            attrs: { id: "friendColumn" + index }
-                          },
-                          _vm._l(item.userInfo, function(friendItem, index) {
-                            return _c("li", [
-                              _c(
-                                "div",
-                                { staticClass: "userInfo" },
-                                [
-                                  _c("el-avatar", {
-                                    staticClass: "fl",
-                                    attrs: { size: 50, src: friendItem.avatar }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass: "fl",
-                                      staticStyle: { "margin-left": "10px" }
-                                    },
-                                    [
-                                      _c("div", { staticClass: "username" }, [
-                                        _vm._v(_vm._s(friendItem.username))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "userSignature" },
-                                        [_vm._v(_vm._s(friendItem.signature))]
-                                      )
-                                    ]
-                                  )
-                                ],
-                                1
-                              )
-                            ])
-                          }),
-                          0
-                        )
-                      ]
-                    )
-                  }),
-                  0
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("el-col", { attrs: { span: 24 } }, [_vm._v("系统设置")])
-          ],
-          1
-        )
-      ],
-      1
-    )
-  ])
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-col",
+                        { attrs: { title: "添加好友", span: 6 } },
+                        [
+                          _c("el-badge", { attrs: { value: 12 } }, [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "icon ",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [
+                                _c("use", {
+                                  attrs: { "xlink:href": "#icon-add" }
+                                })
+                              ]
+                            )
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-col",
+                        { attrs: { title: "分享聊天室给你的好友", span: 6 } },
+                        [
+                          _c("el-badge", { attrs: { value: 12 } }, [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "icon ",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [
+                                _c("use", {
+                                  attrs: { "xlink:href": "#icon-fenxiang2" }
+                                })
+                              ]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: {
+            title: "添加新分栏",
+            visible: _vm.newColumnBox,
+            "close-on-click-modal": false,
+            width: "30%"
+          },
+          on: {
+            "update:visible": function($event) {
+              _vm.newColumnBox = $event
+            }
+          }
+        },
+        [
+          _c("el-input", {
+            model: {
+              value: _vm.newColumnName,
+              callback: function($$v) {
+                _vm.newColumnName = $$v
+              },
+              expression: "newColumnName"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.newColumnBox = false
+                    }
+                  }
+                },
+                [_vm._v("取 消")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                { attrs: { type: "primary" }, on: { click: _vm.storeColumn } },
+                [_vm._v("确 定")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
