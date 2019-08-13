@@ -219,9 +219,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "friendPanel",
   data: function data() {
@@ -423,6 +420,48 @@ __webpack_require__.r(__webpack_exports__);
      */
     getIdDom: function getIdDom(id) {
       return window.document.querySelector('#' + id);
+    },
+
+    /**
+     * 删除分栏
+     */
+    destoryColumn: function destoryColumn() {
+      this.$message.warning('暂未实现');
+    },
+
+    /**
+     * 展开分栏
+     */
+    openColumn: function openColumn() {
+      this.$message.warning('暂未实现');
+    },
+
+    /**
+     * 刷新好友列表
+     */
+    refreshFriendList: function refreshFriendList() {
+      this.$message.warning('暂未实现');
+    },
+
+    /**
+     * 发送消息
+     */
+    sendMsg: function sendMsg() {
+      this.$message.warning('暂未实现');
+    },
+
+    /**
+     * 删除好友
+     */
+    destoryFriend: function destoryFriend() {
+      this.$message.warning('暂未实现');
+    },
+
+    /**
+     * 查看用户信息
+     */
+    showUserInfo: function showUserInfo() {
+      this.$message.warning('暂未实现');
     }
   }
 });
@@ -989,7 +1028,7 @@ var render = function() {
                           "div",
                           {
                             staticClass: "contextMenu-item",
-                            on: { click: _vm.addColumnBoxOpen }
+                            on: { click: _vm.destoryColumn }
                           },
                           [
                             _vm._v(
@@ -1002,7 +1041,7 @@ var render = function() {
                           "div",
                           {
                             staticClass: "contextMenu-item",
-                            on: { click: _vm.feedBack }
+                            on: { click: _vm.openColumn }
                           },
                           [
                             _vm._v(
@@ -1011,11 +1050,18 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "contextMenu-item" }, [
-                          _vm._v(
-                            "\n                            刷新在线列表\n                        "
-                          )
-                        ])
+                        _c(
+                          "div",
+                          {
+                            staticClass: "contextMenu-item",
+                            on: { click: _vm.refreshFriendList }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            刷新在线列表\n                        "
+                            )
+                          ]
+                        )
                       ]
                     ),
                     _vm._v(" "),
@@ -1031,7 +1077,7 @@ var render = function() {
                           "div",
                           {
                             staticClass: "contextMenu-item",
-                            on: { click: _vm.addColumnBoxOpen }
+                            on: { click: _vm.sendMsg }
                           },
                           [
                             _vm._v(
@@ -1044,7 +1090,7 @@ var render = function() {
                           "div",
                           {
                             staticClass: "contextMenu-item",
-                            on: { click: _vm.feedBack }
+                            on: { click: _vm.destoryFriend }
                           },
                           [
                             _vm._v(
@@ -1053,11 +1099,18 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "contextMenu-item" }, [
-                          _vm._v(
-                            "\n                            查看信息\n                        "
-                          )
-                        ])
+                        _c(
+                          "div",
+                          {
+                            staticClass: "contextMenu-item",
+                            on: { click: _vm.showUserInfo }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            查看信息\n                        "
+                            )
+                          ]
+                        )
                       ]
                     ),
                     _vm._v(" "),

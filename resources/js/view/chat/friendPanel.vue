@@ -45,24 +45,24 @@
                             </div>
                         </div>
                         <div class="contextMenu" id="columnMenu" style="display: none;">
-                            <div class="contextMenu-item" @click="addColumnBoxOpen">
+                            <div class="contextMenu-item" @click="destoryColumn">
                                 删除分栏
                             </div>
-                            <div class="contextMenu-item" @click="feedBack">
+                            <div class="contextMenu-item" @click="openColumn">
                                 展开分栏
                             </div>
-                            <div class="contextMenu-item">
+                            <div class="contextMenu-item" @click="refreshFriendList">
                                 刷新在线列表
                             </div>
                         </div>
                         <div class="contextMenu" id="userMenu" style="display: none;">
-                            <div class="contextMenu-item" @click="addColumnBoxOpen">
+                            <div class="contextMenu-item" @click="sendMsg">
                                 发送消息
                             </div>
-                            <div class="contextMenu-item" @click="feedBack">
+                            <div class="contextMenu-item" @click="destoryFriend">
                                 删除好友
                             </div>
-                            <div class="contextMenu-item">
+                            <div class="contextMenu-item" @click="showUserInfo">
                                 查看信息
                             </div>
                         </div>
@@ -92,7 +92,6 @@
                 </el-col>
                 <el-col :span="24" class="tool">
                     <el-row>
-
                         <el-col title="系统消息通知" :span="6">
                             <el-badge :value="12">
                                 <svg class="icon " aria-hidden="true">
@@ -100,8 +99,6 @@
                                 </svg>
                             </el-badge>
                         </el-col>
-
-
                         <el-col title="添加好友" :span="6">
                             <el-badge :value="12">
                                 <svg class="icon " aria-hidden="true">
@@ -342,6 +339,45 @@
             getIdDom(id) {
                 return window.document.querySelector('#' + id)
             },
+
+            /**
+             * 删除分栏
+             */
+            destoryColumn(){
+                this.$message.warning('暂未实现');
+            },
+
+            /**
+             * 展开分栏
+             */
+            openColumn(){
+                this.$message.warning('暂未实现');
+            },
+            /**
+             * 刷新好友列表
+             */
+            refreshFriendList(){
+                this.$message.warning('暂未实现');
+            },
+            /**
+             * 发送消息
+             */
+            sendMsg(){
+                this.$message.warning('暂未实现');
+            },
+            /**
+             * 删除好友
+             */
+            destoryFriend(){
+                this.$message.warning('暂未实现');
+            },
+            /**
+             * 查看用户信息
+             */
+            showUserInfo(){
+                this.$message.warning('暂未实现');
+            }
+
         }
     }
 </script>

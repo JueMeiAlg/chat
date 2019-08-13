@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat\Group;
 use App\Models\User;
+use App\Models\User\UserColumn;
 
 /**
  * 测试和代码调试控制器
@@ -46,6 +47,20 @@ class TestController extends Controller
         $user = User::query()
             ->with('friend')
             ->get()->toArray();
+        dd($user);
+    }
+
+    public function t4()
+    {
+        //用户分栏下的好友
+        $user = UserColumn::query()->with('friend')
+            ->where('id', 1)
+            ->get()
+            ->toArray();
+
+//        $user = User::query()
+//            ->with('columnFriend')
+//            ->get()->toArray();
         dd($user);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Chat\Group;
+use App\Models\User\UserColumn;
+use App\Models\User\UserColumnRelationUser;
 use App\Models\User\UserFriend;
 use App\Models\User\UserJoinedGroup;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -79,5 +81,20 @@ class User extends Authenticatable
         return $this->hasManyThrough(self::class,UserFriend::class,
             'user_id', 'id', 'id', 'friend_id'
         );
+    }
+
+    /**
+     * 用户分栏下的好友
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function columnFriend()
+    {
+        return $this->hasManyThrough(
+            UserColumn::class,
+            UserColumnRelationUser::class,
+            'id' ,'user_id',
+            'id','column_id'
+        )->with('friend');
     }
 }
