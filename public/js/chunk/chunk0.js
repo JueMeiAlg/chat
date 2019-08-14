@@ -90,6 +90,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _api_friend__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/api/friend */ "./resources/js/api/friend.js");
 //
 //
 //
@@ -219,64 +220,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "friendPanel",
   data: function data() {
     return {
-      friend: [{
-        column: "我的好友(40/80)",
-        userInfo: [{
-          avatar: "https://lorempixel.com/200/200/cats/?74058",
-          username: "我的好友1",
-          signature: "我的好友1个性签名"
-        }, {
-          avatar: "https://lorempixel.com/200/200/cats/?74058",
-          username: "我的好友2",
-          signature: "我的好友2个性签名"
-        }]
-      }, {
-        column: "编程达人(25/42)",
-        userInfo: [{
-          avatar: "https://lorempixel.com/200/200/cats/?74058",
-          username: "编程达人1",
-          signature: "编程达人1个性签名"
-        }, {
-          avatar: "https://lorempixel.com/200/200/cats/?74058",
-          username: "编程达人2",
-          signature: "编程达人2个性签名"
-        }, {
-          avatar: "https://lorempixel.com/200/200/cats/?74058",
-          username: "编程达人2",
-          signature: "编程达人2个性签名"
-        }, {
-          avatar: "https://lorempixel.com/200/200/cats/?74058",
-          username: "编程达人2",
-          signature: "编程达人2个性签名"
-        }, {
-          avatar: "https://lorempixel.com/200/200/cats/?74058",
-          username: "编程达人2",
-          signature: "编程达人2个性签名"
-        }, {
-          avatar: "https://lorempixel.com/200/200/cats/?74058",
-          username: "编程达人2",
-          signature: "编程达人2个性签名"
-        }, {
-          avatar: "https://lorempixel.com/200/200/cats/?74058",
-          username: "编程达人2",
-          signature: "编程达人2个性签名"
-        }]
-      }],
+      columnFriend: [],
       systemMenu: [],
       newColumnBox: false,
-      newColumnName: ""
+      editColumnBox: false,
+      newColumnName: "",
+      currentHandelColumnId: 0,
+      currentHandelColumnObj: "",
+      currentHandelColumnIndex: "",
+      currentHandelUserId: 0,
+      currentHandelUserObj: "",
+      currentHandelUserIndex: ""
     };
   },
   created: function created() {
+    var _this = this;
+
     window.onclick = function (e) {
       window.document.querySelector('#systemMenu').style.display = "none";
       window.document.querySelector('#columnMenu').style.display = "none";
       window.document.querySelector('#userMenu').style.display = "none";
-    };
+    }; //拉取分栏及好友信息
+
+
+    Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["columnFriend"])().then(function (response) {
+      _this.columnFriend = response.data.data;
+    });
   },
   methods: {
     /**
@@ -349,8 +333,13 @@ __webpack_require__.r(__webpack_exports__);
       this.openMenu('systemMenu', e);
     },
     //打开栏目菜单
-    openColumnMenu: function openColumnMenu(e) {
-      //关闭所有右键菜单
+    openColumnMenu: function openColumnMenu(e, id, obj, index) {
+      this.currentHandelColumnId = id; //当前操作分栏的数据对象
+
+      this.currentHandelColumnObj = obj; //当前操作分栏索引位置
+
+      this.currentHandelColumnIndex = index; //关闭所有右键菜单
+
       this.closeMenu();
       this.openMenu('columnMenu', e);
     },
@@ -358,8 +347,11 @@ __webpack_require__.r(__webpack_exports__);
     /**
      * 打开用户层的右键菜单
      */
-    openUserMenu: function openUserMenu(e) {
-      //关闭所有右键菜单
+    openUserMenu: function openUserMenu(e, id, item, index) {
+      this.currentHandelUserId = id;
+      this.currentHandelUserObj = item;
+      this.currentHandelUserIndex = index; //关闭所有右键菜单
+
       this.closeMenu();
       this.openMenu('userMenu', e);
     },
@@ -381,18 +373,26 @@ __webpack_require__.r(__webpack_exports__);
     /**
      * 存储栏目
      */
-    storeColumn: function storeColumn() {
+    addColumn: function addColumn() {
+      var _this2 = this;
+
       if (this.newColumnName == '') {
         this.$message.warning('新分栏的名字不应该为空');
         return;
       }
 
-      this.friend.push({
-        column: this.newColumnName + "(0/0)",
-        userInfo: []
+      Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["storeColumn"])({
+        name: this.newColumnName
+      }).then(function (response) {
+        _this2.columnFriend.push({
+          name: _this2.newColumnName,
+          friend: [],
+          id: response.data.data.id
+        });
+
+        _this2.newColumnName = "";
+        _this2.newColumnBox = false;
       });
-      this.newColumnName = "";
-      this.newColumnBox = false;
     },
 
     /**
@@ -425,22 +425,60 @@ __webpack_require__.r(__webpack_exports__);
     /**
      * 删除分栏
      */
-    destoryColumn: function destoryColumn() {
-      this.$message.warning('暂未实现');
+    destroyColumnInfo: function destroyColumnInfo() {
+      var _this3 = this;
+
+      Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["destroyColumn"])(this.currentHandelColumnId).then(function (response) {
+        _this3.columnFriend.splice(_this3.currentHandelColumnIndex, 1);
+
+        _this3.currentHandelColumnId = 0; //重新拉取分栏及好友信息
+
+        Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["columnFriend"])().then(function (response) {
+          _this3.columnFriend = response.data.data;
+
+          _this3.$message.success(response.data.msg);
+        });
+      });
+    },
+
+    /**
+     * 重命名分栏弹窗
+     */
+    editColumn: function editColumn() {
+      this.newColumnName = this.currentHandelColumnObj.name;
+      this.editColumnBox = true;
+    },
+
+    /**
+     * 更新分栏
+     */
+    updateColumnInfo: function updateColumnInfo() {
+      var _this4 = this;
+
+      Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["updateColumn"])(this.currentHandelColumnId, {
+        name: this.newColumnName
+      }).then(function (response) {
+        _this4.columnFriend.forEach(function (item) {
+          if (item.id == _this4.currentHandelColumnId) {
+            //刷新名称
+            item.name = _this4.newColumnName;
+          }
+        }); //回归状态
+
+
+        _this4.currentHandelColumnId = 0;
+        _this4.newColumnName = "";
+        _this4.editColumnBox = false;
+
+        _this4.$message.success(response.data.msg);
+      });
     },
 
     /**
      * 展开分栏
      */
     openColumn: function openColumn() {
-      this.$message.warning('暂未实现');
-    },
-
-    /**
-     * 刷新好友列表
-     */
-    refreshFriendList: function refreshFriendList() {
-      this.$message.warning('暂未实现');
+      this.openList(this.currentHandelColumnIndex);
     },
 
     /**
@@ -453,8 +491,21 @@ __webpack_require__.r(__webpack_exports__);
     /**
      * 删除好友
      */
-    destoryFriend: function destoryFriend() {
-      this.$message.warning('暂未实现');
+    deleteFriend: function deleteFriend() {
+      var _this5 = this;
+
+      Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["destroyFriend"])(this.currentHandelUserId).then(function (response) {
+        //动态移除占位
+        _this5.columnFriend.forEach(function (colItem, colIndex) {
+          colItem.friend.forEach(function (friendItem, friIndex) {
+            if (friendItem.id == _this5.currentHandelUserId) {
+              _this5.columnFriend[colIndex].friend.splice(_this5.currentHandelUserIndex, 1);
+            }
+          });
+        });
+
+        _this5.$message.success(response.data.msg);
+      });
     },
 
     /**
@@ -537,7 +588,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #f9f9f9;\n}\n.head[data-v-8d22802a] {\n    background: #d6d6d6;\n    height: 100px;\n    padding: 15px;\n}\n.Signature[data-v-8d22802a] {\n    margin-top: 10px;\n    margin-bottom: 25px;\n}\n.friendIcon[data-v-8d22802a] {\n    font-size: 25px;\n}\n.friendList[data-v-8d22802a] {\n    background: #f9f9f9;\n    height: 400px;\n    padding: 15px;\n    /*overflow: hidden;*/\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.friendList[data-v-8d22802a]::-webkit-scrollbar {\n    display: none;\n}\n.friendButton .el-col-8[data-v-8d22802a] {\n    padding-bottom: 5px;\n    text-align: center;\n}\n.friendList[data-v-8d22802a] .el-tree-node__content {\n    height: auto !important;\n    padding-left: 0 !important;\n}\n.friendButton .el-col-8[data-v-8d22802a]:hover {\n    border-bottom: 3px solid #6cdb9e;\n}\n.userSignature[data-v-8d22802a] {\n    color: #b7b7b7;\n}\n.username[data-v-8d22802a] {\n    font-size: 18px;\n}\n.column[data-v-8d22802a] {\n    padding: 10px 0 10px 0;\n    /*overflow: hidden;*/\n    /*height: 20px;*/\n}\n.columnHover[data-v-8d22802a]:hover {\n    background: #eeeeee;\n}\n.corners[data-v-8d22802a] {\n    color: #6fa7d6;\n}\n.list[data-v-8d22802a] {\n    margin-top: 15px;\n    padding-left: 10px;\n}\n.userInfo[data-v-8d22802a] {\n    clear: both;\n    height: 55px;\n    padding: 5px;\n}\n.userInfo[data-v-8d22802a]:hover {\n    /*border: 1px solid #1b1e21;*/\n    background: #f2f2f2;\n}\n.tool[data-v-8d22802a] {\n    border-top: 1px solid #eee;\n    font-size: 25px;\n    text-align: center;\n}\n.tool .el-col-6[data-v-8d22802a]:hover {\n    background: #d5d5d5;\n}\n.contextMenu[data-v-8d22802a] {\n    position: absolute; /*自定义菜单相对与body元素进行定位*/\n    width: 180px;\n    height: 100px;\n    background: #d5d5d5;\n}\n.contextMenu-item[data-v-8d22802a] {\n    padding: 5px;\n    border: 1px solid #e0e5ea;\n}\n.contextMenu-item[data-v-8d22802a]:hover {\n    background: #f5f5f5;\n}\n.hidden[data-v-8d22802a] {\n    display: none;\n}\n\n", ""]);
+exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #f9f9f9;\n}\n.head[data-v-8d22802a] {\n    background: #d6d6d6;\n    height: 100px;\n    padding: 15px;\n}\n.Signature[data-v-8d22802a] {\n    margin-top: 10px;\n    margin-bottom: 25px;\n}\n.friendIcon[data-v-8d22802a] {\n    font-size: 25px;\n}\n.friendList[data-v-8d22802a] {\n    background: #f9f9f9;\n    height: 400px;\n    padding: 15px;\n    /*overflow: hidden;*/\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.friendList[data-v-8d22802a]::-webkit-scrollbar {\n    display: none;\n}\n.friendButton .el-col-8[data-v-8d22802a] {\n    padding-bottom: 5px;\n    text-align: center;\n}\n.friendList[data-v-8d22802a] .el-tree-node__content {\n    height: auto !important;\n    padding-left: 0 !important;\n}\n.friendButton .el-col-8[data-v-8d22802a]:hover {\n    border-bottom: 3px solid #6cdb9e;\n}\n.userSignature[data-v-8d22802a] {\n    color: #b7b7b7;\n}\n.username[data-v-8d22802a] {\n    font-size: 18px;\n}\n.column[data-v-8d22802a] {\n    padding: 10px 0 10px 0;\n    /*overflow: hidden;*/\n    /*height: 20px;*/\n}\n.columnHover[data-v-8d22802a]:hover {\n    background: #eeeeee;\n}\n.corners[data-v-8d22802a] {\n    color: #6fa7d6;\n}\n.list[data-v-8d22802a] {\n    margin-top: 15px;\n    padding-left: 10px;\n}\n.userInfo[data-v-8d22802a] {\n    clear: both;\n    height: 55px;\n    padding: 5px;\n}\n.userInfo[data-v-8d22802a]:hover {\n    /*border: 1px solid #1b1e21;*/\n    background: #f2f2f2;\n}\n.tool[data-v-8d22802a] {\n    border-top: 1px solid #eee;\n    font-size: 25px;\n    text-align: center;\n}\n.tool .el-col-6[data-v-8d22802a]:hover {\n    background: #d5d5d5;\n}\n.contextMenu[data-v-8d22802a] {\n    position: absolute; /*自定义菜单相对与body元素进行定位*/\n    width: 180px;\n    /*height: 130px;*/\n    background: #d5d5d5;\n}\n.contextMenu-item[data-v-8d22802a] {\n    padding: 5px;\n    border: 1px solid #e0e5ea;\n}\n.contextMenu-item[data-v-8d22802a]:hover {\n    background: #f5f5f5;\n}\n.hidden[data-v-8d22802a] {\n    display: none;\n}\n.friend-list-off-line[data-v-8d22802a] {\n    -webkit-filter: grayscale(1);\n            filter: grayscale(1);\n    opacity: 0.8;\n}\n\n\n", ""]);
 
 // exports
 
@@ -1028,7 +1079,7 @@ var render = function() {
                           "div",
                           {
                             staticClass: "contextMenu-item",
-                            on: { click: _vm.destoryColumn }
+                            on: { click: _vm.destroyColumnInfo }
                           },
                           [
                             _vm._v(
@@ -1041,11 +1092,11 @@ var render = function() {
                           "div",
                           {
                             staticClass: "contextMenu-item",
-                            on: { click: _vm.openColumn }
+                            on: { click: _vm.editColumn }
                           },
                           [
                             _vm._v(
-                              "\n                            展开分栏\n                        "
+                              "\n                            重命名\n                        "
                             )
                           ]
                         ),
@@ -1054,11 +1105,11 @@ var render = function() {
                           "div",
                           {
                             staticClass: "contextMenu-item",
-                            on: { click: _vm.refreshFriendList }
+                            on: { click: _vm.openColumn }
                           },
                           [
                             _vm._v(
-                              "\n                            刷新在线列表\n                        "
+                              "\n                            展开或收起\n                        "
                             )
                           ]
                         )
@@ -1090,7 +1141,7 @@ var render = function() {
                           "div",
                           {
                             staticClass: "contextMenu-item",
-                            on: { click: _vm.destoryFriend }
+                            on: { click: _vm.deleteFriend }
                           },
                           [
                             _vm._v(
@@ -1116,7 +1167,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "ul",
-                      _vm._l(_vm.friend, function(item, index) {
+                      _vm._l(_vm.columnFriend, function(item, index) {
                         return _c(
                           "li",
                           {
@@ -1124,7 +1175,12 @@ var render = function() {
                             on: {
                               contextmenu: function($event) {
                                 $event.preventDefault()
-                                return _vm.openColumnMenu($event)
+                                return _vm.openColumnMenu(
+                                  $event,
+                                  item.id,
+                                  item,
+                                  index
+                                )
                               }
                             }
                           },
@@ -1158,7 +1214,7 @@ var render = function() {
                             ),
                             _vm._v(
                               "\n                            " +
-                                _vm._s(item.column) +
+                                _vm._s(item.name) +
                                 "\n                            "
                             ),
                             _c(
@@ -1168,9 +1224,9 @@ var render = function() {
                                 staticStyle: { display: "none" },
                                 attrs: { id: "friendColumn" + index }
                               },
-                              _vm._l(item.userInfo, function(
+                              _vm._l(item.friend, function(
                                 friendItem,
-                                index
+                                friendIndex
                               ) {
                                 return _c(
                                   "li",
@@ -1178,7 +1234,12 @@ var render = function() {
                                     on: {
                                       contextmenu: function($event) {
                                         $event.preventDefault()
-                                        return _vm.openUserMenu($event)
+                                        return _vm.openUserMenu(
+                                          $event,
+                                          friendItem.id,
+                                          friendItem,
+                                          friendIndex
+                                        )
                                       }
                                     }
                                   },
@@ -1188,7 +1249,9 @@ var render = function() {
                                       { staticClass: "userInfo" },
                                       [
                                         _c("el-avatar", {
-                                          staticClass: "fl",
+                                          class: friendItem.fd
+                                            ? "fl"
+                                            : "fl friend-list-off-line",
                                           attrs: {
                                             size: 50,
                                             src: friendItem.avatar
@@ -1207,11 +1270,7 @@ var render = function() {
                                             _c(
                                               "div",
                                               { staticClass: "username" },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(friendItem.username)
-                                                )
-                                              ]
+                                              [_vm._v(_vm._s(friendItem.name))]
                                             ),
                                             _vm._v(" "),
                                             _c(
@@ -1375,7 +1434,68 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-button",
-                { attrs: { type: "primary" }, on: { click: _vm.storeColumn } },
+                { attrs: { type: "primary" }, on: { click: _vm.addColumn } },
+                [_vm._v("确 定")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: {
+            title: "修改分栏名称",
+            visible: _vm.editColumnBox,
+            "close-on-click-modal": false,
+            width: "30%"
+          },
+          on: {
+            "update:visible": function($event) {
+              _vm.editColumnBox = $event
+            }
+          }
+        },
+        [
+          _c("el-input", {
+            model: {
+              value: _vm.newColumnName,
+              callback: function($$v) {
+                _vm.newColumnName = $$v
+              },
+              expression: "newColumnName"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.editColumnBox = false
+                    }
+                  }
+                },
+                [_vm._v("取 消")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: { click: _vm.updateColumnInfo }
+                },
                 [_vm._v("确 定")]
               )
             ],
@@ -1540,6 +1660,85 @@ function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ "./resources/js/api/friend.js":
+/*!************************************!*\
+  !*** ./resources/js/api/friend.js ***!
+  \************************************/
+/*! exports provided: columnFriend, storeColumn, updateColumn, destroyColumn, destroyFriend */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "columnFriend", function() { return columnFriend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeColumn", function() { return storeColumn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateColumn", function() { return updateColumn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyColumn", function() { return destroyColumn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyFriend", function() { return destroyFriend; });
+/* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/libs/axios */ "./resources/js/libs/axios.js");
+
+/**
+ * 好友分栏信息
+ *
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var columnFriend = function columnFriend() {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/column',
+    method: 'get'
+  });
+};
+/**
+ * 新增好友分栏
+ *
+ * @param data
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var storeColumn = function storeColumn(data) {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/column',
+    data: data,
+    method: 'post'
+  });
+};
+/**
+ * 修改好友分栏信息
+ *
+ * @param id
+ * @param data
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var updateColumn = function updateColumn(id, data) {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/column/' + id,
+    data: data,
+    method: 'put'
+  });
+};
+/**
+ * 删除分栏信息
+ *
+ * @param id
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var destroyColumn = function destroyColumn(id) {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/column/' + id,
+    method: 'delete'
+  });
+};
+var destroyFriend = function destroyFriend(id) {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/friend/' + id,
+    method: 'delete'
+  });
+};
 
 /***/ }),
 

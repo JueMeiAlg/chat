@@ -99619,6 +99619,15 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.interceptors.request.use(function (
 }); // 添加响应拦截器
 
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.interceptors.response.use(function (response) {
+  if (response.data.code < 0) {
+    Object(element_ui__WEBPACK_IMPORTED_MODULE_3__["Message"])({
+      showClose: true,
+      message: response.data.msg,
+      type: 'error'
+    });
+    return Promise.reject(response);
+  }
+
   return response;
 }, function (error) {
   var code = error.response.status;

@@ -45,7 +45,7 @@ abstract class LoginAbstract implements LoginInterface
      */
     public function createToken()
     {
-        $str = randomEnSTR(rand(108,255));
+        $str = randomEnSTR(rand(108, 255));
         $this->storeToken($str);
         return $str;
     }
@@ -58,9 +58,14 @@ abstract class LoginAbstract implements LoginInterface
      */
     public function storeToken($tokne)
     {
-        $userId = $this->user->id;
-        //拼出存储键
-        $storeKey = 'user:token:' . $tokne;
-        Redis::setex($storeKey, config('cache.tokenExpire'), $userId);
+        User::query()
+            ->where('id', $this->user->id)
+            ->update([
+                'token' => $tokne
+            ]);
+//        $userId = $this->user->id;
+//        //拼出存储键
+//        $storeKey = 'user:token:' . $tokne;
+//        Redis::setex($storeKey, config('cache.tokenExpire'), $userId);
     }
 }

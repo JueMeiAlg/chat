@@ -4,6 +4,7 @@ namespace App\Models\User;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * 用户的好友分栏

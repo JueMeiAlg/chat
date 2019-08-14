@@ -41,8 +41,6 @@ class NormalLoginPolicy extends LoginAbstract implements LoginInterface
         //通过生成token
         $token = $this->createToken();
 
-        //使用Id登录
-        Auth::loginUsingId($this->user->id);
         return [
             'token'=>$token,
             'user'=>$this->user

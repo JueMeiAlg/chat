@@ -20,9 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique()->comment('用户手机号');
             $table->string('signature')->nullable()->comment('用户个性签名');
             $table->tinyInteger('status')->default(1)->comment('用户状态 1:正常 0封禁');
-            $table->integer('fd')->nullable()->comment('wsk连接编号');
+            $table->integer('fd')->unique()->nullable()->comment('wsk连接编号');
             $table->tinyInteger('login_status')->default(0)->comment('登录状态:0下线, 1在线');
             $table->string('avatar')->nullable()->comment('用户头像');
+            $table->string('token')->nullable()->comment('登录认证密匙');
             $table->timestamps();
             $table->softDeletes();
         });

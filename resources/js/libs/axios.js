@@ -31,6 +31,14 @@ axios.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 axios.interceptors.response.use(function (response) {
+    if(response.data.code < 0){
+         Message({
+            showClose: true,
+            message: response.data.msg,
+            type: 'error'
+        });
+        return Promise.reject(response);
+    }
     return response;
 }, function (error) {
     let code = error.response.status;

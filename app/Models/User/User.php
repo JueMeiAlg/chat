@@ -31,7 +31,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'id',//主键Id
+        'fd', //wsk链接标识
         'name',//用户名
+        'token',//认证密匙
         'phone',//unique 注册手机号码
         'status',//default(1) 用户状态 1:正常 0封禁
         'password',//密码

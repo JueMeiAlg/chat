@@ -45,21 +45,21 @@
                             </div>
                         </div>
                         <div class="contextMenu" id="columnMenu" style="display: none;">
-                            <div class="contextMenu-item" @click="destoryColumn">
+                            <div class="contextMenu-item" @click="destroyColumnInfo">
                                 删除分栏
                             </div>
-                            <div class="contextMenu-item" @click="openColumn">
-                                展开分栏
+                            <div class="contextMenu-item" @click="editColumn">
+                                重命名
                             </div>
-                            <div class="contextMenu-item" @click="refreshFriendList">
-                                刷新在线列表
+                            <div class="contextMenu-item" @click="openColumn">
+                                展开或收起
                             </div>
                         </div>
                         <div class="contextMenu" id="userMenu" style="display: none;">
                             <div class="contextMenu-item" @click="sendMsg">
                                 发送消息
                             </div>
-                            <div class="contextMenu-item" @click="destoryFriend">
+                            <div class="contextMenu-item" @click="deleteFriend">
                                 删除好友
                             </div>
                             <div class="contextMenu-item" @click="showUserInfo">
@@ -67,20 +67,22 @@
                             </div>
                         </div>
                         <ul>
-                            <li class="column columnHover" v-for="(item, index) in friend"
-                                @contextmenu.prevent="openColumnMenu">
+                            <li class="column columnHover" v-for="(item, index) in columnFriend"
+                                @contextmenu.prevent="openColumnMenu($event, item.id, item, index)">
                                 <span @click="openList(index)">
                                     <svg class="icon corners" aria-hidden="true">
                                         <use :id="'sj'+index" xlink:href="#icon-yousanjiaoxing"></use>
                                     </svg>
                                 </span>
-                                {{item.column}}
+                                {{item.name}}
                                 <ul :id="'friendColumn'+index" class="list" style="display: none;">
-                                    <li v-for="(friendItem, index) in item.userInfo" @contextmenu.prevent="openUserMenu">
+                                    <li v-for="(friendItem, friendIndex) in item.friend"
+                                        @contextmenu.prevent="openUserMenu($event, friendItem.id, friendItem, friendIndex)">
                                         <div class="userInfo">
-                                            <el-avatar class="fl" :size="50" :src="friendItem.avatar"></el-avatar>
+                                            <el-avatar :class="friendItem.fd? 'fl' : 'fl friend-list-off-line'"
+                                                       :size="50" :src="friendItem.avatar"></el-avatar>
                                             <div class="fl" style="margin-left: 10px;">
-                                                <div class="username">{{friendItem.username}}</div>
+                                                <div class="username">{{friendItem.name}}</div>
                                                 <div class="userSignature">{{friendItem.signature}}</div>
                                             </div>
                                         </div>
@@ -121,77 +123,39 @@
             <el-input v-model="newColumnName"></el-input>
             <span slot="footer" class="dialog-footer">
               <el-button @click="newColumnBox = false">取 消</el-button>
-              <el-button type="primary" @click="storeColumn">确 定</el-button>
+              <el-button type="primary" @click="addColumn">确 定</el-button>
+            </span>
+        </el-dialog>
+
+        <el-dialog title="修改分栏名称" :visible.sync="editColumnBox" :close-on-click-modal="false" width="30%">
+            <el-input v-model="newColumnName"></el-input>
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="editColumnBox = false">取 消</el-button>
+              <el-button type="primary" @click="updateColumnInfo">确 定</el-button>
             </span>
         </el-dialog>
     </div>
 </template>
 
 <script>
+    import {columnFriend, storeColumn, destroyColumn, updateColumn, destroyFriend} from '@/api/friend';
+
     export default {
         name: "friendPanel",
         data() {
             return {
-                friend: [
-                    {
-                        column: "我的好友(40/80)",
-                        userInfo: [
-                            {
-                                avatar: "https://lorempixel.com/200/200/cats/?74058",
-                                username: "我的好友1",
-                                signature: "我的好友1个性签名",
-                            },
-                            {
-                                avatar: "https://lorempixel.com/200/200/cats/?74058",
-                                username: "我的好友2",
-                                signature: "我的好友2个性签名",
-                            }
-                        ]
-                    },
-                    {
-                        column: "编程达人(25/42)",
-                        userInfo: [
-                            {
-                                avatar: "https://lorempixel.com/200/200/cats/?74058",
-                                username: "编程达人1",
-                                signature: "编程达人1个性签名",
-                            },
-                            {
-                                avatar: "https://lorempixel.com/200/200/cats/?74058",
-                                username: "编程达人2",
-                                signature: "编程达人2个性签名",
-                            },
-                            {
-                                avatar: "https://lorempixel.com/200/200/cats/?74058",
-                                username: "编程达人2",
-                                signature: "编程达人2个性签名",
-                            },
-                            {
-                                avatar: "https://lorempixel.com/200/200/cats/?74058",
-                                username: "编程达人2",
-                                signature: "编程达人2个性签名",
-                            },
-                            {
-                                avatar: "https://lorempixel.com/200/200/cats/?74058",
-                                username: "编程达人2",
-                                signature: "编程达人2个性签名",
-                            },
-                            {
-                                avatar: "https://lorempixel.com/200/200/cats/?74058",
-                                username: "编程达人2",
-                                signature: "编程达人2个性签名",
-                            },
-                            {
-                                avatar: "https://lorempixel.com/200/200/cats/?74058",
-                                username: "编程达人2",
-                                signature: "编程达人2个性签名",
-                            },
-                        ]
-                    }
-                ],
+                columnFriend: [],
                 systemMenu: [],
                 newColumnBox: false,
-                newColumnName: ""
+                editColumnBox: false,
+                newColumnName: "",
+                currentHandelColumnId: 0,
+                currentHandelColumnObj: "",
+                currentHandelColumnIndex: "",
+
+                currentHandelUserId: 0,
+                currentHandelUserObj: "",
+                currentHandelUserIndex: "",
             }
         },
 
@@ -201,6 +165,10 @@
                 window.document.querySelector('#columnMenu').style.display = "none";
                 window.document.querySelector('#userMenu').style.display = "none";
             };
+            //拉取分栏及好友信息
+            columnFriend().then((response) => {
+                this.columnFriend = response.data.data
+            })
         },
 
         methods: {
@@ -270,7 +238,12 @@
             },
 
             //打开栏目菜单
-            openColumnMenu(e) {
+            openColumnMenu(e, id, obj, index) {
+                this.currentHandelColumnId = id;
+                //当前操作分栏的数据对象
+                this.currentHandelColumnObj = obj;
+                //当前操作分栏索引位置
+                this.currentHandelColumnIndex = index;
                 //关闭所有右键菜单
                 this.closeMenu();
                 this.openMenu('columnMenu', e);
@@ -278,7 +251,11 @@
             /**
              * 打开用户层的右键菜单
              */
-            openUserMenu(e){
+            openUserMenu(e, id, item, index) {
+                this.currentHandelUserId = id;
+                this.currentHandelUserObj = item;
+                this.currentHandelUserIndex = index;
+
                 //关闭所有右键菜单
                 this.closeMenu();
                 this.openMenu('userMenu', e);
@@ -301,17 +278,20 @@
             /**
              * 存储栏目
              */
-            storeColumn() {
+            addColumn() {
                 if (this.newColumnName == '') {
                     this.$message.warning('新分栏的名字不应该为空');
                     return;
                 }
-                this.friend.push({
-                    column: this.newColumnName + "(0/0)",
-                    userInfo: []
+                storeColumn({name: this.newColumnName}).then((response) => {
+                    this.columnFriend.push({
+                        name: this.newColumnName,
+                        friend: [],
+                        id:response.data.data.id
+                    });
+                    this.newColumnName = "";
+                    this.newColumnBox = false;
                 });
-                this.newColumnName = "";
-                this.newColumnBox = false;
             },
 
             /**
@@ -323,6 +303,7 @@
             getClassDom(className) {
                 return window.document.querySelector('.' + className)
             },
+
             /**
              * 根据class名称查找所有Dom
              */
@@ -343,38 +324,81 @@
             /**
              * 删除分栏
              */
-            destoryColumn(){
-                this.$message.warning('暂未实现');
+            destroyColumnInfo() {
+                destroyColumn(this.currentHandelColumnId).then((response) => {
+                    this.columnFriend.splice(this.currentHandelColumnIndex, 1);
+                    this.currentHandelColumnId = 0;
+                    //重新拉取分栏及好友信息
+                    columnFriend().then((response) => {
+                        this.columnFriend = response.data.data;
+                        this.$message.success(response.data.msg)
+                    });
+                });
+            },
+
+            /**
+             * 重命名分栏弹窗
+             */
+            editColumn() {
+                this.newColumnName = this.currentHandelColumnObj.name;
+                this.editColumnBox = true;
+            },
+
+            /**
+             * 更新分栏
+             */
+            updateColumnInfo() {
+                updateColumn(this.currentHandelColumnId, {name: this.newColumnName}).then((response) => {
+                    this.columnFriend.forEach(item => {
+                        if (item.id == this.currentHandelColumnId) {
+                            //刷新名称
+                            item.name = this.newColumnName;
+                        }
+                    });
+                    //回归状态
+                    this.currentHandelColumnId = 0;
+                    this.newColumnName = "";
+                    this.editColumnBox = false;
+                    this.$message.success(response.data.msg)
+                });
             },
 
             /**
              * 展开分栏
              */
-            openColumn(){
-                this.$message.warning('暂未实现');
+            openColumn() {
+                this.openList(this.currentHandelColumnIndex);
             },
-            /**
-             * 刷新好友列表
-             */
-            refreshFriendList(){
-                this.$message.warning('暂未实现');
-            },
+
+
             /**
              * 发送消息
              */
-            sendMsg(){
+            sendMsg() {
                 this.$message.warning('暂未实现');
             },
+
             /**
              * 删除好友
              */
-            destoryFriend(){
-                this.$message.warning('暂未实现');
+            deleteFriend() {
+                destroyFriend(this.currentHandelUserId).then((response)=>{
+                    //动态移除占位
+                    this.columnFriend.forEach((colItem, colIndex)=>{
+                        colItem.friend.forEach((friendItem, friIndex)=>{
+                            if(friendItem.id == this.currentHandelUserId) {
+                                this.columnFriend[colIndex].friend.splice(this.currentHandelUserIndex, 1);
+                            }
+                        })
+                    });
+                    this.$message.success(response.data.msg);
+                })
             },
+
             /**
              * 查看用户信息
              */
-            showUserInfo(){
+            showUserInfo() {
                 this.$message.warning('暂未实现');
             }
 
@@ -481,9 +505,10 @@
     .contextMenu {
         position: absolute; /*自定义菜单相对与body元素进行定位*/
         width: 180px;
-        height: 100px;
+        /*height: 130px;*/
         background: #d5d5d5;
     }
+
     .contextMenu-item {
         padding: 5px;
         border: 1px solid #e0e5ea;
@@ -496,5 +521,11 @@
     .hidden {
         display: none;
     }
+
+    .friend-list-off-line {
+        filter: grayscale(1);
+        opacity: 0.8;
+    }
+
 
 </style>
