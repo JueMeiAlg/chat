@@ -59361,7 +59361,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     };
 
     //
-    // Helpers
+    // helpers
     //
 
     /**
@@ -99448,11 +99448,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var element_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(element_ui__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! element-ui/lib/theme-chalk/index.css */ "./node_modules/element-ui/lib/theme-chalk/index.css");
 /* harmony import */ var element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_3__);
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 __webpack_require__(/*! @/bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -99461,27 +99456,12 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 Vue.use(element_ui__WEBPACK_IMPORTED_MODULE_2___default.a);
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
 var app = new Vue({
   el: '#app',
   router: _router__WEBPACK_IMPORTED_MODULE_0__["default"],
   store: _store__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
+window.vueApp = app;
 
 /***/ }),
 
@@ -99639,8 +99619,11 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.interceptors.response.use(function 
     500: '服务器错误，请稍后再试'
   };
 
-  if (code == 401) {
-    window.Vue.$router.push('/login');
+  if (code === 401) {
+    //服务器判断未登录
+    //清除本地的token
+    Object(_util__WEBPACK_IMPORTED_MODULE_2__["setToken"])(null);
+    window.vueApp.$router.push('/login');
   }
 
   Object(element_ui__WEBPACK_IMPORTED_MODULE_3__["Message"])({
@@ -99728,7 +99711,12 @@ var HOME_PAGE_NAME = 'home';
 var LOGIN_PAGE_NAME = 'login';
 var REGISTER_PAGE_NAME = 'register';
 router.beforeEach(function (to, from, next) {
-  var is_login = Object(_libs_util__WEBPACK_IMPORTED_MODULE_3__["getToken"])() ? Object(_libs_util__WEBPACK_IMPORTED_MODULE_3__["getToken"])() != 'undefined' : false;
+  var is_login = true;
+  var token = Object(_libs_util__WEBPACK_IMPORTED_MODULE_3__["getToken"])();
+
+  if (token == 'undefined' || Object(_libs_util__WEBPACK_IMPORTED_MODULE_3__["getToken"])() == 'null') {
+    is_login = false;
+  }
 
   if (!is_login && to.name !== LOGIN_PAGE_NAME && to.name !== REGISTER_PAGE_NAME) {
     // 未登录且要跳转的页面不是登录页和注册页

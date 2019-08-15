@@ -230,6 +230,86 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "friendPanel",
@@ -239,6 +319,10 @@ __webpack_require__.r(__webpack_exports__);
       systemMenu: [],
       newColumnBox: false,
       editColumnBox: false,
+      friendInfoBox: false,
+      addFriend: false,
+      search: true,
+      searchResult: false,
       newColumnName: "",
       currentHandelColumnId: 0,
       currentHandelColumnObj: "",
@@ -494,17 +578,24 @@ __webpack_require__.r(__webpack_exports__);
     deleteFriend: function deleteFriend() {
       var _this5 = this;
 
-      Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["destroyFriend"])(this.currentHandelUserId).then(function (response) {
-        //动态移除占位
-        _this5.columnFriend.forEach(function (colItem, colIndex) {
-          colItem.friend.forEach(function (friendItem, friIndex) {
-            if (friendItem.id == _this5.currentHandelUserId) {
-              _this5.columnFriend[colIndex].friend.splice(_this5.currentHandelUserIndex, 1);
-            }
+      this.$confirm('是否确定删除:' + this.currentHandelUserObj.name + ',这个好友?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(function () {
+        Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["destroyFriend"])(_this5.currentHandelUserId).then(function (response) {
+          //动态移除占位
+          _this5.columnFriend.forEach(function (colItem, colIndex) {
+            colItem.friend.forEach(function (friendItem, friIndex) {
+              if (friendItem.id == _this5.currentHandelUserId) {
+                _this5.columnFriend[colIndex].friend.splice(_this5.currentHandelUserIndex, 1);
+              }
+            });
           });
-        });
 
-        _this5.$message.success(response.data.msg);
+          _this5.$message.success(response.data.msg);
+        });
+      })["catch"](function () {//nothing
       });
     },
 
@@ -512,7 +603,57 @@ __webpack_require__.r(__webpack_exports__);
      * 查看用户信息
      */
     showUserInfo: function showUserInfo() {
-      this.$message.warning('暂未实现');
+      this.userIdMappingColumn(this.currentHandelUserId);
+      this.friendInfoBox = true;
+    },
+
+    /**
+     * userId 对应的那一层的分栏信息
+     *
+     * @param userId
+     */
+    userIdMappingColumn: function userIdMappingColumn(userId) {
+      for (var columnItem = 0; columnItem < this.columnFriend.length; columnItem++) {
+        for (var friendItem = 0; friendItem < this.columnFriend[columnItem].friend.length; friendItem++) {
+          if (this.columnFriend[columnItem].friend[friendItem].id == this.currentHandelUserId) {
+            this.currentHandelColumnObj = this.columnFriend[columnItem];
+            console.log(this.currentHandelColumnObj);
+            return this.currentHandelColumnObj;
+          }
+        }
+      }
+    },
+
+    /**
+     * 打开好友添加信息窗口
+     */
+    openAddFriendDialog: function openAddFriendDialog() {
+      console.log(123);
+      this.addFriend = true;
+    },
+
+    /**
+     * 手机号码检测
+     *
+     * @param phone
+     * @returns {boolean}
+     */
+    phoneCheck: function phoneCheck(phone) {
+      var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+
+      if (!myreg.test(phone)) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    searchPhone: function searchPhone() {
+      this.search = false;
+      this.searchResult = true;
+    },
+    backSearch: function backSearch() {
+      this.search = true;
+      this.searchResult = false;
     }
   }
 });
@@ -588,7 +729,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #f9f9f9;\n}\n.head[data-v-8d22802a] {\n    background: #d6d6d6;\n    height: 100px;\n    padding: 15px;\n}\n.Signature[data-v-8d22802a] {\n    margin-top: 10px;\n    margin-bottom: 25px;\n}\n.friendIcon[data-v-8d22802a] {\n    font-size: 25px;\n}\n.friendList[data-v-8d22802a] {\n    background: #f9f9f9;\n    height: 400px;\n    padding: 15px;\n    /*overflow: hidden;*/\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.friendList[data-v-8d22802a]::-webkit-scrollbar {\n    display: none;\n}\n.friendButton .el-col-8[data-v-8d22802a] {\n    padding-bottom: 5px;\n    text-align: center;\n}\n.friendList[data-v-8d22802a] .el-tree-node__content {\n    height: auto !important;\n    padding-left: 0 !important;\n}\n.friendButton .el-col-8[data-v-8d22802a]:hover {\n    border-bottom: 3px solid #6cdb9e;\n}\n.userSignature[data-v-8d22802a] {\n    color: #b7b7b7;\n}\n.username[data-v-8d22802a] {\n    font-size: 18px;\n}\n.column[data-v-8d22802a] {\n    padding: 10px 0 10px 0;\n    /*overflow: hidden;*/\n    /*height: 20px;*/\n}\n.columnHover[data-v-8d22802a]:hover {\n    background: #eeeeee;\n}\n.corners[data-v-8d22802a] {\n    color: #6fa7d6;\n}\n.list[data-v-8d22802a] {\n    margin-top: 15px;\n    padding-left: 10px;\n}\n.userInfo[data-v-8d22802a] {\n    clear: both;\n    height: 55px;\n    padding: 5px;\n}\n.userInfo[data-v-8d22802a]:hover {\n    /*border: 1px solid #1b1e21;*/\n    background: #f2f2f2;\n}\n.tool[data-v-8d22802a] {\n    border-top: 1px solid #eee;\n    font-size: 25px;\n    text-align: center;\n}\n.tool .el-col-6[data-v-8d22802a]:hover {\n    background: #d5d5d5;\n}\n.contextMenu[data-v-8d22802a] {\n    position: absolute; /*自定义菜单相对与body元素进行定位*/\n    width: 180px;\n    /*height: 130px;*/\n    background: #d5d5d5;\n}\n.contextMenu-item[data-v-8d22802a] {\n    padding: 5px;\n    border: 1px solid #e0e5ea;\n}\n.contextMenu-item[data-v-8d22802a]:hover {\n    background: #f5f5f5;\n}\n.hidden[data-v-8d22802a] {\n    display: none;\n}\n.friend-list-off-line[data-v-8d22802a] {\n    -webkit-filter: grayscale(1);\n            filter: grayscale(1);\n    opacity: 0.8;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #f9f9f9;\n}\n.head[data-v-8d22802a] {\n    background: #d6d6d6;\n    height: 100px;\n    padding: 15px;\n}\n.Signature[data-v-8d22802a] {\n    margin-top: 10px;\n    margin-bottom: 25px;\n}\n.friendIcon[data-v-8d22802a] {\n    font-size: 25px;\n}\n.friendList[data-v-8d22802a] {\n    background: #f9f9f9;\n    height: 400px;\n    padding: 15px;\n    /*overflow: hidden;*/\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.friendList[data-v-8d22802a]::-webkit-scrollbar {\n    display: none;\n}\n.friendButton .el-col-8[data-v-8d22802a] {\n    padding-bottom: 5px;\n    text-align: center;\n}\n.friendList[data-v-8d22802a] .el-tree-node__content {\n    height: auto !important;\n    padding-left: 0 !important;\n}\n.friendButton .el-col-8[data-v-8d22802a]:hover {\n    border-bottom: 3px solid #6cdb9e;\n}\n.userSignature[data-v-8d22802a] {\n    color: #b7b7b7;\n}\n.username[data-v-8d22802a] {\n    font-size: 18px;\n}\n.column[data-v-8d22802a] {\n    padding: 10px 0 10px 0;\n    /*overflow: hidden;*/\n    /*height: 20px;*/\n}\n.columnHover[data-v-8d22802a]:hover {\n    background: #eeeeee;\n}\n.corners[data-v-8d22802a] {\n    color: #6fa7d6;\n}\n.list[data-v-8d22802a] {\n    margin-top: 15px;\n    padding-left: 10px;\n}\n.userInfo[data-v-8d22802a] {\n    clear: both;\n    height: 55px;\n    padding: 5px;\n}\n.userInfo[data-v-8d22802a]:hover {\n    /*border: 1px solid #1b1e21;*/\n    background: #f2f2f2;\n}\n.tool[data-v-8d22802a] {\n    border-top: 1px solid #eee;\n    font-size: 25px;\n    text-align: center;\n}\n.tool .el-col-6[data-v-8d22802a]:hover {\n    background: #d5d5d5;\n}\n.contextMenu[data-v-8d22802a] {\n    z-index: 2;\n    position: absolute; /*自定义菜单相对与body元素进行定位*/\n    width: 180px;\n    /*height: 130px;*/\n    background: #d5d5d5;\n}\n.contextMenu-item[data-v-8d22802a] {\n    padding: 5px;\n    border: 1px solid #e0e5ea;\n}\n.contextMenu-item[data-v-8d22802a]:hover {\n    background: #f5f5f5;\n}\n.hidden[data-v-8d22802a] {\n    display: none;\n}\n.friend-list-off-line[data-v-8d22802a] {\n    -webkit-filter: grayscale(1);\n            filter: grayscale(1);\n    opacity: 0.8;\n}\ntr td[data-v-8d22802a]:nth-child(2) {\n    padding-left: 10px;\n}\n.search-main[data-v-8d22802a] {\n    margin-bottom: 100px;\n    margin-top: 50px;\n    height: 200px;\n    background: #d6d6d6;\n}\n.search[data-v-8d22802a] {\n    margin: 0 auto;\n    position: relative;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.backSearch[data-v-8d22802a] {\n    font-size: 18px;\n    height: 30px;\n    width: 30px;\n}\n.backSearch[data-v-8d22802a]:hover{\n    background: #eeeeee;\n}\n\n", ""]);
 
 // exports
 
@@ -1332,7 +1473,14 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "el-col",
-                        { attrs: { title: "添加好友", span: 6 } },
+                        {
+                          attrs: { title: "添加好友", span: 6 },
+                          nativeOn: {
+                            click: function($event) {
+                              return _vm.openAddFriendDialog($event)
+                            }
+                          }
+                        },
                         [
                           _c("el-badge", { attrs: { value: 12 } }, [
                             _c(
@@ -1498,6 +1646,209 @@ var render = function() {
                 },
                 [_vm._v("确 定")]
               )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: {
+            title: "好友信息",
+            visible: _vm.friendInfoBox,
+            width: "30%"
+          },
+          on: {
+            "update:visible": function($event) {
+              _vm.friendInfoBox = $event
+            }
+          }
+        },
+        [
+          _c("table", { attrs: { cellpadding: "5", cellspacing: "5" } }, [
+            _c("tr", [
+              _c("td", { staticStyle: { color: "red" } }, [
+                _c(
+                  "svg",
+                  { staticClass: "icon ", attrs: { "aria-hidden": "true" } },
+                  [_c("use", { attrs: { "xlink:href": "#icon-ziyuan" } })]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.currentHandelUserObj.phone))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", { staticStyle: { color: "deepskyblue" } }, [
+                _c(
+                  "svg",
+                  { staticClass: "icon ", attrs: { "aria-hidden": "true" } },
+                  [_c("use", { attrs: { "xlink:href": "#icon-yonghuming" } })]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.currentHandelUserObj.name))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", { staticStyle: { color: "#26352a" } }, [
+                _c(
+                  "svg",
+                  { staticClass: "icon ", attrs: { "aria-hidden": "true" } },
+                  [_c("use", { attrs: { "xlink:href": "#icon-qianming" } })]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.currentHandelUserObj.signature))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", { staticStyle: { color: "#2e2cbf" } }, [
+                _c(
+                  "svg",
+                  { staticClass: "icon ", attrs: { "aria-hidden": "true" } },
+                  [_c("use", { attrs: { "xlink:href": "#icon-fenzu" } })]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.currentHandelColumnObj.name))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", { staticStyle: { color: "#1e3a34" } }, [
+                _c(
+                  "svg",
+                  { staticClass: "icon ", attrs: { "aria-hidden": "true" } },
+                  [_c("use", { attrs: { "xlink:href": "#icon-shijian" } })]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.currentHandelUserObj.created_at))])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: {
+            title: "添加好友",
+            visible: _vm.addFriend,
+            "close-on-click-modal": false
+          },
+          on: {
+            "update:visible": function($event) {
+              _vm.addFriend = $event
+            }
+          }
+        },
+        [
+          _c(
+            "el-tabs",
+            {
+              staticStyle: { height: "350px" },
+              attrs: { "tab-position": "left" }
+            },
+            [
+              _c("el-tab-pane", { attrs: { label: "查找好友" } }, [
+                _vm.search
+                  ? _c(
+                      "div",
+                      { staticClass: "search-main" },
+                      [
+                        _c(
+                          "el-row",
+                          { staticClass: "search" },
+                          [
+                            _c(
+                              "el-col",
+                              { attrs: { offset: 2, span: 13 } },
+                              [
+                                _c("el-input", {
+                                  attrs: {
+                                    placeholder: "对方手机号码,可模糊搜索"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "el-col",
+                              { attrs: { offset: 1, span: 8 } },
+                              [
+                                _c(
+                                  "el-button",
+                                  {
+                                    attrs: { type: "success" },
+                                    on: { click: _vm.searchPhone }
+                                  },
+                                  [
+                                    _c(
+                                      "svg",
+                                      {
+                                        staticClass: "icon ",
+                                        attrs: { "aria-hidden": "true" }
+                                      },
+                                      [
+                                        _c("use", {
+                                          attrs: {
+                                            "xlink:href": "#icon-chaxun1"
+                                          }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(
+                                      "\n                                查找\n                            "
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.searchResult
+                  ? _c("div", [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "backSearch",
+                          staticStyle: { "text-align": "center" },
+                          on: { click: _vm.backSearch }
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "icon ",
+                              attrs: { "aria-hidden": "true" }
+                            },
+                            [
+                              _c("use", {
+                                attrs: { "xlink:href": "#icon-jiantou" }
+                              })
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("el-tab-pane", { attrs: { label: "添加好友消息" } }, [
+                _vm._v("等待实现")
+              ])
             ],
             1
           )

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import config from '@/config'
-import {getToken} from "./util"
+import {getToken, setToken} from "./util"
 import {Message} from 'element-ui'
 
 const baseUrl = config.baseUrl.pro;
@@ -31,8 +31,8 @@ axios.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 axios.interceptors.response.use(function (response) {
-    if(response.data.code < 0){
-         Message({
+    if (response.data.code < 0) {
+        Message({
             showClose: true,
             message: response.data.msg,
             type: 'error'
@@ -48,8 +48,10 @@ axios.interceptors.response.use(function (response) {
         422: error.response.data, //参数校验不通过
         500: '服务器错误，请稍后再试',
     };
-    if (code == 401) {
-        window.Vue.$router.push('/login')
+    if (code === 401) { //服务器判断未登录
+        //清除本地的token
+        setToken(null);
+        window.vueApp.$router.push('/login')
     }
 
     Message({

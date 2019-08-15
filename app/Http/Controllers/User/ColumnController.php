@@ -80,7 +80,6 @@ class ColumnController extends Controller
         UserFriend::query()
             ->where('column_id', $id)
             ->where('user_id', Auth::id())
-            ->whereIn('friend_id', $friendIds)
             ->delete();
 
         //重写跟新分栏建立关联关系

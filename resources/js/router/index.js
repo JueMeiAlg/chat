@@ -14,7 +14,13 @@ const LOGIN_PAGE_NAME = 'login';
 const REGISTER_PAGE_NAME = 'register';
 
 router.beforeEach((to, from, next) => {
-    const is_login = getToken() ? getToken() != 'undefined' : false;
+    let is_login = true
+    let token = getToken();
+
+    if (token == 'undefined' || getToken() == 'null') {
+        is_login = false;
+    }
+
     if (!is_login && to.name !== LOGIN_PAGE_NAME && to.name !== REGISTER_PAGE_NAME) {
         // 未登录且要跳转的页面不是登录页和注册页
         next({

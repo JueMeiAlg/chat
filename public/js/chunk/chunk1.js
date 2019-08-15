@@ -75,6 +75,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -255,12 +263,16 @@ var render = function() {
                       },
                       [
                         _c(
-                          "i",
+                          "svg",
                           {
-                            staticClass: "al-font",
-                            staticStyle: { top: "1px", position: "relative" }
+                            staticClass: "icon ",
+                            attrs: { "aria-hidden": "true" }
                           },
-                          [_vm._v("")]
+                          [
+                            _c("use", {
+                              attrs: { "xlink:href": "#icon-denglu" }
+                            })
+                          ]
                         ),
                         _vm._v(
                           "\n                            登录\n                        "
@@ -292,7 +304,18 @@ var render = function() {
                     on: { click: _vm.wbLogin }
                   },
                   [
-                    _c("i", { staticClass: "al-font" }, [_vm._v("")]),
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "icon ",
+                        attrs: { "aria-hidden": "true" }
+                      },
+                      [
+                        _c("use", {
+                          attrs: { "xlink:href": "#icon-552cd5bdeaada" }
+                        })
+                      ]
+                    ),
                     _vm._v(
                       "\n                            微博登录\n                        "
                     )
@@ -313,7 +336,14 @@ var render = function() {
                     on: { click: _vm.qqLogin }
                   },
                   [
-                    _c("i", { staticClass: "al-font" }, [_vm._v("")]),
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "icon ",
+                        attrs: { "aria-hidden": "true" }
+                      },
+                      [_c("use", { attrs: { "xlink:href": "#icon-qq" } })]
+                    ),
                     _vm._v("\n                            QQ登录")
                   ]
                 )
@@ -332,7 +362,18 @@ var render = function() {
                     on: { click: _vm.wxLogin }
                   },
                   [
-                    _c("i", { staticClass: "al-font" }, [_vm._v("")]),
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "icon ",
+                        attrs: { "aria-hidden": "true" }
+                      },
+                      [
+                        _c("use", {
+                          attrs: { "xlink:href": "#icon-552cd5c76f532" }
+                        })
+                      ]
+                    ),
                     _vm._v("\n                            微信登录")
                   ]
                 )

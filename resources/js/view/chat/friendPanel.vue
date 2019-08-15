@@ -101,7 +101,7 @@
                                 </svg>
                             </el-badge>
                         </el-col>
-                        <el-col title="添加好友" :span="6">
+                        <el-col title="添加好友" :span="6" @click.native="openAddFriendDialog($event)">
                             <el-badge :value="12">
                                 <svg class="icon " aria-hidden="true">
                                     <use xlink:href="#icon-add"></use>
@@ -134,6 +134,86 @@
               <el-button type="primary" @click="updateColumnInfo">确 定</el-button>
             </span>
         </el-dialog>
+
+        <el-dialog title="好友信息" :visible.sync="friendInfoBox" width="30%">
+            <table cellpadding="5" cellspacing="5">
+                <tr>
+                    <td style="color:red">
+                        <svg class="icon " aria-hidden="true">
+                            <use xlink:href="#icon-ziyuan"></use>
+                        </svg>
+                    </td>
+                    <td>{{currentHandelUserObj.phone}}</td>
+                </tr>
+                <tr>
+                    <td style="color: deepskyblue;">
+                        <svg class="icon " aria-hidden="true">
+                            <use xlink:href="#icon-yonghuming"></use>
+                        </svg>
+                    </td>
+                    <td>{{currentHandelUserObj.name}}</td>
+                </tr>
+                <tr>
+                    <td style="color: #26352a;">
+                        <svg class="icon " aria-hidden="true">
+                            <use xlink:href="#icon-qianming"></use>
+                        </svg>
+                    </td>
+                    <td>{{currentHandelUserObj.signature}}</td>
+                </tr>
+                <tr>
+                    <td style="color: #2e2cbf;">
+                        <svg class="icon " aria-hidden="true">
+                            <use xlink:href="#icon-fenzu"></use>
+                        </svg>
+                    </td>
+                    <td>{{currentHandelColumnObj.name}}</td>
+                </tr>
+                <tr>
+                    <td style="color:#1e3a34">
+                        <svg class="icon " aria-hidden="true">
+                            <use xlink:href="#icon-shijian"></use>
+                        </svg>
+                    </td>
+                    <td>{{currentHandelUserObj.created_at}}</td>
+                </tr>
+            </table>
+        </el-dialog>
+
+        <el-dialog title="添加好友" :visible.sync="addFriend" :close-on-click-modal="false">
+            <el-tabs style="height: 350px" tab-position="left">
+                <el-tab-pane label="查找好友">
+
+                    <div class="search-main" v-if="search">
+                        <el-row class="search">
+                            <el-col :offset="2" :span="13">
+                                <el-input placeholder="对方手机号码,可模糊搜索"></el-input>
+                            </el-col>
+                            <el-col :offset="1" :span="8">
+                                <el-button type="success" @click="searchPhone">
+                                    <svg class="icon " aria-hidden="true">
+                                        <use xlink:href="#icon-chaxun1"></use>
+                                    </svg>
+                                    查找
+                                </el-button>
+                            </el-col>
+                        </el-row>
+                    </div>
+
+                    <div v-if="searchResult">
+                        <div @click="backSearch" class="backSearch" style="text-align: center;">
+                            <svg class="icon " aria-hidden="true">
+                                <use xlink:href="#icon-jiantou"></use>
+                            </svg>
+                        </div>
+                    </div>
+
+                </el-tab-pane>
+
+                <el-tab-pane label="添加好友消息">等待实现</el-tab-pane>
+
+            </el-tabs>
+        </el-dialog>
     </div>
 </template>
 
@@ -148,6 +228,10 @@
                 systemMenu: [],
                 newColumnBox: false,
                 editColumnBox: false,
+                friendInfoBox: false,
+                addFriend: false,
+                search: true,
+                searchResult: false,
                 newColumnName: "",
                 currentHandelColumnId: 0,
                 currentHandelColumnObj: "",
@@ -287,7 +371,7 @@
                     this.columnFriend.push({
                         name: this.newColumnName,
                         friend: [],
-                        id:response.data.data.id
+                        id: response.data.data.id
                     });
                     this.newColumnName = "";
                     this.newColumnBox = false;
@@ -370,7 +454,6 @@
                 this.openList(this.currentHandelColumnIndex);
             },
 
-
             /**
              * 发送消息
              */
@@ -382,24 +465,82 @@
              * 删除好友
              */
             deleteFriend() {
-                destroyFriend(this.currentHandelUserId).then((response)=>{
-                    //动态移除占位
-                    this.columnFriend.forEach((colItem, colIndex)=>{
-                        colItem.friend.forEach((friendItem, friIndex)=>{
-                            if(friendItem.id == this.currentHandelUserId) {
-                                this.columnFriend[colIndex].friend.splice(this.currentHandelUserIndex, 1);
-                            }
-                        })
-                    });
-                    this.$message.success(response.data.msg);
-                })
+                this.$confirm('是否确定删除:' + this.currentHandelUserObj.name + ',这个好友?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    destroyFriend(this.currentHandelUserId).then((response) => {
+                        //动态移除占位
+                        this.columnFriend.forEach((colItem, colIndex) => {
+                            colItem.friend.forEach((friendItem, friIndex) => {
+                                if (friendItem.id == this.currentHandelUserId) {
+                                    this.columnFriend[colIndex].friend.splice(this.currentHandelUserIndex, 1);
+                                }
+                            })
+                        });
+                        this.$message.success(response.data.msg);
+                    })
+                }).catch(() => {
+                    //nothing
+                });
+
             },
 
             /**
              * 查看用户信息
              */
             showUserInfo() {
-                this.$message.warning('暂未实现');
+                this.userIdMappingColumn(this.currentHandelUserId)
+                this.friendInfoBox = true;
+
+            },
+
+            /**
+             * userId 对应的那一层的分栏信息
+             *
+             * @param userId
+             */
+            userIdMappingColumn(userId) {
+                for (let columnItem = 0; columnItem < this.columnFriend.length; columnItem++) {
+                    for (let friendItem = 0; friendItem < this.columnFriend[columnItem].friend.length; friendItem++) {
+                        if (this.columnFriend[columnItem].friend[friendItem].id == this.currentHandelUserId) {
+                            this.currentHandelColumnObj = this.columnFriend[columnItem];
+                            console.log(this.currentHandelColumnObj);
+                            return this.currentHandelColumnObj
+                        }
+                    }
+                }
+            },
+            /**
+             * 打开好友添加信息窗口
+             */
+            openAddFriendDialog() {
+                console.log(123);
+                this.addFriend = true;
+            },
+
+            /**
+             * 手机号码检测
+             *
+             * @param phone
+             * @returns {boolean}
+             */
+            phoneCheck(phone) {
+                let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+                if (!myreg.test(phone)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
+            searchPhone() {
+                this.search = false;
+                this.searchResult = true;
+            },
+            backSearch(){
+                this.search = true;
+                this.searchResult = false;
             }
 
         }
@@ -503,6 +644,7 @@
     }
 
     .contextMenu {
+        z-index: 2;
         position: absolute; /*自定义菜单相对与body元素进行定位*/
         width: 180px;
         /*height: 130px;*/
@@ -527,5 +669,30 @@
         opacity: 0.8;
     }
 
+    tr td:nth-child(2) {
+        padding-left: 10px;
+    }
+
+    .search-main {
+        margin-bottom: 100px;
+        margin-top: 50px;
+        height: 200px;
+        background: #d6d6d6;
+    }
+
+    .search {
+        margin: 0 auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .backSearch {
+        font-size: 18px;
+        height: 30px;
+        width: 30px;
+    }
+    .backSearch:hover{
+        background: #eeeeee;
+    }
 
 </style>

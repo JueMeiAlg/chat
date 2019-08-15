@@ -16,7 +16,9 @@
                         <el-form-item style="margin-bottom:0!important;">
                             <a @click="forgetPwd" class="forget-password">忘记密码?</a>
                             <el-button style="padding: 10px 30px;" type="success" size="small" @click="onSubmit">
-                                <i class="al-font" style="top: 1px;position: relative;">&#xe6f0;</i>
+                                <svg class="icon " aria-hidden="true">
+                                    <use xlink:href="#icon-denglu"></use>
+                                </svg>
                                 登录
                             </el-button>
                         </el-form-item>
@@ -27,18 +29,24 @@
                     <ul class="oauth">
                         <li>
                             <el-button class="oauth-bt" type="danger" @click="wbLogin">
-                                <i class="al-font">&#xe61d;</i>
+                                <svg class="icon " aria-hidden="true">
+                                    <use xlink:href="#icon-552cd5bdeaada"></use>
+                                </svg>
                                 微博登录
                             </el-button>
                         </li>
                         <li>
                             <el-button class="oauth-bt" type="primary" @click="qqLogin">
-                                <i class="al-font">&#xe637;</i>
+                                <svg class="icon " aria-hidden="true">
+                                    <use xlink:href="#icon-qq"></use>
+                                </svg>
                                 QQ登录</el-button>
                         </li>
                         <li>
                             <el-button class="oauth-bt" type="success" @click="wxLogin">
-                                <i class="al-font">&#xe61e;</i>
+                                <svg class="icon " aria-hidden="true">
+                                    <use xlink:href="#icon-552cd5c76f532"></use>
+                                </svg>
                                 微信登录</el-button>
                         </li>
                     </ul>
