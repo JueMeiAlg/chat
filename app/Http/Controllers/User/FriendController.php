@@ -6,7 +6,6 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\StatusCode;
-use App\Models\User\UserColumnRelationUser;
 use App\Models\User\UserFriend;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,12 +25,6 @@ class FriendController extends Controller
      */
     public function destroy($id)
     {
-        /**
-         * 移除关联关系
-         */
-        UserColumnRelationUser::query()
-            ->where('user_id', $id)
-            ->delete();
         //删除好友表中的数据
         UserFriend::query()
             ->where('user_id', Auth::id())

@@ -2,6 +2,7 @@
 
 namespace App\Models\User;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class UserFriend extends Model
@@ -22,6 +23,7 @@ class UserFriend extends Model
         'id',//主键
         'user_id', //用户id
         'friend_id', //好友Id
-        //unique(['user_id', 'friend_id'])
+        'column_id', //好友分栏Id
+        //unique(['user_id', 'friend_id', 'column_id'])
     ];
 }

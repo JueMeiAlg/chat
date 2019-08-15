@@ -84,19 +84,4 @@ class User extends Authenticatable
             'user_id', 'id', 'id', 'friend_id'
         );
     }
-
-    /**
-     * 用户分栏下的好友
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasManyThrough
-     */
-    public function columnFriend()
-    {
-        return $this->hasManyThrough(
-            UserColumn::class,
-            UserColumnRelationUser::class,
-            'id' ,'user_id',
-            'id','column_id'
-        )->with('friend');
-    }
 }

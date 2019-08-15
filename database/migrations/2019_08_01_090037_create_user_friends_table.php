@@ -17,8 +17,9 @@ class CreateUserFriendsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id')->comment('用户Id');
             $table->integer('friend_id')->comment('好友Id');
+            $table->integer('column_id')->comment('好友Id');
             //好友信息只能有一条
-            $table->unique(['user_id', 'friend_id']);
+            $table->unique(['user_id', 'friend_id', 'column_id']);
             $table->timestamps();
         });
     }

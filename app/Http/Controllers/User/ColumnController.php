@@ -7,8 +7,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\StatusCode;
 use App\Models\User\UserColumn;
-use App\Models\User\UserColumnRelationUser;
-use App\Traits\RestFul;
+use App\Models\User\UserFriend;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -73,23 +72,26 @@ class ColumnController extends Controller
         }
 
         //查出这个分栏下关联的好友信息
-        $userIds = UserColumnRelationUser::query()
+        $friendIds = UserFriend::query()
             ->where('column_id', $id)
-            ->pluck('user_id')->toArray();
+            ->pluck('friend_id')->toArray();
 
         //删除关联信息
-        UserColumnRelationUser::query()
+        UserFriend::query()
             ->where('column_id', $id)
+            ->where('user_id', Auth::id())
+            ->whereIn('friend_id', $friendIds)
             ->delete();
 
         //重写跟新分栏建立关联关系
-        foreach ($userIds as $userId) {
-            UserColumnRelationUser::query()->create([
+        foreach ($friendIds as $friend) {
+            UserFriend::query()->create([
                 'column_id' => $column->id,
-                'user_id' => $userId,
+                'friend_id' => $friend,
+                'user_id' => Auth::id(),
             ]);
         }
-
+        //删除栏目信息
         UserColumn::query()
             ->where('id', $id)
             ->delete();

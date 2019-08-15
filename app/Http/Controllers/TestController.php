@@ -54,13 +54,9 @@ class TestController extends Controller
     {
         //用户分栏下的好友
         $user = UserColumn::query()->with('friend')
-            ->where('id', 1)
+            ->where('user_id', 2)
             ->get()
             ->toArray();
-
-//        $user = User::query()
-//            ->with('columnFriend')
-//            ->get()->toArray();
         dd($user);
     }
 }

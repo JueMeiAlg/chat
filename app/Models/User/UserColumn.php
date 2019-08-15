@@ -51,8 +51,8 @@ class UserColumn extends Model
     {
         return $this->hasManyThrough(
             User::class,
-            UserColumnRelationUser::class,
+            UserFriend::class,
             'column_id', 'id',
-            'id','user_id');
+            'id','friend_id');
     }
 }
