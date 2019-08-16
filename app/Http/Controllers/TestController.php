@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\Chat\Group;
 use App\Models\User;
 use App\Models\User\UserColumn;
+use App\Service\Search\User\MysqlSearchDriver;
 
 /**
  * 测试和代码调试控制器
@@ -58,5 +59,12 @@ class TestController extends Controller
             ->get()
             ->toArray();
         dd($user);
+    }
+
+    public function t5()
+    {
+        //测试接口继承
+        $mysql = new MysqlSearchDriver();
+        dd($mysql);
     }
 }
