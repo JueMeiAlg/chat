@@ -180,17 +180,18 @@
             </table>
         </el-dialog>
 
-        <el-dialog title="添加好友" :visible.sync="addFriend" :close-on-click-modal="false">
-            <el-tabs style="height: 350px" tab-position="left">
+        <el-dialog title="添加好友" @close="closeAddFriendDialog()" :visible.sync="addFriend" :close-on-click-modal="false">
+            <el-tabs style="height: 390px" tab-position="left">
                 <el-tab-pane label="查找好友">
 
                     <div class="search-main" v-if="search">
                         <el-row class="search">
                             <el-col :offset="2" :span="13">
-                                <el-input placeholder="对方手机号码,可模糊搜索"></el-input>
+                                <el-input type="number" v-model="searchFriendPhone"
+                                          placeholder="对方手机号码,可模糊搜索"></el-input>
                             </el-col>
                             <el-col :offset="1" :span="8">
-                                <el-button type="success" @click="searchPhone">
+                                <el-button type="success" @click="searchPhone(1)">
                                     <svg class="icon " aria-hidden="true">
                                         <use xlink:href="#icon-chaxun1"></use>
                                     </svg>
@@ -206,8 +207,48 @@
                                 <use xlink:href="#icon-jiantou"></use>
                             </svg>
                         </div>
+                        <ul class="searchResult-list">
+                            <li v-for="userItem in searchUserResult">
+                                <div style="height: 100%" class="fl">
+                                    <el-avatar style="position: relative; top: 15%; margin-right: 20px"
+                                               :class="userItem.fd? 'fl' : 'fl friend-list-off-line'" :size="50"
+                                               :src="userItem.avatar">
+                                    </el-avatar>
+                                </div>
+                                <p class="searchResult-p-nowrap">{{userItem.name}}</p>
+                                <p class="searchResult-p-nowrap">{{userItem.signature}}</p>
+                                <p v-html="userItem.phone"></p>
+                                <p>
+                                    <el-button type="success" size="mini">
+                                        <svg class="icon " aria-hidden="true">
+                                            <use xlink:href="#icon-add"></use>
+                                        </svg>
+                                        添加好友
+                                    </el-button>
+                                </p>
+                            </li>
+                            <div style="clear: both"></div>
+                        </ul>
                     </div>
 
+                    <div v-if="searchResult">
+                        <el-row>
+                            <el-col :offset="7" :span="5">
+                                <el-button size="mini" :disabled="searchPhoneUp" type="success" @click="searchPhone(--searchPhonePage)">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-jiantou-shang"></use>
+                                    </svg>
+                                </el-button>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-button size="mini" :disabled="searchPhoneNext" type="success" @click="searchPhone(++searchPhonePage)">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-jiantou-copy-copy"></use>
+                                    </svg>
+                                </el-button>
+                            </el-col>
+                        </el-row>
+                    </div>
                 </el-tab-pane>
 
                 <el-tab-pane label="添加好友消息">等待实现</el-tab-pane>
@@ -218,7 +259,11 @@
 </template>
 
 <script>
-    import {columnFriend, storeColumn, destroyColumn, updateColumn, destroyFriend} from '@/api/friend';
+    import {
+        columnFriend, storeColumn,
+        destroyColumn, updateColumn,
+        destroyFriend, searchFriend
+    } from '@/api/friend';
 
     export default {
         name: "friendPanel",
@@ -226,6 +271,8 @@
             return {
                 columnFriend: [],
                 systemMenu: [],
+                searchFriendPhone: "",
+                searchUserResult: [],
                 newColumnBox: false,
                 editColumnBox: false,
                 friendInfoBox: false,
@@ -236,10 +283,14 @@
                 currentHandelColumnId: 0,
                 currentHandelColumnObj: "",
                 currentHandelColumnIndex: "",
-
+                searchPhoneUp: true,
+                searchPhoneNext: false,
                 currentHandelUserId: 0,
                 currentHandelUserObj: "",
                 currentHandelUserIndex: "",
+                searchUserTotal: 0,
+                searchPhonePage: 0,
+                searchPhoneLimit: 6,
             }
         },
 
@@ -516,10 +567,17 @@
              * 打开好友添加信息窗口
              */
             openAddFriendDialog() {
-                console.log(123);
                 this.addFriend = true;
             },
-
+            /**
+             * 关闭搜索框
+             */
+            closeAddFriendDialog() {
+                this.addFriend = false;
+                this.search = true;
+                this.searchResult = false;
+                this.searchFriendPhone = "";
+            },
             /**
              * 手机号码检测
              *
@@ -534,11 +592,35 @@
                     return true;
                 }
             },
-            searchPhone() {
-                this.search = false;
-                this.searchResult = true;
+            searchPhone(page) {
+                if (this.searchPhonePage <= 0) {
+                    this.searchPhonePage = 1;
+                }
+
+                if (this.searchPhonePage == 1) {
+                    //向上按钮无法使用
+                    this.searchPhoneUp = true;
+                } else {
+                    this.searchPhoneUp = false;
+                }
+
+                searchFriend({phone: this.searchFriendPhone}, page, this.searchPhoneLimit).then((response) => {
+                    this.search = false;
+                    this.searchResult = true;
+                    this.searchUserResult = response.data.data.users;
+                    this.searchUserTotal = response.data.data.total;
+
+                    //向上去整得出最大页数
+                    let totalPage = Math.ceil(this.searchUserTotal / this.searchPhoneLimit);
+                    if (this.searchPhonePage >= totalPage) {
+                        //超出页数无法继续
+                        this.searchPhoneNext = true;
+                    } else {
+                        this.searchPhoneNext = false;
+                    }
+                })
             },
-            backSearch(){
+            backSearch() {
                 this.search = true;
                 this.searchResult = false;
             }
@@ -686,13 +768,43 @@
         top: 50%;
         transform: translateY(-50%);
     }
+
     .backSearch {
         font-size: 18px;
         height: 30px;
         width: 30px;
     }
-    .backSearch:hover{
+
+    .backSearch:hover {
         background: #eeeeee;
     }
 
+    .searchResult-list {
+        margin-top: 20px;
+        height: 300px;
+    }
+
+    .searchResult-list > li {
+        height: 100px;
+        width: 210px;
+        float: left;
+        margin-right: 30px;
+    }
+
+    .searchResult-list p {
+        width: 130px;
+        overflow: hidden;
+    }
+
+    .searchResult-p-nowrap {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .searchPhoneNextPage {
+        position: relative;
+        text-align: center;
+        right: 7%;
+        font-size: 20px;
+    }
 </style>

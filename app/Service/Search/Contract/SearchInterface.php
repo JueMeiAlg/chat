@@ -17,11 +17,33 @@ interface SearchInterface
      * @return mixed
      */
     public function search();
-
     /**
      * 查询结果高亮
      *
      * @return mixed
      */
     public function highLight();
+
+    /**
+     * 设置当前搜索页
+     *
+     * @param int $page
+     * @return mixed
+     */
+    public function setPage(int $page);
+
+    /**
+     * 设置查询条数
+     *
+     * @param int $limit
+     * @return mixed
+     */
+    public function setLimit(int $limit);
+
+    /**
+     * 总数
+     *
+     * @return mixed
+     */
+    public function total();
 }

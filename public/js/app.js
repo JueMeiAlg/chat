@@ -59361,7 +59361,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     };
 
     //
-    // helpers
+    // Helpers
     //
 
     /**

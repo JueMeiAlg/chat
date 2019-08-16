@@ -32,4 +32,15 @@ class StatusCode
         $json = array_merge($code, $data);
         return response()->json($json,$status);
     }
+
+    /**
+     * 数据库错误消息
+     *
+     * @param $msg
+     * @return array
+     */
+    public static function DBError($msg)
+    {
+        return ['code' => -9, 'msg' => $msg];
+    }
 }

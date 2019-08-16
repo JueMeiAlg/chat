@@ -310,6 +310,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "friendPanel",
@@ -317,6 +358,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       columnFriend: [],
       systemMenu: [],
+      searchFriendPhone: "",
+      searchUserResult: [],
       newColumnBox: false,
       editColumnBox: false,
       friendInfoBox: false,
@@ -327,9 +370,14 @@ __webpack_require__.r(__webpack_exports__);
       currentHandelColumnId: 0,
       currentHandelColumnObj: "",
       currentHandelColumnIndex: "",
+      searchPhoneUp: true,
+      searchPhoneNext: false,
       currentHandelUserId: 0,
       currentHandelUserObj: "",
-      currentHandelUserIndex: ""
+      currentHandelUserIndex: "",
+      searchUserTotal: 0,
+      searchPhonePage: 0,
+      searchPhoneLimit: 6
     };
   },
   created: function created() {
@@ -628,8 +676,17 @@ __webpack_require__.r(__webpack_exports__);
      * 打开好友添加信息窗口
      */
     openAddFriendDialog: function openAddFriendDialog() {
-      console.log(123);
       this.addFriend = true;
+    },
+
+    /**
+     * 关闭搜索框
+     */
+    closeAddFriendDialog: function closeAddFriendDialog() {
+      this.addFriend = false;
+      this.search = true;
+      this.searchResult = false;
+      this.searchFriendPhone = "";
     },
 
     /**
@@ -647,9 +704,37 @@ __webpack_require__.r(__webpack_exports__);
         return true;
       }
     },
-    searchPhone: function searchPhone() {
-      this.search = false;
-      this.searchResult = true;
+    searchPhone: function searchPhone(page) {
+      var _this6 = this;
+
+      if (this.searchPhonePage <= 0) {
+        this.searchPhonePage = 1;
+      }
+
+      if (this.searchPhonePage == 1) {
+        //向上按钮无法使用
+        this.searchPhoneUp = true;
+      } else {
+        this.searchPhoneUp = false;
+      }
+
+      Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["searchFriend"])({
+        phone: this.searchFriendPhone
+      }, page, this.searchPhoneLimit).then(function (response) {
+        _this6.search = false;
+        _this6.searchResult = true;
+        _this6.searchUserResult = response.data.data.users;
+        _this6.searchUserTotal = response.data.data.total; //向上去整得出最大页数
+
+        var totalPage = Math.ceil(_this6.searchUserTotal / _this6.searchPhoneLimit);
+
+        if (_this6.searchPhonePage >= totalPage) {
+          //超出页数无法继续
+          _this6.searchPhoneNext = true;
+        } else {
+          _this6.searchPhoneNext = false;
+        }
+      });
     },
     backSearch: function backSearch() {
       this.search = true;
@@ -729,7 +814,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #f9f9f9;\n}\n.head[data-v-8d22802a] {\n    background: #d6d6d6;\n    height: 100px;\n    padding: 15px;\n}\n.Signature[data-v-8d22802a] {\n    margin-top: 10px;\n    margin-bottom: 25px;\n}\n.friendIcon[data-v-8d22802a] {\n    font-size: 25px;\n}\n.friendList[data-v-8d22802a] {\n    background: #f9f9f9;\n    height: 400px;\n    padding: 15px;\n    /*overflow: hidden;*/\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.friendList[data-v-8d22802a]::-webkit-scrollbar {\n    display: none;\n}\n.friendButton .el-col-8[data-v-8d22802a] {\n    padding-bottom: 5px;\n    text-align: center;\n}\n.friendList[data-v-8d22802a] .el-tree-node__content {\n    height: auto !important;\n    padding-left: 0 !important;\n}\n.friendButton .el-col-8[data-v-8d22802a]:hover {\n    border-bottom: 3px solid #6cdb9e;\n}\n.userSignature[data-v-8d22802a] {\n    color: #b7b7b7;\n}\n.username[data-v-8d22802a] {\n    font-size: 18px;\n}\n.column[data-v-8d22802a] {\n    padding: 10px 0 10px 0;\n    /*overflow: hidden;*/\n    /*height: 20px;*/\n}\n.columnHover[data-v-8d22802a]:hover {\n    background: #eeeeee;\n}\n.corners[data-v-8d22802a] {\n    color: #6fa7d6;\n}\n.list[data-v-8d22802a] {\n    margin-top: 15px;\n    padding-left: 10px;\n}\n.userInfo[data-v-8d22802a] {\n    clear: both;\n    height: 55px;\n    padding: 5px;\n}\n.userInfo[data-v-8d22802a]:hover {\n    /*border: 1px solid #1b1e21;*/\n    background: #f2f2f2;\n}\n.tool[data-v-8d22802a] {\n    border-top: 1px solid #eee;\n    font-size: 25px;\n    text-align: center;\n}\n.tool .el-col-6[data-v-8d22802a]:hover {\n    background: #d5d5d5;\n}\n.contextMenu[data-v-8d22802a] {\n    z-index: 2;\n    position: absolute; /*自定义菜单相对与body元素进行定位*/\n    width: 180px;\n    /*height: 130px;*/\n    background: #d5d5d5;\n}\n.contextMenu-item[data-v-8d22802a] {\n    padding: 5px;\n    border: 1px solid #e0e5ea;\n}\n.contextMenu-item[data-v-8d22802a]:hover {\n    background: #f5f5f5;\n}\n.hidden[data-v-8d22802a] {\n    display: none;\n}\n.friend-list-off-line[data-v-8d22802a] {\n    -webkit-filter: grayscale(1);\n            filter: grayscale(1);\n    opacity: 0.8;\n}\ntr td[data-v-8d22802a]:nth-child(2) {\n    padding-left: 10px;\n}\n.search-main[data-v-8d22802a] {\n    margin-bottom: 100px;\n    margin-top: 50px;\n    height: 200px;\n    background: #d6d6d6;\n}\n.search[data-v-8d22802a] {\n    margin: 0 auto;\n    position: relative;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.backSearch[data-v-8d22802a] {\n    font-size: 18px;\n    height: 30px;\n    width: 30px;\n}\n.backSearch[data-v-8d22802a]:hover{\n    background: #eeeeee;\n}\n\n", ""]);
+exports.push([module.i, "\n.Panel-main[data-v-8d22802a] {\n    height: 600px;\n    background: #f9f9f9;\n}\n.head[data-v-8d22802a] {\n    background: #d6d6d6;\n    height: 100px;\n    padding: 15px;\n}\n.Signature[data-v-8d22802a] {\n    margin-top: 10px;\n    margin-bottom: 25px;\n}\n.friendIcon[data-v-8d22802a] {\n    font-size: 25px;\n}\n.friendList[data-v-8d22802a] {\n    background: #f9f9f9;\n    height: 400px;\n    padding: 15px;\n    /*overflow: hidden;*/\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.friendList[data-v-8d22802a]::-webkit-scrollbar {\n    display: none;\n}\n.friendButton .el-col-8[data-v-8d22802a] {\n    padding-bottom: 5px;\n    text-align: center;\n}\n.friendList[data-v-8d22802a] .el-tree-node__content {\n    height: auto !important;\n    padding-left: 0 !important;\n}\n.friendButton .el-col-8[data-v-8d22802a]:hover {\n    border-bottom: 3px solid #6cdb9e;\n}\n.userSignature[data-v-8d22802a] {\n    color: #b7b7b7;\n}\n.username[data-v-8d22802a] {\n    font-size: 18px;\n}\n.column[data-v-8d22802a] {\n    padding: 10px 0 10px 0;\n    /*overflow: hidden;*/\n    /*height: 20px;*/\n}\n.columnHover[data-v-8d22802a]:hover {\n    background: #eeeeee;\n}\n.corners[data-v-8d22802a] {\n    color: #6fa7d6;\n}\n.list[data-v-8d22802a] {\n    margin-top: 15px;\n    padding-left: 10px;\n}\n.userInfo[data-v-8d22802a] {\n    clear: both;\n    height: 55px;\n    padding: 5px;\n}\n.userInfo[data-v-8d22802a]:hover {\n    /*border: 1px solid #1b1e21;*/\n    background: #f2f2f2;\n}\n.tool[data-v-8d22802a] {\n    border-top: 1px solid #eee;\n    font-size: 25px;\n    text-align: center;\n}\n.tool .el-col-6[data-v-8d22802a]:hover {\n    background: #d5d5d5;\n}\n.contextMenu[data-v-8d22802a] {\n    z-index: 2;\n    position: absolute; /*自定义菜单相对与body元素进行定位*/\n    width: 180px;\n    /*height: 130px;*/\n    background: #d5d5d5;\n}\n.contextMenu-item[data-v-8d22802a] {\n    padding: 5px;\n    border: 1px solid #e0e5ea;\n}\n.contextMenu-item[data-v-8d22802a]:hover {\n    background: #f5f5f5;\n}\n.hidden[data-v-8d22802a] {\n    display: none;\n}\n.friend-list-off-line[data-v-8d22802a] {\n    -webkit-filter: grayscale(1);\n            filter: grayscale(1);\n    opacity: 0.8;\n}\ntr td[data-v-8d22802a]:nth-child(2) {\n    padding-left: 10px;\n}\n.search-main[data-v-8d22802a] {\n    margin-bottom: 100px;\n    margin-top: 50px;\n    height: 200px;\n    background: #d6d6d6;\n}\n.search[data-v-8d22802a] {\n    margin: 0 auto;\n    position: relative;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.backSearch[data-v-8d22802a] {\n    font-size: 18px;\n    height: 30px;\n    width: 30px;\n}\n.backSearch[data-v-8d22802a]:hover {\n    background: #eeeeee;\n}\n.searchResult-list[data-v-8d22802a] {\n    margin-top: 20px;\n    height: 300px;\n}\n.searchResult-list > li[data-v-8d22802a] {\n    height: 100px;\n    width: 210px;\n    float: left;\n    margin-right: 30px;\n}\n.searchResult-list p[data-v-8d22802a] {\n    width: 130px;\n    overflow: hidden;\n}\n.searchResult-p-nowrap[data-v-8d22802a] {\n    white-space: nowrap;\n    text-overflow: ellipsis;\n}\n.searchPhoneNextPage[data-v-8d22802a] {\n    position: relative;\n    text-align: center;\n    right: 7%;\n    font-size: 20px;\n}\n", ""]);
 
 // exports
 
@@ -1741,6 +1826,9 @@ var render = function() {
             "close-on-click-modal": false
           },
           on: {
+            close: function($event) {
+              return _vm.closeAddFriendDialog()
+            },
             "update:visible": function($event) {
               _vm.addFriend = $event
             }
@@ -1750,7 +1838,7 @@ var render = function() {
           _c(
             "el-tabs",
             {
-              staticStyle: { height: "350px" },
+              staticStyle: { height: "390px" },
               attrs: { "tab-position": "left" }
             },
             [
@@ -1770,7 +1858,15 @@ var render = function() {
                               [
                                 _c("el-input", {
                                   attrs: {
+                                    type: "number",
                                     placeholder: "对方手机号码,可模糊搜索"
+                                  },
+                                  model: {
+                                    value: _vm.searchFriendPhone,
+                                    callback: function($$v) {
+                                      _vm.searchFriendPhone = $$v
+                                    },
+                                    expression: "searchFriendPhone"
                                   }
                                 })
                               ],
@@ -1785,7 +1881,11 @@ var render = function() {
                                   "el-button",
                                   {
                                     attrs: { type: "success" },
-                                    on: { click: _vm.searchPhone }
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.searchPhone(1)
+                                      }
+                                    }
                                   },
                                   [
                                     _c(
@@ -1841,8 +1941,186 @@ var render = function() {
                             ]
                           )
                         ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "ul",
+                        { staticClass: "searchResult-list" },
+                        [
+                          _vm._l(_vm.searchUserResult, function(userItem) {
+                            return _c("li", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "fl",
+                                  staticStyle: { height: "100%" }
+                                },
+                                [
+                                  _c("el-avatar", {
+                                    class: userItem.fd
+                                      ? "fl"
+                                      : "fl friend-list-off-line",
+                                    staticStyle: {
+                                      position: "relative",
+                                      top: "15%",
+                                      "margin-right": "20px"
+                                    },
+                                    attrs: { size: 50, src: userItem.avatar }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                { staticClass: "searchResult-p-nowrap" },
+                                [_vm._v(_vm._s(userItem.name))]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                { staticClass: "searchResult-p-nowrap" },
+                                [_vm._v(_vm._s(userItem.signature))]
+                              ),
+                              _vm._v(" "),
+                              _c("p", {
+                                domProps: { innerHTML: _vm._s(userItem.phone) }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                [
+                                  _c(
+                                    "el-button",
+                                    {
+                                      attrs: { type: "success", size: "mini" }
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          staticClass: "icon ",
+                                          attrs: { "aria-hidden": "true" }
+                                        },
+                                        [
+                                          _c("use", {
+                                            attrs: { "xlink:href": "#icon-add" }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(
+                                        "\n                                    添加好友\n                                "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticStyle: { clear: "both" } })
+                        ],
+                        2
                       )
                     ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.searchResult
+                  ? _c(
+                      "div",
+                      [
+                        _c(
+                          "el-row",
+                          [
+                            _c(
+                              "el-col",
+                              { attrs: { offset: 7, span: 5 } },
+                              [
+                                _c(
+                                  "el-button",
+                                  {
+                                    attrs: {
+                                      size: "mini",
+                                      disabled: _vm.searchPhoneUp,
+                                      type: "success"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.searchPhone(
+                                          --_vm.searchPhonePage
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "svg",
+                                      {
+                                        staticClass: "icon",
+                                        attrs: { "aria-hidden": "true" }
+                                      },
+                                      [
+                                        _c("use", {
+                                          attrs: {
+                                            "xlink:href": "#icon-jiantou-shang"
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "el-col",
+                              { attrs: { span: 12 } },
+                              [
+                                _c(
+                                  "el-button",
+                                  {
+                                    attrs: {
+                                      size: "mini",
+                                      disabled: _vm.searchPhoneNext,
+                                      type: "success"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.searchPhone(
+                                          ++_vm.searchPhonePage
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "svg",
+                                      {
+                                        staticClass: "icon",
+                                        attrs: { "aria-hidden": "true" }
+                                      },
+                                      [
+                                        _c("use", {
+                                          attrs: {
+                                            "xlink:href":
+                                              "#icon-jiantou-copy-copy"
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
                   : _vm._e()
               ]),
               _vm._v(" "),
@@ -2018,7 +2296,7 @@ function normalizeComponent (
 /*!************************************!*\
   !*** ./resources/js/api/friend.js ***!
   \************************************/
-/*! exports provided: columnFriend, storeColumn, updateColumn, destroyColumn, destroyFriend */
+/*! exports provided: columnFriend, storeColumn, updateColumn, destroyColumn, destroyFriend, searchFriend */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2028,6 +2306,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateColumn", function() { return updateColumn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyColumn", function() { return destroyColumn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyFriend", function() { return destroyFriend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchFriend", function() { return searchFriend; });
 /* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/libs/axios */ "./resources/js/libs/axios.js");
 
 /**
@@ -2084,10 +2363,36 @@ var destroyColumn = function destroyColumn(id) {
     method: 'delete'
   });
 };
+/**
+ * 删除好友
+ *
+ * @param id
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>>}
+ */
+
 var destroyFriend = function destroyFriend(id) {
   return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
     url: 'user/friend/' + id,
     method: 'delete'
+  });
+};
+/**
+ *
+ * 搜索好友
+ *
+ * @param data
+ * @param page
+ * @param limit
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var searchFriend = function searchFriend(data) {
+  var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+  var limit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 10;
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/friend/search?page=' + page + '&limit=' + limit,
+    data: data,
+    method: 'post'
   });
 };
 

@@ -228,4 +228,13 @@ return [
 
     ],
 
+    'search' => [
+        'useDriver' => env('SEARCH_DRIVER', 'mysql'),
+
+        'driver' => [
+            'mysql',
+            'elastic'
+        ]
+    ]
+
 ];

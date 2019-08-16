@@ -7,6 +7,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\StatusCode;
 use App\Models\User\UserFriend;
+use App\Service\Search\User\Contract\SearchUserInterface;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -36,5 +37,24 @@ class FriendController extends Controller
             ->where('user_id', $id)
             ->delete();
         return $this->Json(StatusCode::SUCCESS);
+    }
+
+    /**
+     * 搜索好友
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \App\Exceptions\FromVerif
+     */
+    public function searchFriend()
+    {
+        $field = $this->formVerif([
+            'phone' => 'required'
+        ]);
+        $users = app(SearchUserInterface::class)
+            ->setPhone($field['phone'])
+            ->setPage(request()->get('page', 1))
+            ->setLimit(request()->get('limit', 10))
+            ->search();
+        return $this->Json(StatusCode::SUCCESS, ['data' => $users]);
     }
 }

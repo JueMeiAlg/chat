@@ -66,4 +66,36 @@ class ElasticSearchDriver implements SearchUserInterface
     {
         // TODO: Implement highLight() method.
     }
+
+    /**
+     * 设置当前搜索页
+     *
+     * @param int $page
+     * @return mixed|void
+     */
+    public function setPage(int $page)
+    {
+        // TODO: Implement setPage() method.
+    }
+
+    /**
+     * 设置数据大小
+     *
+     * @param int $limit
+     * @return mixed|void
+     */
+    public function setLimit(int $limit)
+    {
+        // TODO: Implement setLimit() method.
+    }
+
+    /**
+     * 总数
+     *
+     * @return mixed|void
+     */
+    public function total()
+    {
+        // TODO: Implement total() method.
+    }
 }

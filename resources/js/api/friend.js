@@ -35,7 +35,7 @@ export const storeColumn = (data) => {
  */
 export const updateColumn = (id, data) => {
     return axios.request({
-        url: 'user/column/'+id,
+        url: 'user/column/' + id,
         data,
         method: 'put'
     })
@@ -49,15 +49,37 @@ export const updateColumn = (id, data) => {
  */
 export const destroyColumn = (id) => {
     return axios.request({
-        url: 'user/column/'+id,
+        url: 'user/column/' + id,
         method: 'delete'
     })
 };
 
-
+/**
+ * 删除好友
+ *
+ * @param id
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>>}
+ */
 export const destroyFriend = (id) => {
     return axios.request({
-        url: 'user/friend/'+id,
+        url: 'user/friend/' + id,
         method: 'delete'
+    })
+};
+
+/**
+ *
+ * 搜索好友
+ *
+ * @param data
+ * @param page
+ * @param limit
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+export const searchFriend = (data, page = 1, limit = 10) => {
+    return axios.request({
+        url: 'user/friend/search?page=' + page + '&limit=' + limit,
+        data,
+        method: 'post'
     })
 };

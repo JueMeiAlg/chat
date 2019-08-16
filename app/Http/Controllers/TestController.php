@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\Chat\Group;
 use App\Models\User;
 use App\Models\User\UserColumn;
+use App\Service\Search\User\Contract\SearchUserInterface;
 use App\Service\Search\User\MysqlSearchDriver;
 
 /**
@@ -19,7 +20,7 @@ class TestController extends Controller
 {
     public function index($id)
     {
-        $methodName = 't'.$id;
+        $methodName = 't' . $id;
         $request = request()->all();
         return $this->$methodName(...$request);
     }
@@ -63,8 +64,21 @@ class TestController extends Controller
 
     public function t5()
     {
-        //测试接口继承
+        //测试搜索
         $mysql = new MysqlSearchDriver();
+        $user = $mysql
+            ->setSignature('我')
+            ->setPhone('136868400')
+            ->search();
+        dd($user);
+    }
+
+    /**
+     * 测试搜索绑定
+     */
+    public function t6()
+    {
+        $mysql = app(SearchUserInterface::class)->setPhone('1368684')->search();
         dd($mysql);
     }
 }

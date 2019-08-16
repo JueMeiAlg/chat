@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Chat\Group;
 use App\Models\User\UserColumn;
-use App\Models\User\UserColumnRelationUser;
 use App\Models\User\UserFriend;
 use App\Models\User\UserJoinedGroup;
 use Illuminate\Database\Eloquent\SoftDeletes;

@@ -6,6 +6,7 @@ namespace App\Service\Search\User;
 
 use App\Models\User;
 use App\Service\Search\User\Contract\SearchUserInterface;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * 实现搜索用户接口,采用mysql去模糊匹配用户
@@ -35,6 +36,18 @@ class MysqlSearchDriver implements SearchUserInterface
      * @var
      */
     protected $signature = null;
+    /**
+     * 当前查询页
+     *
+     * @var int
+     */
+    protected $page = 0;
+    /**
+     * 数据限制条数
+     *
+     * @var int
+     */
+    protected $limit = 0;
 
     /**
      * 查询结构
@@ -80,6 +93,30 @@ class MysqlSearchDriver implements SearchUserInterface
     }
 
     /**
+     * 设置当前搜索页
+     *
+     * @param int $page
+     * @return $this|mixed
+     */
+    public function setPage(int $page)
+    {
+        $this->page = $page;
+        return $this;
+    }
+
+    /**
+     * 设置限制条数
+     *
+     * @param int $limit
+     * @return $this|mixed
+     */
+    public function setLimit(int $limit)
+    {
+        $this->limit = $limit;
+        return $this;
+    }
+
+    /**
      * 搜索方法
      *
      * @return array|mixed
@@ -89,21 +126,26 @@ class MysqlSearchDriver implements SearchUserInterface
         $query = User::query();
         //拼装查询
         if (!is_null($this->name)) {
-            $query = $query->orWhere('name', 'like', '%'.$this->name.'%');
+            $query = $query->orWhere('name', 'like', '%' . $this->name . '%');
         }
         if (!is_null($this->signature)) {
-            $query = $query->orWhere('signature', 'like', '%'.$this->signature.'%');
+            $query = $query->orWhere('signature', 'like', '%' . $this->signature . '%');
         }
         if (!is_null($this->phone)) {
-            $query = $query->orWhere('phone', 'like', '%'.$this->phone.'%');
+            $query = $query->orWhere('phone', 'like', '%' . $this->phone . '%');
         }
 
-        $this->user = $query->get()
-                            ->toArray();
+        $this->user = $query
+            //把自己排除在外
+            ->where('id', '!=', Auth::id())
+            ->skip(($this->page -1) * $this->limit)
+            ->take($this->limit)
+            ->get()
+            ->toArray();
 
         $this->highLight();
 
-        return $this->user;
+        return ['users'=>$this->user, 'total'=>$this->total()];
     }
 
     /**
@@ -117,12 +159,31 @@ class MysqlSearchDriver implements SearchUserInterface
         if (empty($this->user)) {
             return $this->user;
         }
-        $str="在中国古典四大名著中，绝大多数儿童最喜欢的就是西游记。";//定义原始字符串
-        $keyword="西游记";//指定要替换的关键字
-        echo str_replace($keyword,"<font color=red><b>$keyword</b></font>",$str);//加粗加颜色
 
-        foreach ($this->user as $key=>$userItem) {
+        foreach ($this->user as $key => $userItem) {
 
+            if (!is_null($this->name)) {
+                $this->user[$key]['name'] = str_replace($this->name, "<font color=red><b>$this->name</b></font>", $userItem['name']);
+            }
+            if (!is_null($this->signature)) {
+                $this->user[$key]['signature'] = str_replace($this->signature, "<font color=red><b>$this->signature</b></font>", $userItem['signature']);
+            }
+            if (!is_null($this->phone)) {
+                $this->user[$key]['phone'] = str_replace($this->phone, "<font color=red><b>$this->phone</b></font>", $userItem['phone']);
+            }
         }
+    }
+
+    /**
+     * 返回所有能正常登陆的用户总数
+     *
+     * @return int|mixed
+     */
+    public function total()
+    {
+        return User::query()
+            ->where('id', '!=', Auth::id())//自己除开
+            ->where('status', User::NORMAL)
+            ->count();
     }
 }
