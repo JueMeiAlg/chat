@@ -63,7 +63,8 @@ class ColumnController extends Controller
         //他的其他分组
         $column = UserColumn::query()
             ->where('user_id', Auth::id())
-            ->whereNotIn('id', [$id])
+            ->orderByDesc('id')
+            ->where('id', '!=', $id)
             ->first();
 
         //如果没有数据 说明在删除最后一个分栏信息,最后一个不允许删除

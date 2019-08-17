@@ -6,12 +6,14 @@
                     <el-col :span="24">
                         <el-row>
                             <el-col :span="8">
-                                Alg
+                                {{$store.state.user.userName}}
                             </el-col>
                         </el-row>
                     </el-col>
                     <el-col :span="24">
-                        <div class="Signature">个性签名</div>
+                        <div class="Signature">
+                            {{$store.state.user.signature}}
+                        </div>
                     </el-col>
                     <div class="friendButton">
                         <el-col :span="8">
@@ -95,21 +97,21 @@
                 <el-col :span="24" class="tool">
                     <el-row>
                         <el-col title="系统消息通知" :span="6">
-                            <el-badge :value="12">
+                            <el-badge :value="$store.state.friendPanelTool.systemNotifyNum">
                                 <svg class="icon " aria-hidden="true">
                                     <use xlink:href="#icon-iconset0274"></use>
                                 </svg>
                             </el-badge>
                         </el-col>
                         <el-col title="添加好友" :span="6" @click.native="openAddFriendDialog($event)">
-                            <el-badge :value="12">
+                            <el-badge :value="$store.state.friendPanelTool.friendNotifyNum">
                                 <svg class="icon " aria-hidden="true">
                                     <use xlink:href="#icon-add"></use>
                                 </svg>
                             </el-badge>
                         </el-col>
                         <el-col title="分享聊天室给你的好友" :span="6">
-                            <el-badge :value="12">
+                            <el-badge :value="$store.state.friendPanelTool.shareNotifyNum">
                                 <svg class="icon " aria-hidden="true">
                                     <use xlink:href="#icon-fenxiang2"></use>
                                 </svg>
@@ -219,7 +221,7 @@
                                 <p class="searchResult-p-nowrap">{{userItem.signature}}</p>
                                 <p v-html="userItem.phone"></p>
                                 <p>
-                                    <el-button type="success" size="mini">
+                                    <el-button type="success" size="mini" @click="openSendVerfMsgDialog(userItem)">
                                         <svg class="icon " aria-hidden="true">
                                             <use xlink:href="#icon-add"></use>
                                         </svg>
@@ -234,14 +236,16 @@
                     <div v-if="searchResult">
                         <el-row>
                             <el-col :offset="7" :span="5">
-                                <el-button size="mini" :disabled="searchPhoneUp" type="success" @click="searchPhone(--searchPhonePage)">
+                                <el-button size="mini" :disabled="searchPhoneUp" type="success"
+                                           @click="searchPhone(--searchPhonePage)">
                                     <svg class="icon" aria-hidden="true">
                                         <use xlink:href="#icon-jiantou-shang"></use>
                                     </svg>
                                 </el-button>
                             </el-col>
                             <el-col :span="12">
-                                <el-button size="mini" :disabled="searchPhoneNext" type="success" @click="searchPhone(++searchPhonePage)">
+                                <el-button size="mini" :disabled="searchPhoneNext" type="success"
+                                           @click="searchPhone(++searchPhonePage)">
                                     <svg class="icon" aria-hidden="true">
                                         <use xlink:href="#icon-jiantou-copy-copy"></use>
                                     </svg>
@@ -251,9 +255,99 @@
                     </div>
                 </el-tab-pane>
 
-                <el-tab-pane label="添加好友消息">等待实现</el-tab-pane>
+                <el-tab-pane label="添加好友消息">
+                    <el-row v-for="(item, index) in friendAuthList" :key="index">
+                        <div style="height: 85px">
+                            <el-col :offset="1" :span="3">
+                                <el-avatar
+                                        :class="item.friend.fd? 'fl' : 'fl friend-list-off-line'" :size="50"
+                                        :src="item.friend.avatar">
+                                </el-avatar>
+                            </el-col>
+                            <el-col :span="12">
+                                <div style="overflow: hidden;width: 250px">
+                                    <p>{{item.friend.name}}</p>
+                                    <p>{{item.friend.phone}}</p>
+                                    <p>{{item.msg}}</p>
+                                </div>
+                            </el-col>
+                            <el-col :span="8">
+                                <div style="margin-top: 15px">
+                                    <template v-if="item.status == 0">
+                                        <el-button type="success" size="mini" @click="handelFriendAuth(item.friend_id)">同意</el-button>
+                                        <el-button type="warning" size="mini" @click="openRefuseFriendAuthDialog(item.friend_id)">拒绝</el-button>
+                                    </template>
+                                    <template v-else-if="item.status == 1">
+                                        <el-button type="success" :disabled="true" title="您已同意添加他为好友" size="mini">同意
+                                        </el-button>
+                                        <el-button type="warning" :disabled="true" title="您已同意添加他为好友" size="mini">拒绝
+                                        </el-button>
+                                    </template>
+                                    <template v-else-if="item.status == 2">
+                                        <el-button type="success" :disabled="true" title="您已拒绝添加他为好友" size="mini">同意
+                                        </el-button>
+                                        <el-button type="warning" :disabled="true" title="您已拒绝添加他为好友" size="mini">拒绝
+                                        </el-button>
+                                    </template>
+                                </div>
+                            </el-col>
+                        </div>
+                    </el-row>
+                    <div>
+                        <el-row>
+                            <el-col :offset="7" :span="5">
+                                <el-button size="mini" :disabled="friendAuthUp"  type="success" @click="getFriendAuth(--friendAuthPage)">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-jiantou-shang"></use>
+                                    </svg>
+                                </el-button>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-button size="mini" :disabled="friendAuthNext"  type="success" @click="getFriendAuth(++friendAuthPage)">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-jiantou-copy-copy"></use>
+                                    </svg>
+                                </el-button>
+                            </el-col>
+                        </el-row>
+                    </div>
+                </el-tab-pane>
 
             </el-tabs>
+        </el-dialog>
+
+        <el-dialog title="发送验证信息" :visible.sync="sendAddFriendMsgDialog" :close-on-click-modal="false">
+            <el-row>
+                <el-col :span="2">
+                    <el-avatar style="margin-top: 10px"
+                               :class="currentHandelUserObj.fd? 'fl' : 'fl friend-list-off-line'" :size="50"
+                               :src="currentHandelUserObj.avatar">
+                    </el-avatar>
+                    <p>
+                        <b>{{currentHandelUserObj.name}}</b>
+                    </p>
+                </el-col>
+                <el-col :span="12">
+                    <p>请输入验证信息:</p>
+                    <el-input v-model="verfMSG"></el-input>
+                </el-col>
+                <el-col :span="4" :offset="1">
+                    <el-button type="success" style="margin-top: 20px" @click="sendAddFriend(currentHandelUserObj.id)">
+                        发送
+                    </el-button>
+                </el-col>
+            </el-row>
+        </el-dialog>
+
+        <el-dialog title="拒绝好友" :visible.sync="RefuseFriendAuthDialog" :close-on-click-modal="false">
+            <el-row>
+                <el-col :span="18">
+                    <el-input v-model="reason" placeholder="拒绝理由"></el-input>
+                </el-col>
+                <el-col :offset="1" :span="4">
+                    <el-button type="success" @click="refuseFriendAuth">确定</el-button>
+                </el-col>
+            </el-row>
         </el-dialog>
     </div>
 </template>
@@ -262,16 +356,23 @@
     import {
         columnFriend, storeColumn,
         destroyColumn, updateColumn,
-        destroyFriend, searchFriend
+        destroyFriend, searchFriend,
+        storeFriend, storeFriendAuth,
+        friendAuth
     } from '@/api/friend';
+
+    import {mapActions} from 'vuex'
 
     export default {
         name: "friendPanel",
         data() {
             return {
+                sendAddFriendMsgDialog: false,
+                RefuseFriendAuthDialog: false,
                 columnFriend: [],
                 systemMenu: [],
                 searchFriendPhone: "",
+                verfMSG: "我是...",
                 searchUserResult: [],
                 newColumnBox: false,
                 editColumnBox: false,
@@ -285,28 +386,39 @@
                 currentHandelColumnIndex: "",
                 searchPhoneUp: true,
                 searchPhoneNext: false,
+                friendAuthUp:true,
+                friendAuthNext:false,
                 currentHandelUserId: 0,
                 currentHandelUserObj: "",
                 currentHandelUserIndex: "",
                 searchUserTotal: 0,
                 searchPhonePage: 0,
                 searchPhoneLimit: 6,
+                friendAuthList: [],
+                friendAuthPage: 0,
+                reason:''
             }
         },
 
         created() {
+            console.log(this.$store.state.user);
             window.onclick = function (e) {
                 window.document.querySelector('#systemMenu').style.display = "none";
                 window.document.querySelector('#columnMenu').style.display = "none";
                 window.document.querySelector('#userMenu').style.display = "none";
             };
             //拉取分栏及好友信息
-            columnFriend().then((response) => {
-                this.columnFriend = response.data.data
-            })
+            this.getColumnFriend();
+            this.friendAuthNum();
+            friendAuth(++this.friendAuthPage, 4).then((response) => {
+                this.friendAuthList = response.data.data;
+            });
         },
 
         methods: {
+            ...mapActions([
+                'friendAuthNum',
+            ]),
             /**
              * 打开好友列表
              */
@@ -328,6 +440,15 @@
                         item.className = 'column';
                     });
                 }
+            },
+
+            /**
+             * 拉取分栏及好友列表
+             */
+            getColumnFriend() {
+                columnFriend().then((response) => {
+                    this.columnFriend = response.data.data
+                })
             },
 
             /**
@@ -383,6 +504,7 @@
                 this.closeMenu();
                 this.openMenu('columnMenu', e);
             },
+
             /**
              * 打开用户层的右键菜单
              */
@@ -464,10 +586,8 @@
                     this.columnFriend.splice(this.currentHandelColumnIndex, 1);
                     this.currentHandelColumnId = 0;
                     //重新拉取分栏及好友信息
-                    columnFriend().then((response) => {
-                        this.columnFriend = response.data.data;
-                        this.$message.success(response.data.msg)
-                    });
+                    this.getColumnFriend();
+                    this.$message.success(response.data.msg)
                 });
             },
 
@@ -557,18 +677,19 @@
                     for (let friendItem = 0; friendItem < this.columnFriend[columnItem].friend.length; friendItem++) {
                         if (this.columnFriend[columnItem].friend[friendItem].id == this.currentHandelUserId) {
                             this.currentHandelColumnObj = this.columnFriend[columnItem];
-                            console.log(this.currentHandelColumnObj);
                             return this.currentHandelColumnObj
                         }
                     }
                 }
             },
+
             /**
              * 打开好友添加信息窗口
              */
             openAddFriendDialog() {
                 this.addFriend = true;
             },
+
             /**
              * 关闭搜索框
              */
@@ -578,6 +699,7 @@
                 this.searchResult = false;
                 this.searchFriendPhone = "";
             },
+
             /**
              * 手机号码检测
              *
@@ -592,7 +714,15 @@
                     return true;
                 }
             },
+
+            /**
+             * 搜索好友
+             *
+             * @param page
+             */
             searchPhone(page) {
+                this.searchPhonePage = page;
+
                 if (this.searchPhonePage <= 0) {
                     this.searchPhonePage = 1;
                 }
@@ -609,7 +739,6 @@
                     this.searchResult = true;
                     this.searchUserResult = response.data.data.users;
                     this.searchUserTotal = response.data.data.total;
-
                     //向上去整得出最大页数
                     let totalPage = Math.ceil(this.searchUserTotal / this.searchPhoneLimit);
                     if (this.searchPhonePage >= totalPage) {
@@ -619,12 +748,135 @@
                         this.searchPhoneNext = false;
                     }
                 })
+
             },
+
+            /**
+             * 返回搜索页
+             */
             backSearch() {
                 this.search = true;
                 this.searchResult = false;
-            }
+            },
 
+            /**
+             * 打开好友添加确认信息
+             */
+            openSendVerfMsgDialog(user) {
+                this.currentHandelUserObj = user;
+                this.sendAddFriendMsgDialog = true
+            },
+
+            /**
+             * 指定好友Id是否存在
+             */
+            isExistFriend(friendId) {
+                for (let columnIndex = 0; columnIndex < this.columnFriend.length; columnIndex++) {
+                    for (let friendIndex = 0; friendIndex < this.columnFriend[columnIndex].friend.length; friendIndex++) {
+                        if (this.columnFriend[columnIndex].friend[friendIndex].id == friendId) {
+                            return true
+                        }
+                    }
+                }
+                return false;
+            },
+
+            /**
+             * 发送添加好友信息
+             *
+             * @param friendId
+             */
+            sendAddFriend(friendId) {
+                //要添加的人是否已是他的好友
+                let isExist = this.isExistFriend(friendId);
+                if (isExist) {
+                    this.$message.error('该好友已存在您的好友列表中无法继续添加');
+                    return
+                }
+                storeFriendAuth({friend_id: friendId, msg: this.verfMSG}).then((response) => {
+                    this.$message.success(response.data.msg);
+                    this.sendAddFriendMsgDialog = false;
+                })
+            },
+
+            /**
+             * 获得好友认证消息
+             *
+             * @param page
+             */
+            getFriendAuth(page) {
+                this.friendAuthPage = page;
+
+                if (this.friendAuthPage <= 0) {
+                    this.friendAuthPage = 1;
+                }
+
+                if (this.friendAuthPage == 1) {
+                    //向上按钮无法使用
+                    this.friendAuthUp = true;
+                } else {
+                    this.friendAuthUp = false;
+                }
+
+                friendAuth(this.friendAuthPage, 4).then((response) => {
+                    this.friendAuthList = response.data.data;
+                    //向上去整得出最大页数
+                    let totalPage = Math.ceil(response.data.total / 4);
+                    if (this.friendAuthPage >= totalPage) {
+                        //超出页数无法继续
+                        this.friendAuthNext = true;
+                    } else {
+                        this.friendAuthNext = false;
+                    }
+                });
+            },
+
+            /**
+             * 处理好友信息
+             *
+             * @param friendId
+             * @param status
+             */
+            handelFriendAuth(friendId) {
+                this.currentHandelUserId = friendId;
+                storeFriend({friend_id:friendId, status:1, reason:this.reason}).then((response)=>{
+                    this.changeFriendAuthButtonStatus(friendId, 1);
+                    this.$message.success(response.data.msg);
+                })
+            },
+            /**
+             * 打开拒绝窗口
+             * @param friendId
+             */
+            openRefuseFriendAuthDialog(friendId){
+                this.RefuseFriendAuthDialog = true;
+                this.currentHandelUserId = friendId;
+            },
+            /**
+             * 该变好友按钮状态
+             */
+            changeFriendAuthButtonStatus(friendId, status) {
+                this.friendAuthList.forEach(item=>{
+                    if (item.friend_id == this.currentHandelUserId) {
+                        //改变状态
+                        item.status = status;
+                    }
+                });
+            },
+
+            /**
+             * 发送拒绝信息
+             */
+            refuseFriendAuth() {
+                storeFriend({friend_id:this.currentHandelUserId, status:2, reason:this.reason}).then((response)=>{
+                    this.$message.success(response.data.msg);
+                    this.RefuseFriendAuthDialog = false;
+                    this.reason = "";
+                    this.changeFriendAuthButtonStatus(this.currentHandelUserId, 2);
+                    //通知动态减数
+                    this.$store.commit('setFriendNotifyNum',  --this.$store.state.friendPanelTool.friendNotifyNum)
+                })
+            }
         }
     }
 </script>

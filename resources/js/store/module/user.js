@@ -5,6 +5,7 @@ export default {
     state: {
         token:getToken(),
         userName: '',
+        signature: '',
         userId: '',
         avatar: '',
     },
@@ -21,6 +22,9 @@ export default {
         setToken(state, token) {
             state.token = token
         },
+        setSignature(state, signature) {
+            state.signature = signature
+        },
     },
     actions: {
         // 登录
@@ -30,6 +34,10 @@ export default {
                     const data = res.data;
                     if (data.code === 0){
                         commit('setToken', data.data.token);
+                        commit('setUserName', data.data.user.name);
+                        commit('setSignature', data.data.user.signature);
+                        commit('setUserId', data.data.user.id);
+                        commit('setAvatar', data.data.user.avatar);
                         setToken(data.data.token);
                         resolve(data)
                     }else{
@@ -43,30 +51,14 @@ export default {
         // 退出登录
         handleLogOut ({ state, commit }) {
             return new Promise((resolve) => {
-                commit('setToken', false);
-                commit('setAvatar', null);
-                commit('setUserId', null);
-                commit('setUserName', null);
+                commit('setToken', null);
+                commit('setUserName', '');
+                commit('setSignature', '');
+                commit('setUserId', '');
+                commit('setAvatar', '');
                 setToken();
                 resolve()
             })
         },
-        // // 获取用户相关信息
-        getUserInfo ({ state, commit }) {
-            return new Promise((resolve, reject) => {
-                    userInfo().then(res => {
-                        const data = res.data;
-                        if (data.code == 0) {
-                            const user = data.user;
-                            commit('setAvatar', user.avatar);
-                            commit('setUserName', user.username);
-                            commit('setUserId', user.id);
-                        }
-                        resolve(data)
-                    }).catch(err => {
-                        reject(err)
-                    })
-            })
-        }
     }
 }

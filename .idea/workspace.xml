@@ -2,23 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="003058b5-3100-47c1-b465-fb7e9026028f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/store/module/friendPanelTool.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TestController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/User/ColumnController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/ColumnController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/StatusCode.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/StatusCode.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repository/User/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repository/User/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Service/Search/Contract/SearchInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Service/Search/Contract/SearchInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Service/Search/User/ElasticSearchDriver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Service/Search/User/ElasticSearchDriver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Service/Search/User/MysqlSearchDriver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Service/Search/User/MysqlSearchDriver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/chunk/chunk0.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/chunk/chunk0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/iconfont.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/iconfont.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/api/friend.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/api/friend.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/module/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/module/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/view/chat/friendPanel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/view/chat/friendPanel.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
@@ -42,53 +36,225 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/api/friend.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="78" column="13" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
+            <state relative-caret-position="176">
+              <caret line="91" column="24" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/view/chat/chatWindow.vue">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/js/view/chat/friendPanel.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="236" column="133" lean-forward="true" selection-start-line="236" selection-start-column="133" selection-end-line="236" selection-end-column="133" />
+            <state relative-caret-position="233">
+              <caret line="403" column="48" selection-start-line="403" selection-start-column="48" selection-end-line="403" selection-end-column="48" />
               <folding>
-                <element signature="n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-col#0;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-col#1;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#2;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-col#2;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#1;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#2;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#1;n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#2;n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#1;n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#2;n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#span#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#span#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-avatar#0;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-badge#0;n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-badge#0;n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-badge#0;n#el-col#1;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-badge#0;n#el-col#1;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#2;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-badge#0;n#el-col#2;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-badge#0;n#el-col#2;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#el-dialog#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#span#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#el-dialog#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#span#0;n#el-dialog#1;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#style#0;n#td#0;n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#tr#0;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#td#0;n#tr#0;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#td#0;n#tr#0;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#td#0;n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#td#0;n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#tr#2;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#td#0;n#tr#2;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#td#0;n#tr#2;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#tr#3;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#td#0;n#tr#3;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#td#0;n#tr#3;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#tr#4;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#td#0;n#tr#4;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#td#0;n#tr#4;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-input#0;n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#style#0;n#el-avatar#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#svg#0;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-avatar#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#0;n#el-col#0;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-button#0;n#el-col#0;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#0;n#el-col#1;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-button#0;n#el-col#1;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#style#0;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#el-col#1;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#el-col#1;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#style#0;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#template#1;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#template#2;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#style#0;n#el-avatar#0;n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#el-avatar#0;n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#p#0;n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#2;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#style#0;n#el-button#0;n#el-col#2;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#el-dialog#5;n#div#0;n#template#0;n#!!top" />
+                <element signature="e#14290#14491#0" expanded="true" />
+                <element signature="e#14376#14644#0" />
+                <element signature="e#14831#14872#0" />
+                <element signature="e#14901#15844#0" />
+                <element signature="e#17016#17060#0" />
+                <element signature="e#17065#17210#0" />
+                <element signature="e#15859#15900#0" />
+                <element signature="e#15939#16317#0" />
+                <element signature="e#16332#16373#0" />
+                <element signature="e#16418#16985#0" />
+                <element signature="e#16458#16613#0" />
+                <element signature="e#17000#17082#0" />
+                <element signature="e#17113#17237#0" />
+                <element signature="e#17307#17645#0" />
+                <element signature="e#17659#17704#0" />
+                <element signature="e#17750#18023#0" />
+                <element signature="e#18038#18077#0" />
+                <element signature="e#18101#18159#0" />
+                <element signature="e#18174#18214#0" />
+                <element signature="e#18246#18303#0" />
+                <element signature="e#18318#18357#0" />
+                <element signature="e#18382#18943#0" />
+                <element signature="e#18958#19086#0" />
+                <element signature="e#19122#19207#0" />
+                <element signature="e#19222#19273#0" />
+                <element signature="e#19312#19400#0" />
+                <element signature="e#19415#19535#0" />
+                <element signature="e#19561#19639#0" />
+                <element signature="e#19654#19693#0" />
+                <element signature="e#19726#20215#0" />
+                <element signature="e#20230#20272#0" />
+                <element signature="e#20298#20427#0" />
+                <element signature="e#20442#20481#0" />
+                <element signature="e#20513#21157#0" />
+                <element signature="e#21172#21211#0" />
+                <element signature="e#21237#21314#0" />
+                <element signature="e#21329#21368#0" />
+                <element signature="e#21391#21453#0" />
+                <element signature="e#21468#21507#0" />
+                <element signature="e#21535#22526#0" />
+                <element signature="e#22541#22582#0" />
+                <element signature="e#22610#22736#0" />
+                <element signature="e#22751#22848#0" />
+                <element signature="e#22889#23518#0" />
+                <element signature="e#23532#23577#0" />
+                <element signature="e#23612#23666#0" />
+                <element signature="e#23680#23720#0" />
+                <element signature="e#23756#23935#0" />
+                <element signature="e#23949#24067#0" />
+                <element signature="e#24098#24321#0" />
+                <element signature="e#24374#24456#0" />
+                <element signature="e#24353#25439#0" />
+                <element signature="e#29774#29839#0" />
+                <element signature="e#30170#30796#0" />
+                <element signature="e#25600#25640#0" />
+                <element signature="e#25661#25755#0" />
+                <element signature="e#26508#26553#0" />
+                <element signature="e#26580#26696#0" />
+                <element signature="e#27147#27192#0" />
+                <element signature="e#27202#27673#0" />
+                <element signature="e#25949#26023#0" />
+                <element signature="e#27927#28426#0" />
+                <element signature="e#32453#32539#0" />
+                <element signature="e#32548#33446#0" />
+                <element signature="e#33510#33627#0" />
+                <element signature="e#34968#35011#0" />
+                <element signature="e#35065#35321#0" />
+                <element signature="e#35335#35376#0" />
+                <element signature="n#style#0;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Service/Search/User/MysqlSearchDriver.php">
+        <entry file="file://$PROJECT_DIR$/resources/js/store/module/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="184" column="49" selection-start-line="184" selection-start-column="49" selection-end-line="184" selection-end-column="49" />
+            <state relative-caret-position="233">
+              <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
               <folding>
-                <element signature="e#2642#2700#0#PHP" />
-                <element signature="e#2705#3503#0#PHP" />
-                <element signature="e#3545#3611#0#PHP" />
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="e#55#85#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="77" selection-start-line="77" selection-end-line="77" />
+              <folding>
+                <element signature="e#47#83#0#PHP" expanded="true" />
+                <element signature="e#432#525#0#PHP" />
+                <element signature="e#530#922#0#PHP" />
+                <element signature="e#928#1044#0#PHP" />
+                <element signature="e#1919#1951#1#PHP" />
+                <element signature="e#2327#2477#1#PHP" />
+                <element signature="e#2681#2831#1#PHP" />
+                <element signature="e#3043#3122#0#PHP" />
+                <element signature="e#3530#3609#0#PHP" />
+                <element signature="e#3614#3849#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -118,6 +284,11 @@
       <find>searchResult-list</find>
       <find>searchPhoneNext</find>
       <find>searchPhone</find>
+      <find>openAddFriendDialog</find>
+      <find>columnFriend</find>
+      <find>AppServiceProvider</find>
+      <find>openRefuseFriendAuthDialog</find>
+      <find>storeFriend</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -129,17 +300,25 @@
         <option value="$PROJECT_DIR$/.env.example" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/config/app.php" />
-        <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TestController.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php" />
-        <option value="$PROJECT_DIR$/resources/js/api/friend.js" />
         <option value="$PROJECT_DIR$/app/Service/Search/Contract/SearchInterface.php" />
         <option value="$PROJECT_DIR$/app/Service/Search/User/ElasticSearchDriver.php" />
         <option value="$PROJECT_DIR$/app/Models/User/User.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/app/Service/Search/User/MysqlSearchDriver.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/User/ColumnController.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_08_17_064737_create_friend_auths_table.php" />
+        <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_08_17_073608_update_friend_auth.php" />
+        <option value="$PROJECT_DIR$/app/Models/User/FriendAuth.php" />
+        <option value="$PROJECT_DIR$/resources/js/api/friend.js" />
+        <option value="$PROJECT_DIR$/resources/js/store/index.js" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/resources/js/store/module/friendPanelTool.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php" />
         <option value="$PROJECT_DIR$/resources/js/view/chat/friendPanel.vue" />
+        <option value="$PROJECT_DIR$/resources/js/store/module/user.js" />
+        <option value="$PROJECT_DIR$/resources/js/app.js" />
       </list>
     </option>
   </component>
@@ -242,6 +421,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -253,12 +433,6 @@
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
               <item name="chat" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Exceptions" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
@@ -285,29 +459,14 @@
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
               <item name="chat" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Repository" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
               <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+              <item name="User" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
@@ -332,7 +491,15 @@
               <item name="chat" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
@@ -340,13 +507,11 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -358,17 +523,19 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="ts.external.directory.path" value="D:\Program Files (x86)\JetBrains\PhpStorm\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\www\docker\chat\app\Models\User" />
+      <recent name="E:\www\docker\chat\app\Models\User" />
+      <recent name="D:\www\docker\chat\app\Models" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\www\docker\chat\public\js" />
       <recent name="E:\www\docker\chat" />
       <recent name="D:\www\docker\chat\public\img" />
       <recent name="D:\www\docker\chat" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\www\docker\chat\app\Models\User" />
-      <recent name="D:\www\docker\chat\app\Models" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -409,20 +576,22 @@
       <workItem from="1565831667097" duration="1380000" />
       <workItem from="1565881963747" duration="4017000" />
       <workItem from="1565942725357" duration="3674000" />
+      <workItem from="1566013580154" duration="18628000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14327000" />
+    <option name="totallyTimeSpent" value="33054000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49836066" visible="true" weight="0.23676248" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49836066" visible="true" weight="0.24054463" />
       <window_info id="Structure" order="1" sideWeight="0.50163937" side_tool="true" weight="0.24962178" />
       <window_info id="Favorites" order="2" sideWeight="0.50163937" side_tool="true" weight="0.24962178" />
       <window_info id="npm" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="TypeScript" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -433,7 +602,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.352459" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3409836" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.3295082" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -441,22 +610,23 @@
       <window_info anchor="right" id="Database" order="3" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49836066" visible="true" weight="0.23676248" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49836066" visible="true" weight="0.24054463" />
       <window_info id="Structure" order="1" sideWeight="0.50163937" side_tool="true" weight="0.24962178" />
       <window_info id="Favorites" order="2" sideWeight="0.50163937" side_tool="true" weight="0.24962178" />
       <window_info id="npm" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.352459" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="TypeScript" order="0" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.3295082" />
+      <window_info anchor="bottom" id="Run" order="3" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3409836" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" weight="0.3295082" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -528,32 +698,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TestController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="80" column="79" selection-start-line="80" selection-start-column="79" selection-end-line="80" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
-          <folding>
-            <element signature="e#33#90#0#PHP" expanded="true" />
-            <element signature="e#129#209#0#PHP" />
-            <element signature="e#478#524#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="231" column="18" selection-start-line="231" selection-start-column="9" selection-end-line="231" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/User/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-388">
@@ -561,46 +705,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="37" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="683" column="25" selection-start-line="683" selection-start-column="21" selection-end-line="683" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Service/Search/User/Contract/SearchUserInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
-          <folding>
-            <element signature="e#310#403#0#PHP" />
-            <element signature="e#408#800#0#PHP" />
-            <element signature="e#864#981#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/view/chat/chatWindow.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/api/friend.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="78" column="13" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -638,39 +746,345 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/view/chat/chatWindow.vue">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Service/Search/User/MysqlSearchDriver.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
+        <state relative-caret-position="4914">
           <caret line="184" column="49" selection-start-line="184" selection-start-column="49" selection-end-line="184" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/User/ColumnController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="65" column="31" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Service/Search/User/Contract/SearchUserInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41">
+          <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="171" column="30" selection-start-line="171" selection-start-column="30" selection-end-line="171" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
           <folding>
-            <element signature="e#2642#2700#0#PHP" />
-            <element signature="e#2705#3503#0#PHP" />
-            <element signature="e#3545#3611#0#PHP" />
+            <element signature="e#33#90#0#PHP" expanded="true" />
+            <element signature="e#283#330#0#PHP" />
+            <element signature="e#365#445#0#PHP" />
+            <element signature="e#560#1108#1#PHP" />
+            <element signature="e#1122#1203#0#PHP" />
+            <element signature="e#1208#1243#0#PHP" />
+            <element signature="e#1249#1302#0#PHP" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TestController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="80" column="31" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_17_064737_create_friend_auths_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="22" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_17_073608_update_friend_auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="16" column="34" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="17" column="66" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="99994" column="4" selection-start-line="99994" selection-start-column="4" selection-end-line="99994" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/store/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/vuex/types/helpers.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/vuex/types/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/view/login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="80" column="23" selection-start-line="80" selection-start-column="23" selection-end-line="80" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/User/FriendAuth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-779">
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+          <folding>
+            <element signature="e#35#55#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+          <folding>
+            <element signature="e#47#83#0#PHP" expanded="true" />
+            <element signature="e#432#525#0#PHP" />
+            <element signature="e#530#922#0#PHP" />
+            <element signature="e#928#1044#0#PHP" />
+            <element signature="e#1919#1951#1#PHP" />
+            <element signature="e#2327#2477#1#PHP" />
+            <element signature="e#2681#2831#1#PHP" />
+            <element signature="e#3043#3122#0#PHP" />
+            <element signature="e#3530#3609#0#PHP" />
+            <element signature="e#3614#3849#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/api/friend.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="91" column="24" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/store/module/friendPanelTool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-54">
+          <caret line="4" column="23" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/view/chat/friendPanel.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="236" column="133" lean-forward="true" selection-start-line="236" selection-start-column="133" selection-end-line="236" selection-end-column="133" />
+        <state relative-caret-position="233">
+          <caret line="403" column="48" selection-start-line="403" selection-start-column="48" selection-end-line="403" selection-end-column="48" />
           <folding>
-            <element signature="n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-col#0;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-col#1;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#2;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-col#2;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#2;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#2;n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#2;n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#span#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#span#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-avatar#0;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-badge#0;n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-badge#0;n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-badge#0;n#el-col#1;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-badge#0;n#el-col#1;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#2;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-badge#0;n#el-col#2;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-badge#0;n#el-col#2;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#el-dialog#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#span#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#el-dialog#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#span#0;n#el-dialog#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#td#0;n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#tr#0;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#td#0;n#tr#0;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#td#0;n#tr#0;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#td#0;n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#td#0;n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#tr#2;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#td#0;n#tr#2;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#td#0;n#tr#2;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#tr#3;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#td#0;n#tr#3;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#td#0;n#tr#3;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#tr#4;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#td#0;n#tr#4;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#td#0;n#tr#4;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-input#0;n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#el-avatar#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#svg#0;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-avatar#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#0;n#el-col#0;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-button#0;n#el-col#0;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#0;n#el-col#1;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-button#0;n#el-col#1;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#el-col#1;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#el-col#1;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#template#1;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#template#2;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#el-avatar#0;n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#el-avatar#0;n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#p#0;n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#2;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#el-button#0;n#el-col#2;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#el-dialog#5;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#14290#14491#0" expanded="true" />
+            <element signature="e#14376#14644#0" />
+            <element signature="e#14831#14872#0" />
+            <element signature="e#14901#15844#0" />
+            <element signature="e#17016#17060#0" />
+            <element signature="e#17065#17210#0" />
+            <element signature="e#15859#15900#0" />
+            <element signature="e#15939#16317#0" />
+            <element signature="e#16332#16373#0" />
+            <element signature="e#16418#16985#0" />
+            <element signature="e#16458#16613#0" />
+            <element signature="e#17000#17082#0" />
+            <element signature="e#17113#17237#0" />
+            <element signature="e#17307#17645#0" />
+            <element signature="e#17659#17704#0" />
+            <element signature="e#17750#18023#0" />
+            <element signature="e#18038#18077#0" />
+            <element signature="e#18101#18159#0" />
+            <element signature="e#18174#18214#0" />
+            <element signature="e#18246#18303#0" />
+            <element signature="e#18318#18357#0" />
+            <element signature="e#18382#18943#0" />
+            <element signature="e#18958#19086#0" />
+            <element signature="e#19122#19207#0" />
+            <element signature="e#19222#19273#0" />
+            <element signature="e#19312#19400#0" />
+            <element signature="e#19415#19535#0" />
+            <element signature="e#19561#19639#0" />
+            <element signature="e#19654#19693#0" />
+            <element signature="e#19726#20215#0" />
+            <element signature="e#20230#20272#0" />
+            <element signature="e#20298#20427#0" />
+            <element signature="e#20442#20481#0" />
+            <element signature="e#20513#21157#0" />
+            <element signature="e#21172#21211#0" />
+            <element signature="e#21237#21314#0" />
+            <element signature="e#21329#21368#0" />
+            <element signature="e#21391#21453#0" />
+            <element signature="e#21468#21507#0" />
+            <element signature="e#21535#22526#0" />
+            <element signature="e#22541#22582#0" />
+            <element signature="e#22610#22736#0" />
+            <element signature="e#22751#22848#0" />
+            <element signature="e#22889#23518#0" />
+            <element signature="e#23532#23577#0" />
+            <element signature="e#23612#23666#0" />
+            <element signature="e#23680#23720#0" />
+            <element signature="e#23756#23935#0" />
+            <element signature="e#23949#24067#0" />
+            <element signature="e#24098#24321#0" />
+            <element signature="e#24374#24456#0" />
+            <element signature="e#24353#25439#0" />
+            <element signature="e#29774#29839#0" />
+            <element signature="e#30170#30796#0" />
+            <element signature="e#25600#25640#0" />
+            <element signature="e#25661#25755#0" />
+            <element signature="e#26508#26553#0" />
+            <element signature="e#26580#26696#0" />
+            <element signature="e#27147#27192#0" />
+            <element signature="e#27202#27673#0" />
+            <element signature="e#25949#26023#0" />
+            <element signature="e#27927#28426#0" />
+            <element signature="e#32453#32539#0" />
+            <element signature="e#32548#33446#0" />
+            <element signature="e#33510#33627#0" />
+            <element signature="e#34968#35011#0" />
+            <element signature="e#35065#35321#0" />
+            <element signature="e#35335#35376#0" />
+            <element signature="n#style#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/store/module/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#55#85#0" expanded="true" />
           </folding>
         </state>
       </provider>

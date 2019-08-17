@@ -10,6 +10,12 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'middleware' => 'auth:a
     Route::group(['prefix' => 'friend'], function () {
         //搜索好友
         Route::post('search', 'FriendController@searchFriend');
+        //好友认证消息
+        Route::post('auth', 'FriendController@storeFriendAuth');
+        //好友添加消息列表
+        Route::get('auth', 'FriendController@friendAuthList');
+        //未读消息统计
+        Route::get('auth/count', 'FriendController@friendAuthCount');
     });
 
     Route::apiResources([

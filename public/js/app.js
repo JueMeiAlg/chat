@@ -99389,6 +99389,170 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/api/friend.js":
+/*!************************************!*\
+  !*** ./resources/js/api/friend.js ***!
+  \************************************/
+/*! exports provided: columnFriend, storeColumn, updateColumn, destroyColumn, destroyFriend, searchFriend, storeFriend, storeFriendAuth, friendAuth, friendAuthCount */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "columnFriend", function() { return columnFriend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeColumn", function() { return storeColumn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateColumn", function() { return updateColumn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyColumn", function() { return destroyColumn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyFriend", function() { return destroyFriend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchFriend", function() { return searchFriend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeFriend", function() { return storeFriend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeFriendAuth", function() { return storeFriendAuth; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "friendAuth", function() { return friendAuth; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "friendAuthCount", function() { return friendAuthCount; });
+/* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/libs/axios */ "./resources/js/libs/axios.js");
+
+/**
+ * 好友分栏信息
+ *
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var columnFriend = function columnFriend() {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/column',
+    method: 'get'
+  });
+};
+/**
+ * 新增好友分栏
+ *
+ * @param data
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var storeColumn = function storeColumn(data) {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/column',
+    data: data,
+    method: 'post'
+  });
+};
+/**
+ * 修改好友分栏信息
+ *
+ * @param id
+ * @param data
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var updateColumn = function updateColumn(id, data) {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/column/' + id,
+    data: data,
+    method: 'put'
+  });
+};
+/**
+ * 删除分栏信息
+ *
+ * @param id
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var destroyColumn = function destroyColumn(id) {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/column/' + id,
+    method: 'delete'
+  });
+};
+/**
+ * 删除好友
+ *
+ * @param id
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>>}
+ */
+
+var destroyFriend = function destroyFriend(id) {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/friend/' + id,
+    method: 'delete'
+  });
+};
+/**
+ *
+ * 搜索好友
+ *
+ * @param data
+ * @param page
+ * @param limit
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var searchFriend = function searchFriend(data) {
+  var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+  var limit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 10;
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/friend/search?page=' + page + '&limit=' + limit,
+    data: data,
+    method: 'post'
+  });
+};
+/**
+ * 添加好友
+ *
+ * @param data
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var storeFriend = function storeFriend(data) {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/friend',
+    data: data,
+    method: 'post'
+  });
+};
+/**
+ * 好友认证消息
+ *
+ * @param data
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var storeFriendAuth = function storeFriendAuth(data) {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/friend/auth',
+    data: data,
+    method: 'post'
+  });
+};
+/**
+ * 好友添加消息
+ *
+ * @param page
+ * @param limit
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var friendAuth = function friendAuth(page, limit) {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/friend/auth?page=' + page + '&limit=' + limit,
+    method: 'get'
+  });
+};
+/**
+ * 消息未读数量
+ *
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var friendAuthCount = function friendAuthCount() {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/friend/auth/count',
+    method: 'get'
+  });
+};
+
+/***/ }),
+
 /***/ "./resources/js/api/user.js":
 /*!**********************************!*\
   !*** ./resources/js/api/user.js ***!
@@ -99460,6 +99624,18 @@ var app = new Vue({
   el: '#app',
   router: _router__WEBPACK_IMPORTED_MODULE_0__["default"],
   store: _store__WEBPACK_IMPORTED_MODULE_1__["default"]
+}); //全局监听，页面刷新的时候将store里state的值存到sessionStorage中，然后从sessionStorage中获取，
+// 再赋值给store。然后再把session里面存的删除即可，相当于中间件的作用。
+//在页面加载时读取sessionStorage里的状态信息
+
+if (sessionStorage.getItem("store")) {
+  app.$store.replaceState(Object.assign({}, app.$store.state, JSON.parse(sessionStorage.getItem("store"))));
+  sessionStorage.removeItem("store");
+} //在页面刷新时将vuex里的信息保存到sessionStorage里
+
+
+window.addEventListener("beforeunload", function () {
+  sessionStorage.setItem("store", JSON.stringify(app.$store.state));
 });
 window.vueApp = app;
 
@@ -99777,6 +99953,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _module_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./module/user */ "./resources/js/store/module/user.js");
+/* harmony import */ var _module_friendPanelTool__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./module/friendPanelTool */ "./resources/js/store/module/friendPanelTool.js");
+
 
 
 
@@ -99789,9 +99967,62 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   actions: {//动作
   },
   modules: {
-    user: _module_user__WEBPACK_IMPORTED_MODULE_2__["default"]
+    user: _module_user__WEBPACK_IMPORTED_MODULE_2__["default"],
+    friendPanelTool: _module_friendPanelTool__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
 }));
+
+/***/ }),
+
+/***/ "./resources/js/store/module/friendPanelTool.js":
+/*!******************************************************!*\
+  !*** ./resources/js/store/module/friendPanelTool.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _api_friend__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/api/friend */ "./resources/js/api/friend.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: {
+    systemNotifyNum: '',
+    friendNotifyNum: '',
+    shareNotifyNum: ''
+  },
+  mutations: {
+    setSystemNotifyNum: function setSystemNotifyNum(state, systemNotifyNum) {
+      state.systemNotifyNum = systemNotifyNum;
+    },
+    setFriendNotifyNum: function setFriendNotifyNum(state, friendNotifyNum) {
+      state.friendNotifyNum = friendNotifyNum;
+    },
+    setShareNotifyNum: function setShareNotifyNum(state, shareNotifyNum) {
+      state.shareNotifyNum = shareNotifyNum;
+    }
+  },
+  actions: {
+    // 好友信息未读数量
+    friendAuthNum: function friendAuthNum(_ref) {
+      var commit = _ref.commit;
+      return new Promise(function (resolve, reject) {
+        Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["friendAuthCount"])().then(function (res) {
+          var data = res.data;
+
+          if (data.code === 0) {
+            commit('setFriendNotifyNum', data.data.count);
+            resolve(data);
+          } else {
+            reject('code is not 0');
+          }
+        })["catch"](function (err) {
+          reject(err);
+        });
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -99812,6 +100043,7 @@ __webpack_require__.r(__webpack_exports__);
   state: {
     token: Object(_libs_util__WEBPACK_IMPORTED_MODULE_1__["getToken"])(),
     userName: '',
+    signature: '',
     userId: '',
     avatar: ''
   },
@@ -99827,6 +100059,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     setToken: function setToken(state, token) {
       state.token = token;
+    },
+    setSignature: function setSignature(state, signature) {
+      state.signature = signature;
     }
   },
   actions: {
@@ -99839,6 +100074,10 @@ __webpack_require__.r(__webpack_exports__);
 
           if (data.code === 0) {
             commit('setToken', data.data.token);
+            commit('setUserName', data.data.user.name);
+            commit('setSignature', data.data.user.signature);
+            commit('setUserId', data.data.user.id);
+            commit('setAvatar', data.data.user.avatar);
             Object(_libs_util__WEBPACK_IMPORTED_MODULE_1__["setToken"])(data.data.token);
             resolve(data);
           } else {
@@ -99854,33 +100093,13 @@ __webpack_require__.r(__webpack_exports__);
       var state = _ref2.state,
           commit = _ref2.commit;
       return new Promise(function (resolve) {
-        commit('setToken', false);
-        commit('setAvatar', null);
-        commit('setUserId', null);
-        commit('setUserName', null);
+        commit('setToken', null);
+        commit('setUserName', '');
+        commit('setSignature', '');
+        commit('setUserId', '');
+        commit('setAvatar', '');
         Object(_libs_util__WEBPACK_IMPORTED_MODULE_1__["setToken"])();
         resolve();
-      });
-    },
-    // // 获取用户相关信息
-    getUserInfo: function getUserInfo(_ref3) {
-      var state = _ref3.state,
-          commit = _ref3.commit;
-      return new Promise(function (resolve, reject) {
-        Object(_api_user__WEBPACK_IMPORTED_MODULE_0__["userInfo"])().then(function (res) {
-          var data = res.data;
-
-          if (data.code == 0) {
-            var user = data.user;
-            commit('setAvatar', user.avatar);
-            commit('setUserName', user.username);
-            commit('setUserId', user.id);
-          }
-
-          resolve(data);
-        })["catch"](function (err) {
-          reject(err);
-        });
       });
     }
   }

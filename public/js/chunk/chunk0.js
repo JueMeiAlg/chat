@@ -91,6 +91,107 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_friend__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/api/friend */ "./resources/js/api/friend.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -352,13 +453,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "friendPanel",
   data: function data() {
     return {
+      sendAddFriendMsgDialog: false,
+      RefuseFriendAuthDialog: false,
       columnFriend: [],
       systemMenu: [],
       searchFriendPhone: "",
+      verfMSG: "我是...",
       searchUserResult: [],
       newColumnBox: false,
       editColumnBox: false,
@@ -372,16 +477,23 @@ __webpack_require__.r(__webpack_exports__);
       currentHandelColumnIndex: "",
       searchPhoneUp: true,
       searchPhoneNext: false,
+      friendAuthUp: true,
+      friendAuthNext: false,
       currentHandelUserId: 0,
       currentHandelUserObj: "",
       currentHandelUserIndex: "",
       searchUserTotal: 0,
       searchPhonePage: 0,
-      searchPhoneLimit: 6
+      searchPhoneLimit: 6,
+      friendAuthList: [],
+      friendAuthPage: 0,
+      reason: ''
     };
   },
   created: function created() {
     var _this = this;
+
+    console.log(this.$store.state.user);
 
     window.onclick = function (e) {
       window.document.querySelector('#systemMenu').style.display = "none";
@@ -390,11 +502,13 @@ __webpack_require__.r(__webpack_exports__);
     }; //拉取分栏及好友信息
 
 
-    Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["columnFriend"])().then(function (response) {
-      _this.columnFriend = response.data.data;
+    this.getColumnFriend();
+    this.friendAuthNum();
+    Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["friendAuth"])(++this.friendAuthPage, 4).then(function (response) {
+      _this.friendAuthList = response.data.data;
     });
   },
-  methods: {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['friendAuthNum']), {
     /**
      * 打开好友列表
      */
@@ -416,6 +530,17 @@ __webpack_require__.r(__webpack_exports__);
           item.className = 'column';
         });
       }
+    },
+
+    /**
+     * 拉取分栏及好友列表
+     */
+    getColumnFriend: function getColumnFriend() {
+      var _this2 = this;
+
+      Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["columnFriend"])().then(function (response) {
+        _this2.columnFriend = response.data.data;
+      });
     },
 
     /**
@@ -506,7 +631,7 @@ __webpack_require__.r(__webpack_exports__);
      * 存储栏目
      */
     addColumn: function addColumn() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.newColumnName == '') {
         this.$message.warning('新分栏的名字不应该为空');
@@ -516,14 +641,14 @@ __webpack_require__.r(__webpack_exports__);
       Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["storeColumn"])({
         name: this.newColumnName
       }).then(function (response) {
-        _this2.columnFriend.push({
-          name: _this2.newColumnName,
+        _this3.columnFriend.push({
+          name: _this3.newColumnName,
           friend: [],
           id: response.data.data.id
         });
 
-        _this2.newColumnName = "";
-        _this2.newColumnBox = false;
+        _this3.newColumnName = "";
+        _this3.newColumnBox = false;
       });
     },
 
@@ -558,18 +683,16 @@ __webpack_require__.r(__webpack_exports__);
      * 删除分栏
      */
     destroyColumnInfo: function destroyColumnInfo() {
-      var _this3 = this;
+      var _this4 = this;
 
       Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["destroyColumn"])(this.currentHandelColumnId).then(function (response) {
-        _this3.columnFriend.splice(_this3.currentHandelColumnIndex, 1);
+        _this4.columnFriend.splice(_this4.currentHandelColumnIndex, 1);
 
-        _this3.currentHandelColumnId = 0; //重新拉取分栏及好友信息
+        _this4.currentHandelColumnId = 0; //重新拉取分栏及好友信息
 
-        Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["columnFriend"])().then(function (response) {
-          _this3.columnFriend = response.data.data;
+        _this4.getColumnFriend();
 
-          _this3.$message.success(response.data.msg);
-        });
+        _this4.$message.success(response.data.msg);
       });
     },
 
@@ -585,24 +708,24 @@ __webpack_require__.r(__webpack_exports__);
      * 更新分栏
      */
     updateColumnInfo: function updateColumnInfo() {
-      var _this4 = this;
+      var _this5 = this;
 
       Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["updateColumn"])(this.currentHandelColumnId, {
         name: this.newColumnName
       }).then(function (response) {
-        _this4.columnFriend.forEach(function (item) {
-          if (item.id == _this4.currentHandelColumnId) {
+        _this5.columnFriend.forEach(function (item) {
+          if (item.id == _this5.currentHandelColumnId) {
             //刷新名称
-            item.name = _this4.newColumnName;
+            item.name = _this5.newColumnName;
           }
         }); //回归状态
 
 
-        _this4.currentHandelColumnId = 0;
-        _this4.newColumnName = "";
-        _this4.editColumnBox = false;
+        _this5.currentHandelColumnId = 0;
+        _this5.newColumnName = "";
+        _this5.editColumnBox = false;
 
-        _this4.$message.success(response.data.msg);
+        _this5.$message.success(response.data.msg);
       });
     },
 
@@ -624,24 +747,24 @@ __webpack_require__.r(__webpack_exports__);
      * 删除好友
      */
     deleteFriend: function deleteFriend() {
-      var _this5 = this;
+      var _this6 = this;
 
       this.$confirm('是否确定删除:' + this.currentHandelUserObj.name + ',这个好友?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(function () {
-        Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["destroyFriend"])(_this5.currentHandelUserId).then(function (response) {
+        Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["destroyFriend"])(_this6.currentHandelUserId).then(function (response) {
           //动态移除占位
-          _this5.columnFriend.forEach(function (colItem, colIndex) {
+          _this6.columnFriend.forEach(function (colItem, colIndex) {
             colItem.friend.forEach(function (friendItem, friIndex) {
-              if (friendItem.id == _this5.currentHandelUserId) {
-                _this5.columnFriend[colIndex].friend.splice(_this5.currentHandelUserIndex, 1);
+              if (friendItem.id == _this6.currentHandelUserId) {
+                _this6.columnFriend[colIndex].friend.splice(_this6.currentHandelUserIndex, 1);
               }
             });
           });
 
-          _this5.$message.success(response.data.msg);
+          _this6.$message.success(response.data.msg);
         });
       })["catch"](function () {//nothing
       });
@@ -665,7 +788,6 @@ __webpack_require__.r(__webpack_exports__);
         for (var friendItem = 0; friendItem < this.columnFriend[columnItem].friend.length; friendItem++) {
           if (this.columnFriend[columnItem].friend[friendItem].id == this.currentHandelUserId) {
             this.currentHandelColumnObj = this.columnFriend[columnItem];
-            console.log(this.currentHandelColumnObj);
             return this.currentHandelColumnObj;
           }
         }
@@ -704,8 +826,16 @@ __webpack_require__.r(__webpack_exports__);
         return true;
       }
     },
+
+    /**
+     * 搜索好友
+     *
+     * @param page
+     */
     searchPhone: function searchPhone(page) {
-      var _this6 = this;
+      var _this7 = this;
+
+      this.searchPhonePage = page;
 
       if (this.searchPhonePage <= 0) {
         this.searchPhonePage = 1;
@@ -721,26 +851,181 @@ __webpack_require__.r(__webpack_exports__);
       Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["searchFriend"])({
         phone: this.searchFriendPhone
       }, page, this.searchPhoneLimit).then(function (response) {
-        _this6.search = false;
-        _this6.searchResult = true;
-        _this6.searchUserResult = response.data.data.users;
-        _this6.searchUserTotal = response.data.data.total; //向上去整得出最大页数
+        _this7.search = false;
+        _this7.searchResult = true;
+        _this7.searchUserResult = response.data.data.users;
+        _this7.searchUserTotal = response.data.data.total; //向上去整得出最大页数
 
-        var totalPage = Math.ceil(_this6.searchUserTotal / _this6.searchPhoneLimit);
+        var totalPage = Math.ceil(_this7.searchUserTotal / _this7.searchPhoneLimit);
 
-        if (_this6.searchPhonePage >= totalPage) {
+        if (_this7.searchPhonePage >= totalPage) {
           //超出页数无法继续
-          _this6.searchPhoneNext = true;
+          _this7.searchPhoneNext = true;
         } else {
-          _this6.searchPhoneNext = false;
+          _this7.searchPhoneNext = false;
         }
       });
     },
+
+    /**
+     * 返回搜索页
+     */
     backSearch: function backSearch() {
       this.search = true;
       this.searchResult = false;
+    },
+
+    /**
+     * 打开好友添加确认信息
+     */
+    openSendVerfMsgDialog: function openSendVerfMsgDialog(user) {
+      this.currentHandelUserObj = user;
+      this.sendAddFriendMsgDialog = true;
+    },
+
+    /**
+     * 指定好友Id是否存在
+     */
+    isExistFriend: function isExistFriend(friendId) {
+      for (var columnIndex = 0; columnIndex < this.columnFriend.length; columnIndex++) {
+        for (var friendIndex = 0; friendIndex < this.columnFriend[columnIndex].friend.length; friendIndex++) {
+          if (this.columnFriend[columnIndex].friend[friendIndex].id == friendId) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    },
+
+    /**
+     * 发送添加好友信息
+     *
+     * @param friendId
+     */
+    sendAddFriend: function sendAddFriend(friendId) {
+      var _this8 = this;
+
+      //要添加的人是否已是他的好友
+      var isExist = this.isExistFriend(friendId);
+
+      if (isExist) {
+        this.$message.error('该好友已存在您的好友列表中无法继续添加');
+        return;
+      }
+
+      Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["storeFriendAuth"])({
+        friend_id: friendId,
+        msg: this.verfMSG
+      }).then(function (response) {
+        _this8.$message.success(response.data.msg);
+
+        _this8.sendAddFriendMsgDialog = false;
+      });
+    },
+
+    /**
+     * 获得好友认证消息
+     *
+     * @param page
+     */
+    getFriendAuth: function getFriendAuth(page) {
+      var _this9 = this;
+
+      this.friendAuthPage = page;
+
+      if (this.friendAuthPage <= 0) {
+        this.friendAuthPage = 1;
+      }
+
+      if (this.friendAuthPage == 1) {
+        //向上按钮无法使用
+        this.friendAuthUp = true;
+      } else {
+        this.friendAuthUp = false;
+      }
+
+      Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["friendAuth"])(this.friendAuthPage, 4).then(function (response) {
+        _this9.friendAuthList = response.data.data; //向上去整得出最大页数
+
+        var totalPage = Math.ceil(response.data.total / 4);
+
+        if (_this9.friendAuthPage >= totalPage) {
+          //超出页数无法继续
+          _this9.friendAuthNext = true;
+        } else {
+          _this9.friendAuthNext = false;
+        }
+      });
+    },
+
+    /**
+     * 处理好友信息
+     *
+     * @param friendId
+     * @param status
+     */
+    handelFriendAuth: function handelFriendAuth(friendId) {
+      var _this10 = this;
+
+      this.currentHandelUserId = friendId;
+      Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["storeFriend"])({
+        friend_id: friendId,
+        status: 1,
+        reason: this.reason
+      }).then(function (response) {
+        _this10.changeFriendAuthButtonStatus(friendId, 1);
+
+        _this10.$message.success(response.data.msg);
+      });
+    },
+
+    /**
+     * 打开拒绝窗口
+     * @param friendId
+     */
+    openRefuseFriendAuthDialog: function openRefuseFriendAuthDialog(friendId) {
+      this.RefuseFriendAuthDialog = true;
+      this.currentHandelUserId = friendId;
+    },
+
+    /**
+     * 该变好友按钮状态
+     */
+    changeFriendAuthButtonStatus: function changeFriendAuthButtonStatus(friendId, status) {
+      var _this11 = this;
+
+      this.friendAuthList.forEach(function (item) {
+        if (item.friend_id == _this11.currentHandelUserId) {
+          //改变状态
+          item.status = status;
+        }
+      });
+    },
+
+    /**
+     * 发送拒绝信息
+     */
+    refuseFriendAuth: function refuseFriendAuth() {
+      var _this12 = this;
+
+      Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["storeFriend"])({
+        friend_id: this.currentHandelUserId,
+        status: 2,
+        reason: this.reason
+      }).then(function (response) {
+        _this12.$message.success(response.data.msg);
+
+        _this12.RefuseFriendAuthDialog = false;
+        _this12.reason = "";
+
+        _this12.changeFriendAuthButtonStatus(_this12.currentHandelUserId, 2); //通知动态减数
+
+
+        _this12.$store.commit('setFriendNotifyNum', --_this12.$store.state.friendPanelTool.friendNotifyNum);
+      });
     }
-  }
+  })
 });
 
 /***/ }),
@@ -1164,7 +1449,9 @@ var render = function() {
                         [
                           _c("el-col", { attrs: { span: 8 } }, [
                             _vm._v(
-                              "\n                            Alg\n                        "
+                              "\n                            " +
+                                _vm._s(_vm.$store.state.user.userName) +
+                                "\n                        "
                             )
                           ])
                         ],
@@ -1176,7 +1463,11 @@ var render = function() {
                   _vm._v(" "),
                   _c("el-col", { attrs: { span: 24 } }, [
                     _c("div", { staticClass: "Signature" }, [
-                      _vm._v("个性签名")
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.$store.state.user.signature) +
+                          "\n                    "
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -1538,20 +1829,30 @@ var render = function() {
                         "el-col",
                         { attrs: { title: "系统消息通知", span: 6 } },
                         [
-                          _c("el-badge", { attrs: { value: 12 } }, [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "icon ",
-                                attrs: { "aria-hidden": "true" }
-                              },
-                              [
-                                _c("use", {
-                                  attrs: { "xlink:href": "#icon-iconset0274" }
-                                })
-                              ]
-                            )
-                          ])
+                          _c(
+                            "el-badge",
+                            {
+                              attrs: {
+                                value:
+                                  _vm.$store.state.friendPanelTool
+                                    .systemNotifyNum
+                              }
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass: "icon ",
+                                  attrs: { "aria-hidden": "true" }
+                                },
+                                [
+                                  _c("use", {
+                                    attrs: { "xlink:href": "#icon-iconset0274" }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
                         ],
                         1
                       ),
@@ -1567,20 +1868,30 @@ var render = function() {
                           }
                         },
                         [
-                          _c("el-badge", { attrs: { value: 12 } }, [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "icon ",
-                                attrs: { "aria-hidden": "true" }
-                              },
-                              [
-                                _c("use", {
-                                  attrs: { "xlink:href": "#icon-add" }
-                                })
-                              ]
-                            )
-                          ])
+                          _c(
+                            "el-badge",
+                            {
+                              attrs: {
+                                value:
+                                  _vm.$store.state.friendPanelTool
+                                    .friendNotifyNum
+                              }
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass: "icon ",
+                                  attrs: { "aria-hidden": "true" }
+                                },
+                                [
+                                  _c("use", {
+                                    attrs: { "xlink:href": "#icon-add" }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
                         ],
                         1
                       ),
@@ -1589,20 +1900,30 @@ var render = function() {
                         "el-col",
                         { attrs: { title: "分享聊天室给你的好友", span: 6 } },
                         [
-                          _c("el-badge", { attrs: { value: 12 } }, [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "icon ",
-                                attrs: { "aria-hidden": "true" }
-                              },
-                              [
-                                _c("use", {
-                                  attrs: { "xlink:href": "#icon-fenxiang2" }
-                                })
-                              ]
-                            )
-                          ])
+                          _c(
+                            "el-badge",
+                            {
+                              attrs: {
+                                value:
+                                  _vm.$store.state.friendPanelTool
+                                    .shareNotifyNum
+                              }
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass: "icon ",
+                                  attrs: { "aria-hidden": "true" }
+                                },
+                                [
+                                  _c("use", {
+                                    attrs: { "xlink:href": "#icon-fenxiang2" }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
                         ],
                         1
                       )
@@ -1993,7 +2314,14 @@ var render = function() {
                                   _c(
                                     "el-button",
                                     {
-                                      attrs: { type: "success", size: "mini" }
+                                      attrs: { type: "success", size: "mini" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.openSendVerfMsgDialog(
+                                            userItem
+                                          )
+                                        }
+                                      }
                                     },
                                     [
                                       _c(
@@ -2124,9 +2452,413 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _c("el-tab-pane", { attrs: { label: "添加好友消息" } }, [
-                _vm._v("等待实现")
-              ])
+              _c(
+                "el-tab-pane",
+                { attrs: { label: "添加好友消息" } },
+                [
+                  _vm._l(_vm.friendAuthList, function(item, index) {
+                    return _c("el-row", { key: index }, [
+                      _c(
+                        "div",
+                        { staticStyle: { height: "85px" } },
+                        [
+                          _c(
+                            "el-col",
+                            { attrs: { offset: 1, span: 3 } },
+                            [
+                              _c("el-avatar", {
+                                class: item.friend.fd
+                                  ? "fl"
+                                  : "fl friend-list-off-line",
+                                attrs: { size: 50, src: item.friend.avatar }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("el-col", { attrs: { span: 12 } }, [
+                            _c(
+                              "div",
+                              {
+                                staticStyle: {
+                                  overflow: "hidden",
+                                  width: "250px"
+                                }
+                              },
+                              [
+                                _c("p", [_vm._v(_vm._s(item.friend.name))]),
+                                _vm._v(" "),
+                                _c("p", [_vm._v(_vm._s(item.friend.phone))]),
+                                _vm._v(" "),
+                                _c("p", [_vm._v(_vm._s(item.msg))])
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("el-col", { attrs: { span: 8 } }, [
+                            _c(
+                              "div",
+                              { staticStyle: { "margin-top": "15px" } },
+                              [
+                                item.status == 0
+                                  ? [
+                                      _c(
+                                        "el-button",
+                                        {
+                                          attrs: {
+                                            type: "success",
+                                            size: "mini"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.handelFriendAuth(
+                                                item.friend_id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("同意")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "el-button",
+                                        {
+                                          attrs: {
+                                            type: "warning",
+                                            size: "mini"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.openRefuseFriendAuthDialog(
+                                                item.friend_id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("拒绝")]
+                                      )
+                                    ]
+                                  : item.status == 1
+                                  ? [
+                                      _c(
+                                        "el-button",
+                                        {
+                                          attrs: {
+                                            type: "success",
+                                            disabled: true,
+                                            title: "您已同意添加他为好友",
+                                            size: "mini"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "同意\n                                    "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "el-button",
+                                        {
+                                          attrs: {
+                                            type: "warning",
+                                            disabled: true,
+                                            title: "您已同意添加他为好友",
+                                            size: "mini"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "拒绝\n                                    "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  : item.status == 2
+                                  ? [
+                                      _c(
+                                        "el-button",
+                                        {
+                                          attrs: {
+                                            type: "success",
+                                            disabled: true,
+                                            title: "您已拒绝添加他为好友",
+                                            size: "mini"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "同意\n                                    "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "el-button",
+                                        {
+                                          attrs: {
+                                            type: "warning",
+                                            disabled: true,
+                                            title: "您已拒绝添加他为好友",
+                                            size: "mini"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "拒绝\n                                    "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  : _vm._e()
+                              ],
+                              2
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    [
+                      _c(
+                        "el-row",
+                        [
+                          _c(
+                            "el-col",
+                            { attrs: { offset: 7, span: 5 } },
+                            [
+                              _c(
+                                "el-button",
+                                {
+                                  attrs: {
+                                    size: "mini",
+                                    disabled: _vm.friendAuthUp,
+                                    type: "success"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.getFriendAuth(
+                                        --_vm.friendAuthPage
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "svg",
+                                    {
+                                      staticClass: "icon",
+                                      attrs: { "aria-hidden": "true" }
+                                    },
+                                    [
+                                      _c("use", {
+                                        attrs: {
+                                          "xlink:href": "#icon-jiantou-shang"
+                                        }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            { attrs: { span: 12 } },
+                            [
+                              _c(
+                                "el-button",
+                                {
+                                  attrs: {
+                                    size: "mini",
+                                    disabled: _vm.friendAuthNext,
+                                    type: "success"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.getFriendAuth(
+                                        ++_vm.friendAuthPage
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "svg",
+                                    {
+                                      staticClass: "icon",
+                                      attrs: { "aria-hidden": "true" }
+                                    },
+                                    [
+                                      _c("use", {
+                                        attrs: {
+                                          "xlink:href":
+                                            "#icon-jiantou-copy-copy"
+                                        }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                2
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: {
+            title: "发送验证信息",
+            visible: _vm.sendAddFriendMsgDialog,
+            "close-on-click-modal": false
+          },
+          on: {
+            "update:visible": function($event) {
+              _vm.sendAddFriendMsgDialog = $event
+            }
+          }
+        },
+        [
+          _c(
+            "el-row",
+            [
+              _c(
+                "el-col",
+                { attrs: { span: 2 } },
+                [
+                  _c("el-avatar", {
+                    class: _vm.currentHandelUserObj.fd
+                      ? "fl"
+                      : "fl friend-list-off-line",
+                    staticStyle: { "margin-top": "10px" },
+                    attrs: { size: 50, src: _vm.currentHandelUserObj.avatar }
+                  }),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c("b", [_vm._v(_vm._s(_vm.currentHandelUserObj.name))])
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-col",
+                { attrs: { span: 12 } },
+                [
+                  _c("p", [_vm._v("请输入验证信息:")]),
+                  _vm._v(" "),
+                  _c("el-input", {
+                    model: {
+                      value: _vm.verfMSG,
+                      callback: function($$v) {
+                        _vm.verfMSG = $$v
+                      },
+                      expression: "verfMSG"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-col",
+                { attrs: { span: 4, offset: 1 } },
+                [
+                  _c(
+                    "el-button",
+                    {
+                      staticStyle: { "margin-top": "20px" },
+                      attrs: { type: "success" },
+                      on: {
+                        click: function($event) {
+                          return _vm.sendAddFriend(_vm.currentHandelUserObj.id)
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    发送\n                ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: {
+            title: "拒绝好友",
+            visible: _vm.RefuseFriendAuthDialog,
+            "close-on-click-modal": false
+          },
+          on: {
+            "update:visible": function($event) {
+              _vm.RefuseFriendAuthDialog = $event
+            }
+          }
+        },
+        [
+          _c(
+            "el-row",
+            [
+              _c(
+                "el-col",
+                { attrs: { span: 18 } },
+                [
+                  _c("el-input", {
+                    attrs: { placeholder: "拒绝理由" },
+                    model: {
+                      value: _vm.reason,
+                      callback: function($$v) {
+                        _vm.reason = $$v
+                      },
+                      expression: "reason"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-col",
+                { attrs: { offset: 1, span: 4 } },
+                [
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { type: "success" },
+                      on: { click: _vm.refuseFriendAuth }
+                    },
+                    [_vm._v("确定")]
+                  )
+                ],
+                1
+              )
             ],
             1
           )
@@ -2289,112 +3021,6 @@ function normalizeComponent (
   }
 }
 
-
-/***/ }),
-
-/***/ "./resources/js/api/friend.js":
-/*!************************************!*\
-  !*** ./resources/js/api/friend.js ***!
-  \************************************/
-/*! exports provided: columnFriend, storeColumn, updateColumn, destroyColumn, destroyFriend, searchFriend */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "columnFriend", function() { return columnFriend; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeColumn", function() { return storeColumn; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateColumn", function() { return updateColumn; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyColumn", function() { return destroyColumn; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyFriend", function() { return destroyFriend; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchFriend", function() { return searchFriend; });
-/* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/libs/axios */ "./resources/js/libs/axios.js");
-
-/**
- * 好友分栏信息
- *
- * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
- */
-
-var columnFriend = function columnFriend() {
-  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
-    url: 'user/column',
-    method: 'get'
-  });
-};
-/**
- * 新增好友分栏
- *
- * @param data
- * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
- */
-
-var storeColumn = function storeColumn(data) {
-  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
-    url: 'user/column',
-    data: data,
-    method: 'post'
-  });
-};
-/**
- * 修改好友分栏信息
- *
- * @param id
- * @param data
- * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
- */
-
-var updateColumn = function updateColumn(id, data) {
-  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
-    url: 'user/column/' + id,
-    data: data,
-    method: 'put'
-  });
-};
-/**
- * 删除分栏信息
- *
- * @param id
- * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
- */
-
-var destroyColumn = function destroyColumn(id) {
-  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
-    url: 'user/column/' + id,
-    method: 'delete'
-  });
-};
-/**
- * 删除好友
- *
- * @param id
- * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>>}
- */
-
-var destroyFriend = function destroyFriend(id) {
-  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
-    url: 'user/friend/' + id,
-    method: 'delete'
-  });
-};
-/**
- *
- * 搜索好友
- *
- * @param data
- * @param page
- * @param limit
- * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
- */
-
-var searchFriend = function searchFriend(data) {
-  var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-  var limit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 10;
-  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
-    url: 'user/friend/search?page=' + page + '&limit=' + limit,
-    data: data,
-    method: 'post'
-  });
-};
 
 /***/ }),
 

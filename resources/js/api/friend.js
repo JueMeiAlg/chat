@@ -83,3 +83,55 @@ export const searchFriend = (data, page = 1, limit = 10) => {
         method: 'post'
     })
 };
+/**
+ * 添加好友
+ *
+ * @param data
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+export const storeFriend = (data) => {
+    return axios.request({
+        url: 'user/friend',
+        data,
+        method: 'post'
+    })
+};
+
+/**
+ * 好友认证消息
+ *
+ * @param data
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+export const storeFriendAuth = (data) => {
+    return axios.request({
+        url: 'user/friend/auth',
+        data,
+        method: 'post'
+    })
+};
+
+/**
+ * 好友添加消息
+ *
+ * @param page
+ * @param limit
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+export const friendAuth = (page, limit) => {
+    return axios.request({
+        url: 'user/friend/auth?page=' + page + '&limit=' + limit,
+        method: 'get'
+    })
+};
+/**
+ * 消息未读数量
+ *
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+export const friendAuthCount = () => {
+    return axios.request({
+        url: 'user/friend/auth/count',
+        method: 'get'
+    })
+};

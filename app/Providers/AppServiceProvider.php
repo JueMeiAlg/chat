@@ -59,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-
+            SearchUserInterface::class
         ];
     }
 }
