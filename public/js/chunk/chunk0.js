@@ -75,8 +75,70 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "chatWindow"
+  name: "chatWindow",
+  data: function data() {
+    return {
+      msg: ''
+    };
+  },
+  created: function created() {},
+  methods: {
+    removeFriendChat: function removeFriendChat(index) {
+      this.$store.state.talk.friendList.splice(index, 1);
+    },
+
+    /**
+     * 关闭正在交谈的好友对话框
+     */
+    closeBeingChatWindow: function closeBeingChatWindow() {
+      var _this = this;
+
+      this.$store.state.talk.friendList.forEach(function (item, index) {
+        if (item.id == _this.$store.state.talk.currentBeinTalkFriend.id) {
+          _this.removeFriendChat(index);
+
+          return;
+        }
+      }); //列表第一个置为交谈对象
+
+      this.setBeingChatFriend(this.$store.state.talk.friendList[0]);
+    },
+    narrowBeingChatWindow: function narrowBeingChatWindow() {
+      this.$store.state.talk.friendList = [];
+    },
+    setBeingChatFriend: function setBeingChatFriend(friend) {
+      this.$store.commit('setCurrentBeinTalkFriend', friend);
+    }
+  }
 });
 
 /***/ }),
@@ -493,8 +555,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     var _this = this;
 
-    console.log(this.$store.state.user);
-
     window.onclick = function (e) {
       window.document.querySelector('#systemMenu').style.display = "none";
       window.document.querySelector('#columnMenu').style.display = "none";
@@ -740,7 +800,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * 发送消息
      */
     sendMsg: function sendMsg() {
-      this.$message.warning('暂未实现');
+      this.$store.commit('setFriendList', this.currentHandelUserObj);
     },
 
     /**
@@ -1080,7 +1140,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.chat-window[data-v-81b787da] {\n    height: 600px;\n    margin-right: 50px;\n}\n.chat-list[data-v-81b787da] {\n    background: #d9d9d9;\n    height: 580px !important;\n    padding: 10px;\n}\n.user-name-main[data-v-81b787da] {\n    padding-top: 15px;\n    color: #404040;\n}\n.userInfo[data-v-81b787da] {\n    background: #ececec;\n    padding: 10px;\n}\n.userStatus[data-v-81b787da]{\n    padding-top: 5px;\n}\n.username[data-v-81b787da] {\n    font-size: 18px;\n}\n.status[data-v-81b787da] {\n    font-size: 14px;\n    color: #a6a6a6;\n}\n.minus[data-v-81b787da] {\n    margin-right: 5px\n}\n.close[data-v-81b787da]{\n}\n.talk[data-v-81b787da] {\n    height: 340px;\n    background: #fbfbfb;\n}\n.tool[data-v-81b787da] {\n    height: 44px;\n    background: #fbfbfb;\n}\n.message-main[data-v-81b787da] {\n    background: #fbfbfb;\n}\n.message[data-v-81b787da] {\n    height: 100px;\n}\n.send-button[data-v-81b787da]{\n    background: #5fb878;\n    color:#ecf7f0;\n    width: 100px;\n    margin-bottom: 10px;\n}\n.close-button[data-v-81b787da]{\n    background: #5fb878;\n    color:#ecf7f0;\n    margin-bottom: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.chat-window[data-v-81b787da] {\n    height: 600px;\n    margin-right: 50px;\n}\n.chat-list[data-v-81b787da] {\n    background: #d9d9d9;\n    height: 580px !important;\n    padding: 10px;\n}\n.user-name-main[data-v-81b787da] {\n    padding-top: 15px;\n    color: #404040;\n}\n.userInfo[data-v-81b787da] {\n    background: #ececec;\n    padding: 10px;\n}\n.userStatus[data-v-81b787da] {\n    padding-top: 5px;\n}\n.username[data-v-81b787da] {\n    font-size: 18px;\n}\n.status[data-v-81b787da] {\n    font-size: 14px;\n    color: #a6a6a6;\n}\n.minus[data-v-81b787da] {\n    margin-right: 5px\n}\n.close[data-v-81b787da] {\n}\n.talk[data-v-81b787da] {\n    height: 340px;\n    background: #fbfbfb;\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.talk[data-v-81b787da]::-webkit-scrollbar {\n    display: none;\n}\n.tool[data-v-81b787da] {\n    padding-top: 4px;\n    height: 40px;\n    background: #fbfbfb;\n}\n.message-main[data-v-81b787da] {\n    background: #fbfbfb;\n}\n.message[data-v-81b787da] {\n    height: 100px;\n}\n.chat-friend-item[data-v-81b787da]:hover {\n    background: #f5f5f5;\n}\n.send-button[data-v-81b787da] {\n    background: #5fb878;\n    color: #ecf7f0;\n    width: 100px;\n    margin-bottom: 10px;\n}\n.close-button[data-v-81b787da] {\n    background: #5fb878;\n    color: #ecf7f0;\n    margin-bottom: 10px;\n}\n.nameTime[data-v-81b787da] {\n    margin-bottom: 5px;\n}\n.friendTalk-main[data-v-81b787da] {\n    padding: 5px 5px 5px 20px;\n    text-align: left;\n    width: 100%;\n}\n.friendTalk[data-v-81b787da] {\n    padding: 5px;\n    background: #e2e2e2;\n    width: 50%;\n    float: left;\n}\n.myTalk-main[data-v-81b787da] {\n    float: right;\n    padding: 5px 20px 5px 5px;\n    text-align: left;\n    width: 100%\n}\n.myTalk[data-v-81b787da] {\n    background: #5fb878;\n    padding: 5px;\n    color: #fff;\n    width: 50%;\n    float: right;\n}\n.close-friend-chat[data-v-81b787da] {\n    display: none;\n    font-size: 12px;\n}\n.close-friend-chat[data-v-81b787da]:hover {\n    background: #d5d5d5;\n}\n.chat-friend-item:hover .close-friend-chat[data-v-81b787da] {\n    display: block;\n}\n.friend-list-off-line[data-v-81b787da] {\n    -webkit-filter: grayscale(1);\n            filter: grayscale(1);\n    opacity: 0.8;\n}\n", ""]);
 
 // exports
 
@@ -1230,157 +1290,290 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "chat-window" },
-    [
-      _c(
-        "el-row",
+  return _vm.$store.state.talk.friendList.length > 0
+    ? _c(
+        "div",
+        { staticClass: "chat-window" },
         [
-          _c("el-col", { attrs: { span: 6 } }, [
-            _c(
-              "div",
-              { staticClass: "chat-list" },
-              [
+          _c(
+            "el-row",
+            [
+              _c("el-col", { attrs: { span: 6 } }, [
                 _c(
-                  "el-row",
-                  [
-                    _c(
-                      "el-col",
-                      { attrs: { span: 8 } },
-                      [
-                        _c("el-avatar", {
-                          attrs: {
-                            size: 50,
-                            src: "https://lorempixel.com/200/200/cats/?74058"
+                  "div",
+                  { staticClass: "chat-list" },
+                  _vm._l(_vm.$store.state.talk.friendList, function(
+                    friend,
+                    index
+                  ) {
+                    return _c(
+                      "el-row",
+                      {
+                        key: index,
+                        staticClass: "chat-friend-item",
+                        nativeOn: {
+                          click: function($event) {
+                            return _vm.setBeingChatFriend(friend)
                           }
-                        })
+                        }
+                      },
+                      [
+                        _c(
+                          "el-col",
+                          { attrs: { span: 8 } },
+                          [
+                            _c("el-avatar", {
+                              class: friend.fd ? "" : "friend-list-off-line",
+                              attrs: { size: 50, src: friend.avatar }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "el-col",
+                          {
+                            staticClass: "user-name-main",
+                            attrs: { span: 12 }
+                          },
+                          [_c("span", [_vm._v(_vm._s(friend.name))])]
+                        ),
+                        _vm._v(" "),
+                        _c("el-col", { attrs: { span: 2 } }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "close-friend-chat",
+                              on: {
+                                click: function($event) {
+                                  return _vm.removeFriendChat(index)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass: "icon",
+                                  attrs: { "aria-hidden": "true" }
+                                },
+                                [
+                                  _c("use", {
+                                    attrs: { "xlink:href": "#icon-cha1" }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
+                        ])
                       ],
                       1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-col",
-                      { staticClass: "user-name-main", attrs: { span: 12 } },
-                      [_c("span", [_vm._v("用户名")])]
                     )
-                  ],
+                  }),
                   1
                 )
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "el-col",
-            { attrs: { span: 18 } },
-            [
+              ]),
+              _vm._v(" "),
               _c(
-                "el-row",
+                "el-col",
+                { attrs: { span: 18 } },
                 [
                   _c(
-                    "el-col",
-                    { attrs: { span: 24 } },
+                    "el-row",
                     [
                       _c(
-                        "el-row",
-                        { staticClass: "userInfo" },
+                        "el-col",
+                        { attrs: { span: 24 } },
                         [
                           _c(
-                            "el-col",
-                            { attrs: { span: 3 } },
+                            "el-row",
+                            { staticClass: "userInfo" },
                             [
-                              _c("el-avatar", {
-                                attrs: {
-                                  size: 50,
-                                  src:
-                                    "https://lorempixel.com/200/200/cats/?74058"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("el-col", { attrs: { span: 19 } }, [
-                            _c("div", { staticClass: "userStatus" }, [
-                              _c("p", { staticClass: "username" }, [
-                                _vm._v("用户名")
+                              _c(
+                                "el-col",
+                                { attrs: { span: 3 } },
+                                [
+                                  _c("el-avatar", {
+                                    class: _vm.$store.state.talk
+                                      .currentBeinTalkFriend.fd
+                                      ? ""
+                                      : "friend-list-off-line",
+                                    attrs: {
+                                      size: 50,
+                                      src:
+                                        _vm.$store.state.talk
+                                          .currentBeinTalkFriend.avatar
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("el-col", { attrs: { span: 19 } }, [
+                                _c("div", { staticClass: "userStatus" }, [
+                                  _c("p", { staticClass: "username" }, [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm.$store.state.talk
+                                          .currentBeinTalkFriend.name
+                                      )
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm.$store.state.talk.currentBeinTalkFriend
+                                    .fd == null
+                                    ? _c("p", { staticClass: "status" }, [
+                                        _vm._v("离线")
+                                      ])
+                                    : _c("p", { staticClass: "status" }, [
+                                        _vm._v("在线")
+                                      ])
+                                ])
                               ]),
                               _vm._v(" "),
-                              _c("p", { staticClass: "status" }, [
-                                _vm._v("离线")
+                              _c("el-col", { attrs: { span: 2 } }, [
+                                _c("i", {
+                                  staticClass: "el-icon-minus minus",
+                                  attrs: { title: "关闭全部聊天窗口" },
+                                  on: { click: _vm.narrowBeingChatWindow }
+                                }),
+                                _vm._v(" "),
+                                _c("i", {
+                                  staticClass: "el-icon-close close",
+                                  attrs: { title: "关闭当前聊天窗口" },
+                                  on: { click: _vm.closeBeingChatWindow }
+                                })
                               ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("el-col", { attrs: { span: 2 } }, [
-                            _c("i", { staticClass: "el-icon-minus minus" }),
-                            _vm._v(" "),
-                            _c("i", { staticClass: "el-icon-close close" })
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("el-col", { attrs: { span: 24 } }, [
-                    _c("div", { staticClass: "talk" })
-                  ]),
-                  _vm._v(" "),
-                  _c("el-col", { attrs: { span: 24 } }, [
-                    _c("div", { staticClass: "tool" }, [
-                      _vm._v(
-                        "\n                       聊天工具条\n                   "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "el-col",
-                    { attrs: { span: 24 } },
-                    [
-                      _c(
-                        "el-row",
-                        { staticClass: "message-main" },
-                        [
-                          _c("el-col", { attrs: { span: 24 } }, [
-                            _c("div", { staticClass: "message" }, [
-                              _vm._v(
-                                "\n                               消息编辑器\n                           "
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "el-col",
-                            { attrs: { offset: 16, span: 2 } },
-                            [
-                              _c(
-                                "el-button",
-                                {
-                                  staticClass: "close-button",
-                                  attrs: { size: "small" }
-                                },
-                                [_vm._v("关闭")]
-                              )
                             ],
                             1
-                          ),
-                          _vm._v(" "),
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("el-col", { attrs: { span: 24 } }, [
+                        _c(
+                          "div",
+                          { staticClass: "talk" },
+                          [
+                            _vm._l(
+                              _vm.$store.state.talk.currentBeingTalkRecord,
+                              function(chat) {
+                                return [
+                                  chat.user_id != _vm.$store.state.user.userId
+                                    ? [
+                                        _c(
+                                          "div",
+                                          { staticClass: "friendTalk-main" },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "friendTalk" },
+                                              [
+                                                _vm._v(
+                                                  "\n                                        " +
+                                                    _vm._s(chat.msg) +
+                                                    "\n                                    "
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    : [
+                                        _c(
+                                          "div",
+                                          { staticClass: "myTalk-main" },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "myTalk" },
+                                              [
+                                                _vm._v(
+                                                  "\n                                        " +
+                                                    _vm._s(chat.msg) +
+                                                    "\n                                    "
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                ]
+                              }
+                            )
+                          ],
+                          2
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("el-col", { attrs: { span: 24 } }, [
+                        _c("div", { staticClass: "tool" }, [
+                          _vm._v(
+                            "\n                        聊天工具条\n                    "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "el-col",
+                        { attrs: { span: 24 } },
+                        [
                           _c(
-                            "el-col",
-                            { attrs: { offset: 1, span: 2 } },
+                            "el-row",
+                            { staticClass: "message-main" },
                             [
+                              _c("el-col", { attrs: { span: 24 } }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "message" },
+                                  [
+                                    _c("el-input", {
+                                      staticStyle: { height: "100px" },
+                                      attrs: { rows: 4, type: "textarea" },
+                                      model: {
+                                        value: _vm.msg,
+                                        callback: function($$v) {
+                                          _vm.msg = $$v
+                                        },
+                                        expression: "msg"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
                               _c(
-                                "el-button",
-                                {
-                                  staticClass: "send-button",
-                                  attrs: { size: "small" }
-                                },
-                                [_vm._v("发送")]
+                                "el-col",
+                                { attrs: { offset: 16, span: 2 } },
+                                [
+                                  _c(
+                                    "el-button",
+                                    {
+                                      staticClass: "close-button",
+                                      attrs: { size: "small" }
+                                    },
+                                    [_vm._v("关闭")]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-col",
+                                { attrs: { offset: 1, span: 2 } },
+                                [
+                                  _c(
+                                    "el-button",
+                                    {
+                                      staticClass: "send-button",
+                                      attrs: { size: "small" }
+                                    },
+                                    [_vm._v("发送")]
+                                  )
+                                ],
+                                1
                               )
                             ],
                             1
@@ -1400,9 +1593,7 @@ var render = function() {
         ],
         1
       )
-    ],
-    1
-  )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

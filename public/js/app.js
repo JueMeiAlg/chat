@@ -99389,6 +99389,33 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/api/chat.js":
+/*!**********************************!*\
+  !*** ./resources/js/api/chat.js ***!
+  \**********************************/
+/*! exports provided: chatMsgRecord */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "chatMsgRecord", function() { return chatMsgRecord; });
+/* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/libs/axios */ "./resources/js/libs/axios.js");
+
+/**
+ * 好友分栏信息
+ *
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var chatMsgRecord = function chatMsgRecord(friendId) {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'chat/msg?friend_id=' + friendId,
+    method: 'get'
+  });
+};
+
+/***/ }),
+
 /***/ "./resources/js/api/friend.js":
 /*!************************************!*\
   !*** ./resources/js/api/friend.js ***!
@@ -99954,6 +99981,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _module_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./module/user */ "./resources/js/store/module/user.js");
 /* harmony import */ var _module_friendPanelTool__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./module/friendPanelTool */ "./resources/js/store/module/friendPanelTool.js");
+/* harmony import */ var _module_talk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./module/talk */ "./resources/js/store/module/talk.js");
+
 
 
 
@@ -99968,7 +99997,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   },
   modules: {
     user: _module_user__WEBPACK_IMPORTED_MODULE_2__["default"],
-    friendPanelTool: _module_friendPanelTool__WEBPACK_IMPORTED_MODULE_3__["default"]
+    friendPanelTool: _module_friendPanelTool__WEBPACK_IMPORTED_MODULE_3__["default"],
+    talk: _module_talk__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 }));
 
@@ -100022,6 +100052,65 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/module/talk.js":
+/*!*******************************************!*\
+  !*** ./resources/js/store/module/talk.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _api_chat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/api/chat */ "./resources/js/api/chat.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: {
+    //交谈中的好友列表
+    friendList: [],
+    //当前交谈的用户
+    currentBeinTalkFriend: {
+      avatar: "",
+      fd: ""
+    },
+    //当前交谈用户的聊天记录
+    currentBeingTalkRecord: [],
+    //好友聊天记录
+    friendChatRecord: []
+  },
+  mutations: {
+    setFriendList: function setFriendList(state, friend) {
+      var isPush = true;
+      state.friendList.forEach(function (item) {
+        if (item.id == friend.id) {
+          isPush = false;
+        }
+      });
+
+      if (isPush) {
+        state.friendList.unshift(friend);
+      }
+
+      this.commit('setCurrentBeinTalkFriend', friend);
+    },
+    setCurrentBeinTalkFriend: function setCurrentBeinTalkFriend(state, friend) {
+      state.currentBeingTalkRecord = [];
+      Object(_api_chat__WEBPACK_IMPORTED_MODULE_0__["chatMsgRecord"])(friend.id).then(function (response) {
+        response.data.data.forEach(function (item) {
+          state.currentBeingTalkRecord.push(item);
+          state.friendChatRecord.push({
+            friend_id: item.friend_id,
+            record: item
+          });
+        });
+      });
+      state.currentBeinTalkFriend = friend;
+    }
+  },
+  actions: {}
 });
 
 /***/ }),

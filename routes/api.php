@@ -20,7 +20,15 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'middleware' => 'auth:a
 
     Route::apiResources([
         'column' => 'ColumnController',//好友分栏
-        'friend' => 'FriendController'//好友
+        'friend' => 'FriendController',//好友
+    ]);
+
+});
+
+Route::group(['prefix' => 'chat', 'namespace' => 'Chat', 'middleware' => 'auth:api'], function () {
+
+    Route::apiResources([
+        'msg' => 'MsgRecordController',//消息记录
     ]);
 
 });

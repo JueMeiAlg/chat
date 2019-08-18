@@ -401,7 +401,6 @@
         },
 
         created() {
-            console.log(this.$store.state.user);
             window.onclick = function (e) {
                 window.document.querySelector('#systemMenu').style.display = "none";
                 window.document.querySelector('#columnMenu').style.display = "none";
@@ -629,7 +628,7 @@
              * 发送消息
              */
             sendMsg() {
-                this.$message.warning('暂未实现');
+                this.$store.commit('setFriendList',this.currentHandelUserObj);
             },
 
             /**

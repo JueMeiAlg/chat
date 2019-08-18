@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import user from './module/user'
 import friendPanelTool from './module/friendPanelTool'
+import talk from './module/talk'
 
 Vue.use(Vuex);
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     },
     modules: {
         user,
-        friendPanelTool
+        friendPanelTool,
+        talk
     }
 })
