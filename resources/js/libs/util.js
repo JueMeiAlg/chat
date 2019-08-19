@@ -25,3 +25,27 @@ export const getToken = () => {
         return false
     }
 };
+
+
+/**
+ * 设置当前登录用户Id到cookie
+ *
+ * @param userId
+ */
+export const setUserId = (userId) => {
+    Cookies.set('userId', userId, {expires: config.cookieExpires || 1})
+};
+
+/**
+ * 获得当前登录的用户Id
+ *
+ * @returns {boolean|*}
+ */
+export const getUserId = () => {
+    const userId = Cookies.get('userId');
+    if (userId) {
+        return userId;
+    } else {
+        return false
+    }
+};

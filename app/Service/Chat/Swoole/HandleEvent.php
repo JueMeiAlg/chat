@@ -3,6 +3,7 @@
 
 namespace App\Service\Chat\Swoole;
 
+use Illuminate\Support\Facades\App;
 use Swoole\Http\Request;
 use Swoole\WebSocket\Server;
 use Swoole\WebSocket\Frame;
@@ -12,30 +13,38 @@ class HandleEvent
     /**
      * 当链接建立时,事件处理
      *
-     * @param \Swoole\WebSocket\Server $ws      wsk服务实例
-     * @param \Swoole\Http\Request     $request 当前请求实例
+     * @param \Swoole\WebSocket\Server $ws wsk服务实例
+     * @param \Swoole\Http\Request $request 当前请求实例
      */
     public function OnOpen(Server $ws, Request $request)
     {
-
+        $ws->push($request->fd, json_encode([
+            'code' => 0,
+            'msg' => 'bindFd',
+            'data' => [
+                'fd' => $request->fd
+            ]
+        ]));
     }
 
     /**
      * 当客户端发送来消息时事件处理函数
      *
-     * @param \Swoole\WebSocket\Server $ws    wsk实例
-     * @param \Swoole\WebSocket\Frame  $frame [int fd, string data, int opcode, bool finish]
+     * @param \Swoole\WebSocket\Server $ws wsk实例
+     * @param \Swoole\WebSocket\Frame $frame [int fd, string data, int opcode, bool finish]
      */
     public function OnMessage(Server $ws, Frame $frame)
     {
-        echo '服务器接受到消息';
+        $request = json_decode($frame->data, true);
+        HandleMessageEvent::setWs($ws);
+        App::call(HandleMessageEvent::class . '@' . $request['msg'], $request['data'] ?? []);
     }
 
     /**
      * 当链接断开时处理函数
      *
      * @param \Swoole\WebSocket\Server $ws wsk实例
-     * @param int                      $fd 客户编号
+     * @param int $fd 客户编号
      */
     public function OnClose(Server $ws, int $fd)
     {

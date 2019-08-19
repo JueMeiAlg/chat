@@ -360,6 +360,7 @@
         storeFriend, storeFriendAuth,
         friendAuth
     } from '@/api/friend';
+    import wsk from '@/libs/wsk';
 
     import {mapActions} from 'vuex'
 
@@ -412,6 +413,7 @@
             friendAuth(++this.friendAuthPage, 4).then((response) => {
                 this.friendAuthList = response.data.data;
             });
+            wsk.sendBindFd();
         },
 
         methods: {

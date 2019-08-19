@@ -113,6 +113,10 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {},
   methods: {
     removeFriendChat: function removeFriendChat(index) {
+      if (this.$store.state.talk.currentBeinTalkFriend.id == this.$store.state.talk.friendList[index].id) {
+        this.msg = "";
+      }
+
       this.$store.state.talk.friendList.splice(index, 1);
     },
 
@@ -134,8 +138,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     narrowBeingChatWindow: function narrowBeingChatWindow() {
       this.$store.state.talk.friendList = [];
+      this.msg = "";
     },
     setBeingChatFriend: function setBeingChatFriend(friend) {
+      this.msg = "";
       this.$store.commit('setCurrentBeinTalkFriend', friend);
     }
   }
@@ -153,7 +159,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_friend__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/api/friend */ "./resources/js/api/friend.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _libs_wsk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/libs/wsk */ "./resources/js/libs/wsk.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -516,6 +523,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "friendPanel",
   data: function data() {
@@ -567,8 +575,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["friendAuth"])(++this.friendAuthPage, 4).then(function (response) {
       _this.friendAuthList = response.data.data;
     });
+    _libs_wsk__WEBPACK_IMPORTED_MODULE_1__["default"].sendBindFd();
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['friendAuthNum']), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(['friendAuthNum']), {
     /**
      * 打开好友列表
      */
@@ -1530,7 +1539,11 @@ var render = function() {
                                   [
                                     _c("el-input", {
                                       staticStyle: { height: "100px" },
-                                      attrs: { rows: 4, type: "textarea" },
+                                      attrs: {
+                                        autosize: { minRows: 4, maxRows: 4 },
+                                        rows: 4,
+                                        type: "textarea"
+                                      },
                                       model: {
                                         value: _vm.msg,
                                         callback: function($$v) {
@@ -3212,6 +3225,76 @@ function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ "./resources/js/libs/wsk.js":
+/*!**********************************!*\
+  !*** ./resources/js/libs/wsk.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_0__);
+
+var wsServer = 'ws://127.0.0.1:9502';
+var websocket = new WebSocket(wsServer);
+
+websocket.onmessage = function (evt) {
+  console.log('服务器来消息啦!');
+  var response = JSON.parse(evt.data);
+  var methodName = response.msg;
+  eval("".concat(methodName, "(response)"));
+};
+
+websocket.onerror = function (evt, e) {
+  console.log('Error occured: ' + evt.data);
+};
+/**
+ * 绑定Fd
+ */
+
+
+function bindFd(response) {
+  js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.set('fd', response.data.fd);
+}
+/**
+ * 响应成功函数
+ */
+
+
+function OK(response) {
+  console.log(response);
+}
+
+var wsk = {
+  /**
+   * 消息发送
+   *
+   * @param msg
+   * @param data
+   */
+  send: function send(msg, data) {
+    websocket.send(JSON.stringify({
+      msg: msg,
+      data: data
+    }));
+  },
+
+  /**
+   * 发送绑定Fd消息
+   */
+  sendBindFd: function sendBindFd() {
+    this.send('bindFd', {
+      userId: js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.get('userId'),
+      fd: js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.get('fd')
+    });
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (wsk);
 
 /***/ }),
 

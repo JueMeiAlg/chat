@@ -99844,7 +99844,7 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.interceptors.response.use(function 
 /*!***********************************!*\
   !*** ./resources/js/libs/util.js ***!
   \***********************************/
-/*! exports provided: TOKEN_KEY, setToken, getToken */
+/*! exports provided: TOKEN_KEY, setToken, getToken, setUserId, getUserId */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99852,6 +99852,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TOKEN_KEY", function() { return TOKEN_KEY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setToken", function() { return setToken; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getToken", function() { return getToken; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserId", function() { return setUserId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserId", function() { return getUserId; });
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/config */ "./resources/js/config/index.js");
@@ -99880,6 +99882,32 @@ var getToken = function getToken() {
 
   if (token) {
     return token;
+  } else {
+    return false;
+  }
+};
+/**
+ * 设置当前登录用户Id到cookie
+ *
+ * @param userId
+ */
+
+var setUserId = function setUserId(userId) {
+  js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.set('userId', userId, {
+    expires: _config__WEBPACK_IMPORTED_MODULE_1__["default"].cookieExpires || 1
+  });
+};
+/**
+ * 获得当前登录的用户Id
+ *
+ * @returns {boolean|*}
+ */
+
+var getUserId = function getUserId() {
+  var userId = js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.get('userId');
+
+  if (userId) {
+    return userId;
   } else {
     return false;
   }
@@ -100168,6 +100196,7 @@ __webpack_require__.r(__webpack_exports__);
             commit('setUserId', data.data.user.id);
             commit('setAvatar', data.data.user.avatar);
             Object(_libs_util__WEBPACK_IMPORTED_MODULE_1__["setToken"])(data.data.token);
+            Object(_libs_util__WEBPACK_IMPORTED_MODULE_1__["setUserId"])(data.data.user.id);
             resolve(data);
           } else {
             reject('code is not 0');
@@ -100188,6 +100217,7 @@ __webpack_require__.r(__webpack_exports__);
         commit('setUserId', '');
         commit('setAvatar', '');
         Object(_libs_util__WEBPACK_IMPORTED_MODULE_1__["setToken"])();
+        Object(_libs_util__WEBPACK_IMPORTED_MODULE_1__["setUserId"])();
         resolve();
       });
     }

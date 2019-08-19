@@ -7,8 +7,11 @@ namespace App\Http\Controllers;
 use App\Models\Chat\Group;
 use App\Models\User;
 use App\Models\User\UserColumn;
+use App\Service\Chat\Swoole\HandleMessageEvent;
 use App\Service\Search\User\Contract\SearchUserInterface;
 use App\Service\Search\User\MysqlSearchDriver;
+use Illuminate\Support\Facades\App;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 /**
  * 测试和代码调试控制器
@@ -81,4 +84,22 @@ class TestController extends Controller
         $mysql = app(SearchUserInterface::class)->setPhone('1368684')->search();
         dd($mysql);
     }
+
+    public function t7()
+    {
+        dd(User::query()->get());
+    }
+
+    public function t8()
+    {
+        $request = [
+            'msg'=>'bindFd',
+            'data'=>[
+                'userId'=>1,
+                'fd'=>2
+            ]
+        ];
+        App::call(HandleMessageEvent::class . '@' . $request['msg'], $request['data'] ?? []);
+    }
 }
+
