@@ -1,5 +1,5 @@
 import { login, userInfo } from '@/api/user'
-import { setToken,getToken} from '@/libs/util';
+import { setToken,getToken, setUserId} from '@/libs/util';
 
 export default {
     state: {
@@ -39,6 +39,7 @@ export default {
                         commit('setUserId', data.data.user.id);
                         commit('setAvatar', data.data.user.avatar);
                         setToken(data.data.token);
+                        setUserId(data.data.user.id);
                         resolve(data)
                     }else{
                         reject('code is not 0')
@@ -57,6 +58,7 @@ export default {
                 commit('setUserId', '');
                 commit('setAvatar', '');
                 setToken();
+                setUserId();
                 resolve()
             })
         },

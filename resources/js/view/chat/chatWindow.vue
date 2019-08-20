@@ -75,7 +75,7 @@
                         <el-row class="message-main">
                             <el-col :span="24">
                                 <div class="message">
-                                    <el-input v-model="msg"   :rows="4" type="textarea" style="height: 100px"></el-input>
+                                    <el-input  :autosize="{ minRows: 4, maxRows: 4}" v-model="msg" :rows="4" type="textarea" style="height:100px;"></el-input>
                                 </div>
                             </el-col>
                             <el-col :offset="16" :span="2">
@@ -105,6 +105,9 @@
         },
         methods: {
             removeFriendChat(index) {
+                if (this.$store.state.talk.currentBeinTalkFriend.id == this.$store.state.talk.friendList[index].id) {
+                    this.msg = "";
+                }
                 this.$store.state.talk.friendList.splice(index, 1);
             },
             /**
@@ -123,8 +126,10 @@
 
             narrowBeingChatWindow() {
                 this.$store.state.talk.friendList = [];
+                this.msg = "";
             },
             setBeingChatFriend(friend) {
+                this.msg = "";
                 this.$store.commit('setCurrentBeinTalkFriend', friend);
             }
         }
@@ -160,7 +165,6 @@
     .username {
         font-size: 18px;
     }
-
     .status {
         font-size: 14px;
         color: #a6a6a6;

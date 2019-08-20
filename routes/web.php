@@ -14,7 +14,9 @@
 Route::get('/', function () {
     return view('chat');
 });
-
+Route::get('/testView', function () {
+    return view('test');
+});
 //测试调试路由
 Route::get('test/{id}', 'TestController@index');
 
