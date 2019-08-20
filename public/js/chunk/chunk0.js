@@ -521,6 +521,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -575,12 +576,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["friendAuth"])(++this.friendAuthPage, 4).then(function (response) {
       _this.friendAuthList = response.data.data;
     });
-    _libs_wsk__WEBPACK_IMPORTED_MODULE_1__["default"].sendBindFd();
   },
+  mounted: function mounted() {},
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(['friendAuthNum']), {
     /**
      * 打开好友列表
      */
+    wsSend: function wsSend() {
+      _libs_wsk__WEBPACK_IMPORTED_MODULE_1__["default"].sendBindFd();
+    },
     openList: function openList(index) {
       if (this.getIdDom('sj' + index).getAttribute('xlink:href') === "#icon-sanjiao") {
         this.getIdDom('friendColumn' + index).style.display = "none";
@@ -1634,6 +1638,8 @@ var render = function() {
     "div",
     { staticClass: "Panel-main" },
     [
+      _c("el-button", { on: { click: _vm.wsSend } }, [_vm._v("发生")]),
+      _vm._v(" "),
       _c(
         "div",
         [
@@ -3244,7 +3250,7 @@ var wsServer = 'ws://127.0.0.1:9502';
 var websocket = new WebSocket(wsServer);
 
 websocket.onmessage = function (evt) {
-  console.log('服务器来消息啦!');
+  console.log('服务器来消息啦!', evt.data);
   var response = JSON.parse(evt.data);
   var methodName = response.msg;
   eval("".concat(methodName, "(response)"));
@@ -3278,10 +3284,17 @@ var wsk = {
    * @param data
    */
   send: function send(msg, data) {
-    websocket.send(JSON.stringify({
-      msg: msg,
-      data: data
-    }));
+    if (websocket.readyState === 1) {
+      console.log("\u53D1\u9001:".concat(msg, ",\u7C7B\u578B\u6D88\u606F"), JSON.stringify({
+        msg: msg,
+        data: data
+      }));
+      websocket.send(JSON.stringify({
+        msg: msg,
+        data: data
+      }));
+    } else {//do something
+    }
   },
 
   /**

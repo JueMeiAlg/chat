@@ -1,5 +1,6 @@
 <template>
     <div class="Panel-main">
+        <el-button @click="wsSend">发生</el-button>
         <div>
             <el-row>
                 <div class="head">
@@ -400,7 +401,6 @@
                 reason:''
             }
         },
-
         created() {
             window.onclick = function (e) {
                 window.document.querySelector('#systemMenu').style.display = "none";
@@ -413,9 +413,10 @@
             friendAuth(++this.friendAuthPage, 4).then((response) => {
                 this.friendAuthList = response.data.data;
             });
-            wsk.sendBindFd();
         },
+        mounted(){
 
+        },
         methods: {
             ...mapActions([
                 'friendAuthNum',
@@ -423,6 +424,9 @@
             /**
              * 打开好友列表
              */
+            wsSend(){
+                wsk.sendBindFd();
+            },
             openList(index) {
 
                 if (this.getIdDom('sj' + index).getAttribute('xlink:href') === "#icon-sanjiao") {
