@@ -26,4 +26,14 @@ class UserFriend extends Model
         'column_id', //好友分栏Id
         //unique(['user_id', 'friend_id', 'column_id'])
     ];
+
+    /**
+     * 关联到好友信息
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function friend()
+    {
+        return $this->hasOne(User::class, 'id', 'friend_id');
+    }
 }

@@ -41,6 +41,18 @@ class UserRepository
     }
 
     /**
+     * 根据fd获取信息
+     *
+     * @param int $fd
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     */
+    public function fdGetUser(int $fd)
+    {
+        return User::query()
+            ->where('fd', $fd)
+            ->firstOrFail();
+    }
+    /**
      * 添加用户
      *
      * @param array $userInfo

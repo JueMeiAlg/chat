@@ -612,7 +612,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["columnFriend"])().then(function (response) {
-        _this2.columnFriend = response.data.data;
+        _this2.$store.commit('setColumnFriend', response.data.data);
       });
     },
 
@@ -1638,7 +1638,7 @@ var render = function() {
     "div",
     { staticClass: "Panel-main" },
     [
-      _c("el-button", { on: { click: _vm.wsSend } }, [_vm._v("发生")]),
+      _c("el-button", { on: { click: _vm.wsSend } }, [_vm._v("发送")]),
       _vm._v(" "),
       _c(
         "div",
@@ -1894,7 +1894,10 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "ul",
-                      _vm._l(_vm.columnFriend, function(item, index) {
+                      _vm._l(_vm.$store.state.friend.columnFriend, function(
+                        item,
+                        index
+                      ) {
                         return _c(
                           "li",
                           {
@@ -3245,6 +3248,8 @@ function normalizeComponent (
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/api/user */ "./resources/js/api/user.js");
+
 
 var wsServer = 'ws://127.0.0.1:9502';
 var websocket = new WebSocket(wsServer);
@@ -3257,7 +3262,7 @@ websocket.onmessage = function (evt) {
 };
 
 websocket.onerror = function (evt, e) {
-  console.log('Error occured: ' + evt.data);
+  console.log('Error occured: ' + evt.data, e);
 };
 /**
  * 绑定Fd
@@ -3273,7 +3278,32 @@ function bindFd(response) {
 
 
 function OK(response) {
+  //成功处理了响应OK
   console.log(response);
+}
+/**
+ * 好友上线处理函数
+ */
+
+
+function friendOnline(response) {
+  var fd = response.data.fd;
+  Object(_api_user__WEBPACK_IMPORTED_MODULE_1__["fdUserInfo"])(fd).then(function (response) {
+    window.vueApp.$notify({
+      title: '好友上线通知',
+      message: "\u4F60\u7684\u597D\u53CB".concat(response.data.data.name, "\u4E0A\u7EBF\u5566"),
+      position: 'top-left'
+    });
+    window.vueApp.$store.state.friend.columnFriend.forEach(function (item) {
+      item.friend.forEach(function (friendItem) {
+        if (friendItem.id == response.data.data.id) {
+          //更改fd状态
+          friendItem.fd = fd;
+          return;
+        }
+      });
+    });
+  });
 }
 
 var wsk = {
@@ -3285,14 +3315,13 @@ var wsk = {
    */
   send: function send(msg, data) {
     if (websocket.readyState === 1) {
-      console.log("\u53D1\u9001:".concat(msg, ",\u7C7B\u578B\u6D88\u606F"), JSON.stringify({
+      var message = {
         msg: msg,
         data: data
-      }));
-      websocket.send(JSON.stringify({
-        msg: msg,
-        data: data
-      }));
+      };
+      message = JSON.stringify(message);
+      console.log("\u53D1\u9001:".concat(msg, ",\u7C7B\u578B\u6D88\u606F"), message);
+      websocket.send(message);
     } else {//do something
     }
   },

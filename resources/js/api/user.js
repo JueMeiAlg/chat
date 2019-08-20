@@ -29,6 +29,19 @@ export const userInfo = (id) => {
     })
 };
 
+/**
+ * 根据Fd获取用户信息
+ *
+ * @param fd
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+export const fdUserInfo = (fd) => {
+    return axios.request({
+        url: 'user/' + fd + '/fd/info',
+        method: 'get',
+    })
+};
+
 
 
 

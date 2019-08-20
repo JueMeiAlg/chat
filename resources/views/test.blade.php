@@ -88,7 +88,7 @@
      * @param data
      */
     function send(msg, data) {
-        websocket.send(JSON.stringify({msg: msg, data: data}))
+        websocket.send(123)
     }
 
 </script>

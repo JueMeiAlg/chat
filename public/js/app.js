@@ -99584,7 +99584,7 @@ var friendAuthCount = function friendAuthCount() {
 /*!**********************************!*\
   !*** ./resources/js/api/user.js ***!
   \**********************************/
-/*! exports provided: login, logout, userInfo */
+/*! exports provided: login, logout, userInfo, fdUserInfo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99592,6 +99592,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userInfo", function() { return userInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fdUserInfo", function() { return fdUserInfo; });
 /* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/libs/axios */ "./resources/js/libs/axios.js");
  //import {getToken} from "@/libs/util";
 
@@ -99618,6 +99619,19 @@ var logout = function logout(token) {
 var userInfo = function userInfo(id) {
   return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
     url: 'user/' + id + '/info',
+    method: 'get'
+  });
+};
+/**
+ * 根据Fd获取用户信息
+ *
+ * @param fd
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
+ */
+
+var fdUserInfo = function fdUserInfo(fd) {
+  return _libs_axios__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+    url: 'user/' + fd + '/fd/info',
     method: 'get'
   });
 };
@@ -100010,6 +100024,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _module_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./module/user */ "./resources/js/store/module/user.js");
 /* harmony import */ var _module_friendPanelTool__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./module/friendPanelTool */ "./resources/js/store/module/friendPanelTool.js");
 /* harmony import */ var _module_talk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./module/talk */ "./resources/js/store/module/talk.js");
+/* harmony import */ var _module_friend__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./module/friend */ "./resources/js/store/module/friend.js");
+
 
 
 
@@ -100026,9 +100042,34 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   modules: {
     user: _module_user__WEBPACK_IMPORTED_MODULE_2__["default"],
     friendPanelTool: _module_friendPanelTool__WEBPACK_IMPORTED_MODULE_3__["default"],
-    talk: _module_talk__WEBPACK_IMPORTED_MODULE_4__["default"]
+    talk: _module_talk__WEBPACK_IMPORTED_MODULE_4__["default"],
+    friend: _module_friend__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 }));
+
+/***/ }),
+
+/***/ "./resources/js/store/module/friend.js":
+/*!*********************************************!*\
+  !*** ./resources/js/store/module/friend.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: {
+    //好友分栏及好友信息
+    columnFriend: []
+  },
+  mutations: {
+    setColumnFriend: function setColumnFriend(state, data) {
+      state.columnFriend = data;
+    }
+  },
+  actions: {}
+});
 
 /***/ }),
 
@@ -100244,8 +100285,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\www\docker\chat\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\www\docker\chat\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\www\docker\chat\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\www\docker\chat\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -41,5 +41,17 @@ class UserController extends Controller
         return $this->Json(StatusCode::SUCCESS, ['data'=>$user]);
     }
 
+    /**
+     * 根据fd获取好友信息
+     *
+     * @param $fd
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function fdInfo($fd)
+    {
+        $user = $this->userRepository->fdGetUser($fd);
+        return $this->Json(StatusCode::SUCCESS, ['data'=>$user]);
+    }
+
 
 }

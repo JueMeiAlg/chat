@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import {fdUserInfo} from '@/api/user'
 
 var wsServer = 'ws://127.0.0.1:9502';
 var websocket = new WebSocket(wsServer);
@@ -11,7 +12,7 @@ websocket.onmessage = function (evt) {
 };
 
 websocket.onerror = function (evt, e) {
-    console.log('Error occured: ' + evt.data);
+    console.log('Error occured: ' + evt.data, e);
 };
 
 /**
@@ -25,7 +26,31 @@ function bindFd(response) {
  * 响应成功函数
  */
 function OK(response) {
+   //成功处理了响应OK
     console.log(response)
+}
+
+/**
+ * 好友上线处理函数
+ */
+function friendOnline(response) {
+    let fd = response.data.fd;
+    fdUserInfo(fd).then((response)=>{
+        window.vueApp.$notify({
+            title: '好友上线通知',
+            message: `你的好友${response.data.data.name}上线啦`,
+            position: 'top-left'
+        });
+        window.vueApp.$store.state.friend.columnFriend.forEach(item=>{
+            item.friend.forEach(friendItem=>{
+                if (friendItem.id == response.data.data.id) {
+                    //更改fd状态
+                    friendItem.fd = fd;
+                    return;
+                }
+            })
+        })
+    })
 }
 
 var wsk = {
@@ -38,8 +63,13 @@ var wsk = {
      */
     send(msg, data) {
         if (websocket.readyState === 1) {
-            console.log(`发送:${msg},类型消息`, JSON.stringify({msg: msg, data: data}));
-            websocket.send(JSON.stringify({msg: msg, data: data}))
+            let message = {
+                msg: msg,
+                data: data
+            };
+            message = JSON.stringify(message);
+            console.log(`发送:${msg},类型消息`, message);
+            websocket.send(message);
         } else {
             //do something
         }

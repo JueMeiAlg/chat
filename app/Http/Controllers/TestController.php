@@ -101,5 +101,18 @@ class TestController extends Controller
         ];
         App::call(HandleMessageEvent::class . '@' . $request['msg'], $request['data'] ?? []);
     }
+
+    public function t9()
+    {
+        $user = User\UserFriend::query()
+            ->with('friend:id,fd')
+            ->where('user_id', 1)
+            ->get()
+            ->pluck('friend')
+            ->pluck('fd')->reject(function ($value) {
+                return is_null($value);
+            })->values()->toArray();
+        dd($user);
+    }
 }
 

@@ -1,6 +1,6 @@
 <template>
     <div class="Panel-main">
-        <el-button @click="wsSend">发生</el-button>
+        <el-button @click="wsSend">发送</el-button>
         <div>
             <el-row>
                 <div class="head">
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <ul>
-                            <li class="column columnHover" v-for="(item, index) in columnFriend"
+                            <li class="column columnHover" v-for="(item, index) in $store.state.friend.columnFriend"
                                 @contextmenu.prevent="openColumnMenu($event, item.id, item, index)">
                                 <span @click="openList(index)">
                                     <svg class="icon corners" aria-hidden="true">
@@ -452,7 +452,7 @@
              */
             getColumnFriend() {
                 columnFriend().then((response) => {
-                    this.columnFriend = response.data.data
+                    this.$store.commit('setColumnFriend', response.data.data);
                 })
             },
 

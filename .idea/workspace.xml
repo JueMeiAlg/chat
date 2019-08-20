@@ -2,12 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="003058b5-3100-47c1-b465-fb7e9026028f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/store/module/friend.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TestController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/User/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User/UserFriend.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User/UserFriend.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repository/User/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repository/User/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Service/Chat/Swoole/HandleMessageEvent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Service/Chat/Swoole/HandleMessageEvent.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/chunk/chunk0.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/chunk/chunk0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/chunk/chunk1.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/chunk/chunk1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/api/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/libs/wsk.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/libs/wsk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/view/chat/friendPanel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/view/chat/friendPanel.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/test.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/test.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/chat.pid" beforeDir="false" afterPath="$PROJECT_DIR$/storage/chat.pid" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,6 +33,363 @@
   </component>
   <component name="FavoritesManager">
     <favorites_list name="chat" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/libs/wsk.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="43" column="69" selection-start-line="43" selection-start-column="69" selection-end-line="43" selection-end-column="69" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#151#306#0" />
+                <element signature="e#347#397#0" />
+                <element signature="n#!!doc;n#bindFd#0" />
+                <element signature="n#!!block;n#bindFd#0" />
+                <element signature="n#!!doc;n#OK#0" />
+                <element signature="n#!!block;n#OK#0" />
+                <element signature="n#!!doc;n#friendOnline#0" />
+                <element signature="e#751#862#0" />
+                <element signature="e#954#978#0" />
+                <element signature="e#1055#1095#0" />
+                <element signature="e#576#643#0" />
+                <element signature="e#737#853#0" />
+                <element signature="e#924#951#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Service/Chat/Swoole/HandleMessageEvent.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="205">
+              <caret line="50" column="38" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
+              <folding>
+                <element signature="e#45#65#0#PHP" expanded="true" />
+                <element signature="e#127#176#0#PHP" />
+                <element signature="e#208#265#0#PHP" />
+                <element signature="e#270#349#0#PHP" />
+                <element signature="e#355#425#0#PHP" />
+                <element signature="e#551#594#1#PHP" />
+                <element signature="e#623#685#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/view/chat/friendPanel.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="72" column="115" selection-start-line="72" selection-start-column="83" selection-end-line="72" selection-end-column="115" />
+              <folding>
+                <element signature="n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-row#0;n#el-col#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#el-row#0;n#el-col#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#el-col#1;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-col#0;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-col#1;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#2;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-col#2;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#1;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#2;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#1;n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#2;n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#1;n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#2;n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#span#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#span#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-avatar#0;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-badge#0;n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-badge#0;n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-badge#0;n#el-col#1;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-badge#0;n#el-col#1;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#2;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-badge#0;n#el-col#2;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-badge#0;n#el-col#2;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-dialog#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#span#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-dialog#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#span#0;n#el-dialog#1;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#tr#0;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#td#0;n#tr#0;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#td#0;n#tr#0;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#td#0;n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#td#0;n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#tr#2;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#td#0;n#tr#2;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#td#0;n#tr#2;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#tr#3;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#td#0;n#tr#3;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#td#0;n#tr#3;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#tr#4;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#td#0;n#tr#4;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#td#0;n#tr#4;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-input#0;n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-avatar#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#p#3;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#0;n#p#3;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-button#0;n#p#3;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#0;n#el-col#0;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-button#0;n#el-col#0;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#0;n#el-col#1;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-button#0;n#el-col#1;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-avatar#0;n#el-col#0;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#el-col#1;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#template#0;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#template#1;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#0;n#template#1;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#1;n#template#1;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#template#2;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#0;n#template#2;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#1;n#template#2;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#0;n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-button#0;n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#svg#0;n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-avatar#0;n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#p#0;n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#2;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-button#0;n#el-col#2;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-dialog#5;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-row#0;n#el-dialog#5;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#0;n#el-row#0;n#el-dialog#5;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#el-col#1;n#el-row#0;n#el-dialog#5;n#div#0;n#template#0;n#!!top" />
+                <element signature="n#script#0;n#!!top" />
+                <element signature="e#18952#36181#0" />
+                <element signature="e#18998#20178#0" />
+                <element signature="e#19019#20168#0" />
+                <element signature="e#20198#20759#0" />
+                <element signature="e#20242#20510#0" />
+                <element signature="e#20674#20747#0" />
+                <element signature="e#20778#20790#0" />
+                <element signature="e#20809#36175#0" />
+                <element signature="e#20837#20885#0" />
+                <element signature="e#20900#20941#0" />
+                <element signature="e#20962#21011#0" />
+                <element signature="e#21041#21984#0" />
+                <element signature="e#21140#21536#0" />
+                <element signature="e#21431#21517#0" />
+                <element signature="e#21542#21970#0" />
+                <element signature="e#21876#21950#0" />
+                <element signature="e#21999#22043#0" />
+                <element signature="e#22074#22219#0" />
+                <element signature="e#22126#22204#0" />
+                <element signature="e#22234#22275#0" />
+                <element signature="e#22314#22692#0" />
+                <element signature="e#22354#22587#0" />
+                <element signature="e#22593#22678#0" />
+                <element signature="e#22707#22748#0" />
+                <element signature="e#22793#23360#0" />
+                <element signature="e#22833#22988#0" />
+                <element signature="e#22994#23346#0" />
+                <element signature="e#23375#23457#0" />
+                <element signature="e#23488#23612#0" />
+                <element signature="e#23682#24020#0" />
+                <element signature="e#24035#24080#0" />
+                <element signature="e#24126#24399#0" />
+                <element signature="e#24414#24453#0" />
+                <element signature="e#24477#24535#0" />
+                <element signature="e#24550#24590#0" />
+                <element signature="e#24622#24679#0" />
+                <element signature="e#24694#24733#0" />
+                <element signature="e#24758#25319#0" />
+                <element signature="e#24806#24911#0" />
+                <element signature="e#24987#25303#0" />
+                <element signature="e#25032#25191#0" />
+                <element signature="e#25334#25462#0" />
+                <element signature="e#25498#25583#0" />
+                <element signature="e#25598#25649#0" />
+                <element signature="e#25688#25776#0" />
+                <element signature="e#25791#25911#0" />
+                <element signature="e#25937#26015#0" />
+                <element signature="e#26030#26069#0" />
+                <element signature="e#26102#26487#0" />
+                <element signature="e#26181#26471#0" />
+                <element signature="e#26502#26544#0" />
+                <element signature="e#26570#26699#0" />
+                <element signature="e#26714#26753#0" />
+                <element signature="e#26785#27429#0" />
+                <element signature="e#26891#27413#0" />
+                <element signature="e#26947#27160#0" />
+                <element signature="e#27016#27138#0" />
+                <element signature="e#27444#27483#0" />
+                <element signature="e#27509#27586#0" />
+                <element signature="e#27601#27640#0" />
+                <element signature="e#27663#27757#0" />
+                <element signature="e#27772#27811#0" />
+                <element signature="e#27839#28830#0" />
+                <element signature="e#27932#28076#0" />
+                <element signature="e#28089#28750#0" />
+                <element signature="e#28170#28731#0" />
+                <element signature="e#28278#28641#0" />
+                <element signature="e#28357#28614#0" />
+                <element signature="e#28438#28584#0" />
+                <element signature="e#28764#28813#0" />
+                <element signature="e#28845#28886#0" />
+                <element signature="e#28914#29040#0" />
+                <element signature="e#29055#29152#0" />
+                <element signature="e#29193#29752#0" />
+                <element signature="e#29289#29738#0" />
+                <element signature="e#29408#29720#0" />
+                <element signature="e#29519#29698#0" />
+                <element signature="e#29767#29812#0" />
+                <element signature="e#29847#29901#0" />
+                <element signature="e#29916#29956#0" />
+                <element signature="e#29992#30171#0" />
+                <element signature="e#30186#30304#0" />
+                <element signature="e#30335#30558#0" />
+                <element signature="e#30433#30486#0" />
+                <element signature="e#30492#30544#0" />
+                <element signature="e#30573#30654#0" />
+                <element signature="e#30685#31817#0" />
+                <element signature="e#30780#30845#0" />
+                <element signature="e#30894#30991#0" />
+                <element signature="e#30997#31064#0" />
+                <element signature="e#31176#31801#0" />
+                <element signature="e#31589#31700#0" />
+                <element signature="e#31706#31783#0" />
+                <element signature="e#31832#31872#0" />
+                <element signature="e#31898#31992#0" />
+                <element signature="e#32007#32052#0" />
+                <element signature="e#32093#32209#0" />
+                <element signature="e#32224#32269#0" />
+                <element signature="e#32306#32776#0" />
+                <element signature="e#32405#32732#0" />
+                <element signature="e#32528#32714#0" />
+                <element signature="e#32625#32692#0" />
+                <element signature="e#32791#32880#0" />
+                <element signature="e#32917#33397#0" />
+                <element signature="e#33040#33150#0" />
+                <element signature="e#33244#33382#0" />
+                <element signature="e#33412#33497#0" />
+                <element signature="e#33530#34428#0" />
+                <element signature="e#33623#33687#0" />
+                <element signature="e#33735#33831#0" />
+                <element signature="e#33837#33903#0" />
+                <element signature="e#33975#34412#0" />
+                <element signature="e#34202#34312#0" />
+                <element signature="e#34318#34394#0" />
+                <element signature="e#34443#34559#0" />
+                <element signature="e#34599#34915#0" />
+                <element signature="e#34751#34900#0" />
+                <element signature="e#34929#35001#0" />
+                <element signature="e#35050#35170#0" />
+                <element signature="e#35184#35227#0" />
+                <element signature="e#35287#35543#0" />
+                <element signature="e#35339#35527#0" />
+                <element signature="e#35409#35509#0" />
+                <element signature="e#35558#35599#0" />
+                <element signature="e#35631#36165#0" />
+                <element signature="e#35746#36150#0" />
+                <element signature="n#style#0;n#!!top" />
+                <element signature="e#36224#36283#0" />
+                <element signature="e#36295#36377#0" />
+                <element signature="e#36394#36456#0" />
+                <element signature="e#36474#36506#0" />
+                <element signature="e#36524#36692#0" />
+                <element signature="e#36729#36759#0" />
+                <element signature="e#36789#36853#0" />
+                <element signature="e#36898#36974#0" />
+                <element signature="e#37010#37059#0" />
+                <element signature="e#37080#37111#0" />
+                <element signature="e#37127#37159#0" />
+                <element signature="e#37173#37268#0" />
+                <element signature="e#37293#37329#0" />
+                <element signature="e#37344#37375#0" />
+                <element signature="e#37387#37448#0" />
+                <element signature="e#37464#37536#0" />
+                <element signature="e#37558#37633#0" />
+                <element signature="e#37645#37741#0" />
+                <element signature="e#37769#37805#0" />
+                <element signature="e#37824#37980#0" />
+                <element signature="e#38004#38068#0" />
+                <element signature="e#38098#38134#0" />
+                <element signature="e#38148#38178#0" />
+                <element signature="e#38206#38265#0" />
+                <element signature="e#38290#38325#0" />
+                <element signature="e#38344#38459#0" />
+                <element signature="e#38473#38587#0" />
+                <element signature="e#38605#38680#0" />
+                <element signature="e#38704#38740#0" />
+                <element signature="e#38765#38821#0" />
+                <element signature="e#38851#38952#0" />
+                <element signature="e#38979#39034#0" />
+                <element signature="e#39063#39132#0" />
+                <element signature="e#39159#39266#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/store/module/friend.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="4" column="20" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -65,10 +431,32 @@
       <find>currentBeinTalkFriend</find>
       <find>消息编辑器</find>
       <find>CHAT_LISTEN_IP</find>
+      <find>commit</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/resources/views/test.blade.php" />
+        <option value="$PROJECT_DIR$/storage/logs/laravel-2019-08-20.log" />
+        <option value="$PROJECT_DIR$/app/Service/Chat/Swoole/HandleEvent.php" />
+        <option value="$PROJECT_DIR$/app/Models/User/UserFriend.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/TestController.php" />
+        <option value="$PROJECT_DIR$/app/Service/Chat/Swoole/HandleMessageEvent.php" />
+        <option value="$PROJECT_DIR$/resources/js/app.js" />
+        <option value="$PROJECT_DIR$/resources/js/api/user.js" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/app/Repository/User/UserRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/User/UserController.php" />
+        <option value="$PROJECT_DIR$/resources/js/store/module/friend.js" />
+        <option value="$PROJECT_DIR$/resources/js/store/index.js" />
+        <option value="$PROJECT_DIR$/resources/js/view/chat/friendPanel.vue" />
+        <option value="$PROJECT_DIR$/resources/js/libs/wsk.js" />
+      </list>
+    </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -157,11 +545,139 @@
       <path value="$PROJECT_DIR$/vendor/predis/predis" />
     </include_path>
   </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
   <component name="ProjectId" id="1Oo9byk0AKzTVlbWNjKRB5RO4vd" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="User" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Service" type="462c0819:PsiDirectoryNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Service" type="462c0819:PsiDirectoryNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
+              <item name="Swoole" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -170,16 +686,16 @@
     <property name="ts.external.directory.path" value="D:\Program Files (x86)\JetBrains\PhpStorm\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\www\docker\chat\app\Models\User" />
-      <recent name="E:\www\docker\chat\app\Models\User" />
-      <recent name="D:\www\docker\chat\app\Models" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\www\docker\chat\public\js" />
       <recent name="E:\www\docker\chat" />
       <recent name="D:\www\docker\chat\public\img" />
       <recent name="D:\www\docker\chat" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\www\docker\chat\app\Models\User" />
+      <recent name="E:\www\docker\chat\app\Models\User" />
+      <recent name="D:\www\docker\chat\app\Models" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -234,6 +750,59 @@
     </task>
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="8835000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49836066" visible="true" weight="0.25189108" />
+      <window_info id="Structure" order="1" sideWeight="0.50163937" side_tool="true" weight="0.24962178" />
+      <window_info id="Favorites" order="2" sideWeight="0.50163937" side_tool="true" weight="0.24962178" />
+      <window_info id="npm" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49924356" weight="0.3409836" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50075644" side_tool="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="TypeScript" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49836066" visible="true" weight="0.24432677" />
+      <window_info id="Structure" order="1" sideWeight="0.50163937" side_tool="true" weight="0.24962178" />
+      <window_info id="Favorites" order="2" sideWeight="0.50163937" side_tool="true" weight="0.24962178" />
+      <window_info id="npm" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3409836" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="TypeScript" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout-to-restore>
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -243,6 +812,12 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -263,5 +838,504 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="1519" column="5" selection-start-line="1519" selection-start-column="5" selection-end-line="1519" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="16799" column="32" selection-start-line="16799" selection-start-column="24" selection-end-line="16799" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/chat.pid">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/logs/laravel-2019-08-20.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/test.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="90" column="26" selection-start-line="90" selection-start-column="26" selection-end-line="90" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="16" column="21" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Service/Chat/Swoole/HandleEvent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+          <folding>
+            <element signature="e#591#774#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/User/UserFriend.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="31" column="6" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TestController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="106" column="6" selection-start-line="106" selection-start-column="6" selection-end-line="113" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-685">
+          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/libs/axios.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1333">
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="13" />
+          <folding>
+            <element signature="e#55#85#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repository/User/UserRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/User/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="45" column="6" selection-start-line="45" selection-start-column="6" selection-end-line="45" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="53" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/api/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="37" column="23" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="23" />
+          <folding>
+            <element signature="e#602#737#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/api/chat.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/store/module/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/view/public/systemMenu.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-81" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/store/module/talk.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="23" lean-forward="true" selection-end-line="42" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/store/module/friendPanelTool.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/store/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/store/module/friend.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="20" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/view/chat/friendPanel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="72" column="115" selection-start-line="72" selection-start-column="83" selection-end-line="72" selection-end-column="115" />
+          <folding>
+            <element signature="n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-row#0;n#el-col#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#el-row#0;n#el-col#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#el-col#1;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-col#0;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-col#1;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#2;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-col#2;n#div#0;n#div#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#2;n#div#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#2;n#div#1;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#2;n#div#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#span#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#span#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-avatar#0;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-badge#0;n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-badge#0;n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-badge#0;n#el-col#1;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-badge#0;n#el-col#1;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#2;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-badge#0;n#el-col#2;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-badge#0;n#el-col#2;n#el-row#0;n#el-col#1;n#el-row#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-dialog#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#span#0;n#el-dialog#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-dialog#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#span#0;n#el-dialog#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#tr#0;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#td#0;n#tr#0;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#td#0;n#tr#0;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#td#0;n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#td#0;n#tr#1;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#tr#2;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#td#0;n#tr#2;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#td#0;n#tr#2;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#tr#3;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#td#0;n#tr#3;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#td#0;n#tr#3;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#tr#4;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#td#0;n#tr#4;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#td#0;n#tr#4;n#table#0;n#el-dialog#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-input#0;n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#div#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-avatar#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#p#3;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#0;n#p#3;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-button#0;n#p#3;n#li#0;n#ul#0;n#div#1;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#0;n#el-col#0;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-button#0;n#el-col#0;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#0;n#el-col#1;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-button#0;n#el-col#1;n#el-row#0;n#div#2;n#el-tab-pane#0;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-avatar#0;n#el-col#0;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#el-col#1;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#template#0;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#template#1;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#0;n#template#1;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#1;n#template#1;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#template#2;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#0;n#template#2;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#1;n#template#2;n#div#0;n#el-col#2;n#div#0;n#el-row#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#0;n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-button#0;n#el-col#0;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#el-button#0;n#el-col#1;n#el-row#0;n#div#0;n#el-tab-pane#1;n#el-tabs#0;n#el-dialog#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-avatar#0;n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#p#0;n#el-col#0;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#2;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-button#0;n#el-col#2;n#el-row#0;n#el-dialog#4;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-dialog#5;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-row#0;n#el-dialog#5;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#0;n#el-row#0;n#el-dialog#5;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#el-col#1;n#el-row#0;n#el-dialog#5;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#script#0;n#!!top" />
+            <element signature="e#18952#36181#0" />
+            <element signature="e#18998#20178#0" />
+            <element signature="e#19019#20168#0" />
+            <element signature="e#20198#20759#0" />
+            <element signature="e#20242#20510#0" />
+            <element signature="e#20674#20747#0" />
+            <element signature="e#20778#20790#0" />
+            <element signature="e#20809#36175#0" />
+            <element signature="e#20837#20885#0" />
+            <element signature="e#20900#20941#0" />
+            <element signature="e#20962#21011#0" />
+            <element signature="e#21041#21984#0" />
+            <element signature="e#21140#21536#0" />
+            <element signature="e#21431#21517#0" />
+            <element signature="e#21542#21970#0" />
+            <element signature="e#21876#21950#0" />
+            <element signature="e#21999#22043#0" />
+            <element signature="e#22074#22219#0" />
+            <element signature="e#22126#22204#0" />
+            <element signature="e#22234#22275#0" />
+            <element signature="e#22314#22692#0" />
+            <element signature="e#22354#22587#0" />
+            <element signature="e#22593#22678#0" />
+            <element signature="e#22707#22748#0" />
+            <element signature="e#22793#23360#0" />
+            <element signature="e#22833#22988#0" />
+            <element signature="e#22994#23346#0" />
+            <element signature="e#23375#23457#0" />
+            <element signature="e#23488#23612#0" />
+            <element signature="e#23682#24020#0" />
+            <element signature="e#24035#24080#0" />
+            <element signature="e#24126#24399#0" />
+            <element signature="e#24414#24453#0" />
+            <element signature="e#24477#24535#0" />
+            <element signature="e#24550#24590#0" />
+            <element signature="e#24622#24679#0" />
+            <element signature="e#24694#24733#0" />
+            <element signature="e#24758#25319#0" />
+            <element signature="e#24806#24911#0" />
+            <element signature="e#24987#25303#0" />
+            <element signature="e#25032#25191#0" />
+            <element signature="e#25334#25462#0" />
+            <element signature="e#25498#25583#0" />
+            <element signature="e#25598#25649#0" />
+            <element signature="e#25688#25776#0" />
+            <element signature="e#25791#25911#0" />
+            <element signature="e#25937#26015#0" />
+            <element signature="e#26030#26069#0" />
+            <element signature="e#26102#26487#0" />
+            <element signature="e#26181#26471#0" />
+            <element signature="e#26502#26544#0" />
+            <element signature="e#26570#26699#0" />
+            <element signature="e#26714#26753#0" />
+            <element signature="e#26785#27429#0" />
+            <element signature="e#26891#27413#0" />
+            <element signature="e#26947#27160#0" />
+            <element signature="e#27016#27138#0" />
+            <element signature="e#27444#27483#0" />
+            <element signature="e#27509#27586#0" />
+            <element signature="e#27601#27640#0" />
+            <element signature="e#27663#27757#0" />
+            <element signature="e#27772#27811#0" />
+            <element signature="e#27839#28830#0" />
+            <element signature="e#27932#28076#0" />
+            <element signature="e#28089#28750#0" />
+            <element signature="e#28170#28731#0" />
+            <element signature="e#28278#28641#0" />
+            <element signature="e#28357#28614#0" />
+            <element signature="e#28438#28584#0" />
+            <element signature="e#28764#28813#0" />
+            <element signature="e#28845#28886#0" />
+            <element signature="e#28914#29040#0" />
+            <element signature="e#29055#29152#0" />
+            <element signature="e#29193#29752#0" />
+            <element signature="e#29289#29738#0" />
+            <element signature="e#29408#29720#0" />
+            <element signature="e#29519#29698#0" />
+            <element signature="e#29767#29812#0" />
+            <element signature="e#29847#29901#0" />
+            <element signature="e#29916#29956#0" />
+            <element signature="e#29992#30171#0" />
+            <element signature="e#30186#30304#0" />
+            <element signature="e#30335#30558#0" />
+            <element signature="e#30433#30486#0" />
+            <element signature="e#30492#30544#0" />
+            <element signature="e#30573#30654#0" />
+            <element signature="e#30685#31817#0" />
+            <element signature="e#30780#30845#0" />
+            <element signature="e#30894#30991#0" />
+            <element signature="e#30997#31064#0" />
+            <element signature="e#31176#31801#0" />
+            <element signature="e#31589#31700#0" />
+            <element signature="e#31706#31783#0" />
+            <element signature="e#31832#31872#0" />
+            <element signature="e#31898#31992#0" />
+            <element signature="e#32007#32052#0" />
+            <element signature="e#32093#32209#0" />
+            <element signature="e#32224#32269#0" />
+            <element signature="e#32306#32776#0" />
+            <element signature="e#32405#32732#0" />
+            <element signature="e#32528#32714#0" />
+            <element signature="e#32625#32692#0" />
+            <element signature="e#32791#32880#0" />
+            <element signature="e#32917#33397#0" />
+            <element signature="e#33040#33150#0" />
+            <element signature="e#33244#33382#0" />
+            <element signature="e#33412#33497#0" />
+            <element signature="e#33530#34428#0" />
+            <element signature="e#33623#33687#0" />
+            <element signature="e#33735#33831#0" />
+            <element signature="e#33837#33903#0" />
+            <element signature="e#33975#34412#0" />
+            <element signature="e#34202#34312#0" />
+            <element signature="e#34318#34394#0" />
+            <element signature="e#34443#34559#0" />
+            <element signature="e#34599#34915#0" />
+            <element signature="e#34751#34900#0" />
+            <element signature="e#34929#35001#0" />
+            <element signature="e#35050#35170#0" />
+            <element signature="e#35184#35227#0" />
+            <element signature="e#35287#35543#0" />
+            <element signature="e#35339#35527#0" />
+            <element signature="e#35409#35509#0" />
+            <element signature="e#35558#35599#0" />
+            <element signature="e#35631#36165#0" />
+            <element signature="e#35746#36150#0" />
+            <element signature="n#style#0;n#!!top" />
+            <element signature="e#36224#36283#0" />
+            <element signature="e#36295#36377#0" />
+            <element signature="e#36394#36456#0" />
+            <element signature="e#36474#36506#0" />
+            <element signature="e#36524#36692#0" />
+            <element signature="e#36729#36759#0" />
+            <element signature="e#36789#36853#0" />
+            <element signature="e#36898#36974#0" />
+            <element signature="e#37010#37059#0" />
+            <element signature="e#37080#37111#0" />
+            <element signature="e#37127#37159#0" />
+            <element signature="e#37173#37268#0" />
+            <element signature="e#37293#37329#0" />
+            <element signature="e#37344#37375#0" />
+            <element signature="e#37387#37448#0" />
+            <element signature="e#37464#37536#0" />
+            <element signature="e#37558#37633#0" />
+            <element signature="e#37645#37741#0" />
+            <element signature="e#37769#37805#0" />
+            <element signature="e#37824#37980#0" />
+            <element signature="e#38004#38068#0" />
+            <element signature="e#38098#38134#0" />
+            <element signature="e#38148#38178#0" />
+            <element signature="e#38206#38265#0" />
+            <element signature="e#38290#38325#0" />
+            <element signature="e#38344#38459#0" />
+            <element signature="e#38473#38587#0" />
+            <element signature="e#38605#38680#0" />
+            <element signature="e#38704#38740#0" />
+            <element signature="e#38765#38821#0" />
+            <element signature="e#38851#38952#0" />
+            <element signature="e#38979#39034#0" />
+            <element signature="e#39063#39132#0" />
+            <element signature="e#39159#39266#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/libs/wsk.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="43" column="69" selection-start-line="43" selection-start-column="69" selection-end-line="43" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#151#306#0" />
+            <element signature="e#347#397#0" />
+            <element signature="n#!!doc;n#bindFd#0" />
+            <element signature="n#!!block;n#bindFd#0" />
+            <element signature="n#!!doc;n#OK#0" />
+            <element signature="n#!!block;n#OK#0" />
+            <element signature="n#!!doc;n#friendOnline#0" />
+            <element signature="e#751#862#0" />
+            <element signature="e#954#978#0" />
+            <element signature="e#1055#1095#0" />
+            <element signature="e#576#643#0" />
+            <element signature="e#737#853#0" />
+            <element signature="e#924#951#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Service/Chat/Swoole/HandleMessageEvent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="50" column="38" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
+          <folding>
+            <element signature="e#45#65#0#PHP" expanded="true" />
+            <element signature="e#127#176#0#PHP" />
+            <element signature="e#208#265#0#PHP" />
+            <element signature="e#270#349#0#PHP" />
+            <element signature="e#355#425#0#PHP" />
+            <element signature="e#551#594#1#PHP" />
+            <element signature="e#623#685#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
