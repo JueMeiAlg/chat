@@ -100165,7 +100165,7 @@ router.beforeEach(function (to, from, next) {
   var is_login = true;
   var token = Object(_libs_util__WEBPACK_IMPORTED_MODULE_3__["getToken"])();
 
-  if (token == 'undefined' || Object(_libs_util__WEBPACK_IMPORTED_MODULE_3__["getToken"])() == 'null') {
+  if (token == 'undefined' || Object(_libs_util__WEBPACK_IMPORTED_MODULE_3__["getToken"])() == 'null' || Object(_libs_util__WEBPACK_IMPORTED_MODULE_3__["getToken"])() == false) {
     is_login = false;
   }
 
@@ -100201,15 +100201,15 @@ router.beforeEach(function (to, from, next) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
-  name: 'home',
-  component: function component(resolve) {
-    return __webpack_require__.e(/*! AMD require */ 0).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(/*! @/view/home */ "./resources/js/view/home.vue")]; (resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__);}.bind(this)).catch(__webpack_require__.oe);
-  }
-}, {
-  path: '/login',
   name: 'login',
   component: function component(resolve) {
     return __webpack_require__.e(/*! AMD require */ 1).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(/*! @/view/login */ "./resources/js/view/login.vue")]; (resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__);}.bind(this)).catch(__webpack_require__.oe);
+  }
+}, {
+  path: '/home',
+  name: 'home',
+  component: function component(resolve) {
+    return __webpack_require__.e(/*! AMD require */ 0).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(/*! @/view/home */ "./resources/js/view/home.vue")]; (resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__);}.bind(this)).catch(__webpack_require__.oe);
   }
 }]);
 

@@ -586,7 +586,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       _this.friendAuthList = response.data.data;
     });
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    _libs_wsk__WEBPACK_IMPORTED_MODULE_1__["default"].sendBindFd();
+  },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(['friendAuthNum']), {
     openList: function openList(index) {
       if (this.getIdDom('sj' + index).getAttribute('xlink:href') === "#icon-sanjiao") {

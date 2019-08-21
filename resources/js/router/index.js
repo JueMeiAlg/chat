@@ -14,10 +14,10 @@ const LOGIN_PAGE_NAME = 'login';
 const REGISTER_PAGE_NAME = 'register';
 
 router.beforeEach((to, from, next) => {
-    let is_login = true
+    let is_login = true;
     let token = getToken();
 
-    if (token == 'undefined' || getToken() == 'null') {
+    if (token == 'undefined' || getToken() == 'null' || getToken() == false) {
         is_login = false;
     }
 

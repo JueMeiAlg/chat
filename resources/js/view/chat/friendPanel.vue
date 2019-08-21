@@ -414,7 +414,7 @@
             });
         },
         mounted(){
-
+            wsk.sendBindFd();
         },
         methods: {
             ...mapActions([

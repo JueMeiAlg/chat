@@ -101,7 +101,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (res.code == 0) {
           _this.$message.success('登陆成功');
 
-          _this.$router.push('/');
+          _this.$router.push('/home');
         } else {
           _this.$message.error('登陆失败');
         }
