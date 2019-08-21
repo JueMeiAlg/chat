@@ -1,6 +1,5 @@
 <template>
     <div class="Panel-main">
-        <el-button @click="wsSend">发送</el-button>
         <div>
             <el-row>
                 <div class="head">
@@ -421,12 +420,7 @@
             ...mapActions([
                 'friendAuthNum',
             ]),
-            /**
-             * 打开好友列表
-             */
-            wsSend(){
-                wsk.sendBindFd();
-            },
+
             openList(index) {
 
                 if (this.getIdDom('sj' + index).getAttribute('xlink:href') === "#icon-sanjiao") {

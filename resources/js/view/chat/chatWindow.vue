@@ -68,7 +68,7 @@
                     </el-col>
                     <el-col :span="24">
                         <div class="tool">
-                            聊天工具条
+                            聊天工具条(占位,暂未实现)
                         </div>
                     </el-col>
                     <el-col :span="24">
@@ -79,10 +79,10 @@
                                 </div>
                             </el-col>
                             <el-col :offset="16" :span="2">
-                                <el-button size="small" class="close-button">关闭</el-button>
+                                <el-button size="small" class="close-button" @click="closeBeingChatWindow">关闭</el-button>
                             </el-col>
                             <el-col :offset="1" :span="2">
-                                <el-button size="small" class="send-button">发送</el-button>
+                                <el-button size="small" class="send-button" @click="sendMsg">发送</el-button>
                             </el-col>
                         </el-row>
                     </el-col>
@@ -93,6 +93,8 @@
 </template>
 
 <script>
+    import wsk from '@/libs/wsk';
+
     export default {
         name: "chatWindow",
         data() {
@@ -131,6 +133,13 @@
             setBeingChatFriend(friend) {
                 this.msg = "";
                 this.$store.commit('setCurrentBeinTalkFriend', friend);
+            },
+            /**
+             * 发送消息
+             */
+            sendMsg(){
+                wsk.sendMsg(this.$store.state.talk.currentBeinTalkFriend.id, this.msg);
+                this.msg = "";
             }
         }
     }
@@ -225,6 +234,7 @@
     }
 
     .friendTalk-main {
+        float: left;
         padding: 5px 5px 5px 20px;
         text-align: left;
         width: 100%;

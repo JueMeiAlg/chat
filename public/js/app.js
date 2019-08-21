@@ -99402,7 +99402,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/libs/axios */ "./resources/js/libs/axios.js");
 
 /**
- * 好友分栏信息
+ * 好友消息
  *
  * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<T>}
  */
@@ -99929,6 +99929,212 @@ var getUserId = function getUserId() {
 
 /***/ }),
 
+/***/ "./resources/js/libs/wsk.js":
+/*!**********************************!*\
+  !*** ./resources/js/libs/wsk.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_chat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/api/chat */ "./resources/js/api/chat.js");
+
+
+var wsServer = 'ws://127.0.0.1:9502';
+var websocket = new WebSocket(wsServer);
+
+websocket.onmessage = function (evt) {
+  console.log('服务器来消息啦!', evt.data);
+  var response = JSON.parse(evt.data);
+  var methodName = response.msg;
+  eval("".concat(methodName, "(response)"));
+};
+
+websocket.onerror = function (evt, e) {
+  console.log('Error occured: ' + evt.data, e);
+};
+/**
+ * 绑定Fd
+ */
+
+
+function bindFd(response) {
+  js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.set('fd', response.data.fd);
+}
+/**
+ * 响应成功函数
+ */
+
+
+function OK(response) {
+  //成功处理了响应OK
+  console.log(response);
+}
+/**
+ * 好友上线处理函数
+ */
+
+
+function friendOnline(response) {
+  var fd = response.data.fd;
+  window.vueApp.$notify({
+    title: '好友上线通知',
+    message: "\u4F60\u7684\u597D\u53CB".concat(response.data.userName, "\u4E0A\u7EBF\u5566"),
+    position: 'top-left'
+  });
+  window.vueApp.$store.state.friend.columnFriend.forEach(function (item) {
+    item.friend.forEach(function (friendItem) {
+      if (friendItem.id == response.data.id) {
+        //更改fd状态
+        friendItem.fd = fd;
+        return;
+      }
+    });
+  });
+  window.vueApp.$store.state.talk.currentBeinTalkFriend.forEach(function (item) {
+    if (item.id == response.data.id) {
+      //更改fd状态
+      item.fd = fd;
+      return;
+    }
+  });
+  window.vueApp.$store.state.talk.friendList.forEach(function (item) {
+    if (item.id == response.data.id) {
+      //更改fd状态
+      item.fd = fd;
+      return;
+    }
+  });
+}
+/**
+ * 好友发来消息处理函数
+ *
+ * @param response
+ */
+
+
+function friendMsg(response) {
+  if (wsk.isExistMsgRecord(response.data.friend_id)) {
+    wsk.msgJoinRecord(response.data.friend_id, response.data.msg);
+  } else {
+    wsk.getFriendMsgRecord(response.data.friend_id);
+  } //当前消息是否是正在聊天的消息
+
+
+  if (window.vueApp.$store.state.talk.currentBeinTalkFriend.id == response.data.friend_id) {
+    //加入到当前正在聊天的vuex状态中
+    window.vueApp.$store.state.talk.currentBeingTalkRecord.push({
+      user_id: response.data.friend_id,
+      msg: response.data.msg
+    });
+  }
+}
+
+var wsk = {
+  /**
+   * 本地是否存在和好友的消息聊天记录
+   *
+   * @param friendId
+   */
+  isExistMsgRecord: function isExistMsgRecord(friendId) {
+    for (var i = 0; i < window.vueApp.$store.state.talk.friendChatRecord.length; i++) {
+      //与这个好友的聊天记录双方存在缓存中
+      if (window.vueApp.$store.state.talk.friendChatRecord[i].id == friendId) {
+        return true;
+      }
+    }
+
+    return false;
+  },
+
+  /**
+   * 消息加入记录中
+   *
+   * @param friendId
+   * @param msg
+   */
+  msgJoinRecord: function msgJoinRecord(friendId, msg) {
+    for (var i = 0; i < window.vueApp.$store.state.talk.friendChatRecord.length; i++) {
+      //与这个好友的聊天记录双方存在缓存中
+      if (window.vueApp.$store.state.talk.friendChatRecord[i].id == friendId) {
+        window.vueApp.$store.state.talk.friendChatRecord[i].record.push({
+          user_id: window.vueApp.$store.state.user.userId,
+          friend_id: friendId,
+          msg: msg
+        });
+        return;
+      }
+    }
+  },
+
+  /**
+   * 获得好友的聊天记录
+   *
+   * @param friendId
+   */
+  getFriendMsgRecord: function getFriendMsgRecord(friendId) {
+    Object(_api_chat__WEBPACK_IMPORTED_MODULE_1__["chatMsgRecord"])(friendId).then(function (apiRes) {
+      window.vueApp.$store.state.talk.friendChatRecord.push({
+        id: friendId,
+        record: apiRes.data.data
+      });
+    });
+  },
+
+  /**
+   * 消息发送
+   *
+   * @param msg
+   * @param data
+   */
+  send: function send(msg, data) {
+    if (websocket.readyState === 1) {
+      var message = {
+        msg: msg,
+        data: data
+      };
+      message = JSON.stringify(message);
+      console.log("\u53D1\u9001:".concat(msg, ",\u7C7B\u578B\u6D88\u606F"), message);
+      websocket.send(message);
+    } else {//do something
+    }
+  },
+
+  /**
+   * 发送绑定Fd消息
+   */
+  sendBindFd: function sendBindFd() {
+    this.send('bindFd', {
+      userId: js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.get('userId'),
+      fd: js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.get('fd')
+    });
+  },
+
+  /**
+   * 发送好友消息
+   *
+   * @param friend
+   * @param msg
+   */
+  sendMsg: function sendMsg(friend, msg) {
+    this.send('friendMsg', {
+      userId: window.vueApp.$store.state.user.userId,
+      friendId: friend,
+      msg: msg
+    });
+    window.vueApp.$store.state.talk.currentBeingTalkRecord.push({
+      user_id: window.vueApp.$store.state.user.userId,
+      msg: msg
+    });
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (wsk);
+
+/***/ }),
+
 /***/ "./resources/js/router/index.js":
 /*!**************************************!*\
   !*** ./resources/js/router/index.js ***!
@@ -100135,6 +100341,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_chat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/api/chat */ "./resources/js/api/chat.js");
+/* harmony import */ var _libs_wsk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/libs/wsk */ "./resources/js/libs/wsk.js");
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
@@ -100166,17 +100374,41 @@ __webpack_require__.r(__webpack_exports__);
       this.commit('setCurrentBeinTalkFriend', friend);
     },
     setCurrentBeinTalkFriend: function setCurrentBeinTalkFriend(state, friend) {
-      state.currentBeingTalkRecord = [];
-      Object(_api_chat__WEBPACK_IMPORTED_MODULE_0__["chatMsgRecord"])(friend.id).then(function (response) {
-        response.data.data.forEach(function (item) {
-          state.currentBeingTalkRecord.push(item);
-          state.friendChatRecord.push({
-            friend_id: item.friend_id,
-            record: item
-          });
-        });
-      });
+      if (_libs_wsk__WEBPACK_IMPORTED_MODULE_1__["default"].isExistMsgRecord(friend.id) === false) {
+        _libs_wsk__WEBPACK_IMPORTED_MODULE_1__["default"].getFriendMsgRecord(friend.id);
+      }
+
       state.currentBeinTalkFriend = friend;
+      var cache = [];
+      state.currentBeingTalkRecord = [];
+
+      for (var i = 0; i < window.vueApp.$store.state.talk.friendChatRecord.length; i++) {
+        if (window.vueApp.$store.state.talk.friendChatRecord[i].id == friend.id) {
+          cache = window.vueApp.$store.state.talk.friendChatRecord[i].record;
+          cache.forEach(function (item) {
+            state.currentBeingTalkRecord.push(item);
+          });
+          return;
+        }
+      }
+
+      Object(_api_chat__WEBPACK_IMPORTED_MODULE_0__["chatMsgRecord"])(friend.id).then(function (apiRes) {
+        window.vueApp.$store.state.talk.friendChatRecord.push({
+          id: friend.id,
+          record: apiRes.data.data
+        });
+        var cache = [];
+
+        for (var _i = 0; _i < window.vueApp.$store.state.talk.friendChatRecord.length; _i++) {
+          if (window.vueApp.$store.state.talk.friendChatRecord[_i].id == friend.id) {
+            cache = window.vueApp.$store.state.talk.friendChatRecord[_i].record;
+            cache.forEach(function (item) {
+              state.currentBeingTalkRecord.push(item);
+            });
+            return;
+          }
+        }
+      });
     }
   },
   actions: {}

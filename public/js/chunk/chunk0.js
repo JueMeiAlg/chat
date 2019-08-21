@@ -9,6 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _libs_wsk__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/libs/wsk */ "./resources/js/libs/wsk.js");
 //
 //
 //
@@ -103,6 +104,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "chatWindow",
   data: function data() {
@@ -143,6 +145,14 @@ __webpack_require__.r(__webpack_exports__);
     setBeingChatFriend: function setBeingChatFriend(friend) {
       this.msg = "";
       this.$store.commit('setCurrentBeinTalkFriend', friend);
+    },
+
+    /**
+     * 发送消息
+     */
+    sendMsg: function sendMsg() {
+      _libs_wsk__WEBPACK_IMPORTED_MODULE_0__["default"].sendMsg(this.$store.state.talk.currentBeinTalkFriend.id, this.msg);
+      this.msg = "";
     }
   }
 });
@@ -167,7 +177,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -579,12 +588,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mounted: function mounted() {},
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])(['friendAuthNum']), {
-    /**
-     * 打开好友列表
-     */
-    wsSend: function wsSend() {
-      _libs_wsk__WEBPACK_IMPORTED_MODULE_1__["default"].sendBindFd();
-    },
     openList: function openList(index) {
       if (this.getIdDom('sj' + index).getAttribute('xlink:href') === "#icon-sanjiao") {
         this.getIdDom('friendColumn' + index).style.display = "none";
@@ -1153,7 +1156,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.chat-window[data-v-81b787da] {\n    height: 600px;\n    margin-right: 50px;\n}\n.chat-list[data-v-81b787da] {\n    background: #d9d9d9;\n    height: 580px !important;\n    padding: 10px;\n}\n.user-name-main[data-v-81b787da] {\n    padding-top: 15px;\n    color: #404040;\n}\n.userInfo[data-v-81b787da] {\n    background: #ececec;\n    padding: 10px;\n}\n.userStatus[data-v-81b787da] {\n    padding-top: 5px;\n}\n.username[data-v-81b787da] {\n    font-size: 18px;\n}\n.status[data-v-81b787da] {\n    font-size: 14px;\n    color: #a6a6a6;\n}\n.minus[data-v-81b787da] {\n    margin-right: 5px\n}\n.close[data-v-81b787da] {\n}\n.talk[data-v-81b787da] {\n    height: 340px;\n    background: #fbfbfb;\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.talk[data-v-81b787da]::-webkit-scrollbar {\n    display: none;\n}\n.tool[data-v-81b787da] {\n    padding-top: 4px;\n    height: 40px;\n    background: #fbfbfb;\n}\n.message-main[data-v-81b787da] {\n    background: #fbfbfb;\n}\n.message[data-v-81b787da] {\n    height: 100px;\n}\n.chat-friend-item[data-v-81b787da]:hover {\n    background: #f5f5f5;\n}\n.send-button[data-v-81b787da] {\n    background: #5fb878;\n    color: #ecf7f0;\n    width: 100px;\n    margin-bottom: 10px;\n}\n.close-button[data-v-81b787da] {\n    background: #5fb878;\n    color: #ecf7f0;\n    margin-bottom: 10px;\n}\n.nameTime[data-v-81b787da] {\n    margin-bottom: 5px;\n}\n.friendTalk-main[data-v-81b787da] {\n    padding: 5px 5px 5px 20px;\n    text-align: left;\n    width: 100%;\n}\n.friendTalk[data-v-81b787da] {\n    padding: 5px;\n    background: #e2e2e2;\n    width: 50%;\n    float: left;\n}\n.myTalk-main[data-v-81b787da] {\n    float: right;\n    padding: 5px 20px 5px 5px;\n    text-align: left;\n    width: 100%\n}\n.myTalk[data-v-81b787da] {\n    background: #5fb878;\n    padding: 5px;\n    color: #fff;\n    width: 50%;\n    float: right;\n}\n.close-friend-chat[data-v-81b787da] {\n    display: none;\n    font-size: 12px;\n}\n.close-friend-chat[data-v-81b787da]:hover {\n    background: #d5d5d5;\n}\n.chat-friend-item:hover .close-friend-chat[data-v-81b787da] {\n    display: block;\n}\n.friend-list-off-line[data-v-81b787da] {\n    -webkit-filter: grayscale(1);\n            filter: grayscale(1);\n    opacity: 0.8;\n}\n", ""]);
+exports.push([module.i, "\n.chat-window[data-v-81b787da] {\n    height: 600px;\n    margin-right: 50px;\n}\n.chat-list[data-v-81b787da] {\n    background: #d9d9d9;\n    height: 580px !important;\n    padding: 10px;\n}\n.user-name-main[data-v-81b787da] {\n    padding-top: 15px;\n    color: #404040;\n}\n.userInfo[data-v-81b787da] {\n    background: #ececec;\n    padding: 10px;\n}\n.userStatus[data-v-81b787da] {\n    padding-top: 5px;\n}\n.username[data-v-81b787da] {\n    font-size: 18px;\n}\n.status[data-v-81b787da] {\n    font-size: 14px;\n    color: #a6a6a6;\n}\n.minus[data-v-81b787da] {\n    margin-right: 5px\n}\n.close[data-v-81b787da] {\n}\n.talk[data-v-81b787da] {\n    height: 340px;\n    background: #fbfbfb;\n    overflow-x: hidden;\n    overflow-y: scroll;\n}\n.talk[data-v-81b787da]::-webkit-scrollbar {\n    display: none;\n}\n.tool[data-v-81b787da] {\n    padding-top: 4px;\n    height: 40px;\n    background: #fbfbfb;\n}\n.message-main[data-v-81b787da] {\n    background: #fbfbfb;\n}\n.message[data-v-81b787da] {\n    height: 100px;\n}\n.chat-friend-item[data-v-81b787da]:hover {\n    background: #f5f5f5;\n}\n.send-button[data-v-81b787da] {\n    background: #5fb878;\n    color: #ecf7f0;\n    width: 100px;\n    margin-bottom: 10px;\n}\n.close-button[data-v-81b787da] {\n    background: #5fb878;\n    color: #ecf7f0;\n    margin-bottom: 10px;\n}\n.nameTime[data-v-81b787da] {\n    margin-bottom: 5px;\n}\n.friendTalk-main[data-v-81b787da] {\n    float: left;\n    padding: 5px 5px 5px 20px;\n    text-align: left;\n    width: 100%;\n}\n.friendTalk[data-v-81b787da] {\n    padding: 5px;\n    background: #e2e2e2;\n    width: 50%;\n    float: left;\n}\n.myTalk-main[data-v-81b787da] {\n    float: right;\n    padding: 5px 20px 5px 5px;\n    text-align: left;\n    width: 100%\n}\n.myTalk[data-v-81b787da] {\n    background: #5fb878;\n    padding: 5px;\n    color: #fff;\n    width: 50%;\n    float: right;\n}\n.close-friend-chat[data-v-81b787da] {\n    display: none;\n    font-size: 12px;\n}\n.close-friend-chat[data-v-81b787da]:hover {\n    background: #d5d5d5;\n}\n.chat-friend-item:hover .close-friend-chat[data-v-81b787da] {\n    display: block;\n}\n.friend-list-off-line[data-v-81b787da] {\n    -webkit-filter: grayscale(1);\n            filter: grayscale(1);\n    opacity: 0.8;\n}\n", ""]);
 
 // exports
 
@@ -1523,7 +1526,7 @@ var render = function() {
                       _c("el-col", { attrs: { span: 24 } }, [
                         _c("div", { staticClass: "tool" }, [
                           _vm._v(
-                            "\n                        聊天工具条\n                    "
+                            "\n                        聊天工具条(占位,暂未实现)\n                    "
                           )
                         ])
                       ]),
@@ -1569,7 +1572,8 @@ var render = function() {
                                     "el-button",
                                     {
                                       staticClass: "close-button",
-                                      attrs: { size: "small" }
+                                      attrs: { size: "small" },
+                                      on: { click: _vm.closeBeingChatWindow }
                                     },
                                     [_vm._v("关闭")]
                                   )
@@ -1585,7 +1589,8 @@ var render = function() {
                                     "el-button",
                                     {
                                       staticClass: "send-button",
-                                      attrs: { size: "small" }
+                                      attrs: { size: "small" },
+                                      on: { click: _vm.sendMsg }
                                     },
                                     [_vm._v("发送")]
                                   )
@@ -1638,8 +1643,6 @@ var render = function() {
     "div",
     { staticClass: "Panel-main" },
     [
-      _c("el-button", { on: { click: _vm.wsSend } }, [_vm._v("发送")]),
-      _vm._v(" "),
       _c(
         "div",
         [
@@ -3234,109 +3237,6 @@ function normalizeComponent (
   }
 }
 
-
-/***/ }),
-
-/***/ "./resources/js/libs/wsk.js":
-/*!**********************************!*\
-  !*** ./resources/js/libs/wsk.js ***!
-  \**********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _api_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/api/user */ "./resources/js/api/user.js");
-
-
-var wsServer = 'ws://127.0.0.1:9502';
-var websocket = new WebSocket(wsServer);
-
-websocket.onmessage = function (evt) {
-  console.log('服务器来消息啦!', evt.data);
-  var response = JSON.parse(evt.data);
-  var methodName = response.msg;
-  eval("".concat(methodName, "(response)"));
-};
-
-websocket.onerror = function (evt, e) {
-  console.log('Error occured: ' + evt.data, e);
-};
-/**
- * 绑定Fd
- */
-
-
-function bindFd(response) {
-  js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.set('fd', response.data.fd);
-}
-/**
- * 响应成功函数
- */
-
-
-function OK(response) {
-  //成功处理了响应OK
-  console.log(response);
-}
-/**
- * 好友上线处理函数
- */
-
-
-function friendOnline(response) {
-  var fd = response.data.fd;
-  Object(_api_user__WEBPACK_IMPORTED_MODULE_1__["fdUserInfo"])(fd).then(function (response) {
-    window.vueApp.$notify({
-      title: '好友上线通知',
-      message: "\u4F60\u7684\u597D\u53CB".concat(response.data.data.name, "\u4E0A\u7EBF\u5566"),
-      position: 'top-left'
-    });
-    window.vueApp.$store.state.friend.columnFriend.forEach(function (item) {
-      item.friend.forEach(function (friendItem) {
-        if (friendItem.id == response.data.data.id) {
-          //更改fd状态
-          friendItem.fd = fd;
-          return;
-        }
-      });
-    });
-  });
-}
-
-var wsk = {
-  /**
-   * 消息发送
-   *
-   * @param msg
-   * @param data
-   */
-  send: function send(msg, data) {
-    if (websocket.readyState === 1) {
-      var message = {
-        msg: msg,
-        data: data
-      };
-      message = JSON.stringify(message);
-      console.log("\u53D1\u9001:".concat(msg, ",\u7C7B\u578B\u6D88\u606F"), message);
-      websocket.send(message);
-    } else {//do something
-    }
-  },
-
-  /**
-   * 发送绑定Fd消息
-   */
-  sendBindFd: function sendBindFd() {
-    this.send('bindFd', {
-      userId: js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.get('userId'),
-      fd: js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.get('fd')
-    });
-  }
-};
-/* harmony default export */ __webpack_exports__["default"] = (wsk);
 
 /***/ }),
 

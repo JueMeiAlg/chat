@@ -4,6 +4,7 @@
 namespace App\Service\Chat\Swoole;
 
 
+use App\Models\Chat\ChatMsgRecord;
 use App\Models\User;
 use Swoole\WebSocket\Server;
 
@@ -34,11 +35,12 @@ class HandleMessageEvent
      */
     public function bindFd($userId, $fd)
     {
-        User::query()
+        $user = User::query()
             ->where('id', $userId)
-            ->update([
-                'fd' => $fd
-            ]);
+            ->first();
+        $user->update([
+            'fd' => $fd
+        ]);
 
         $this->send($fd, [
             'msg' => 'OK',
@@ -58,10 +60,48 @@ class HandleMessageEvent
         $this->sendFds($fds, [
             'msg' => 'friendOnline',
             'data' => [
-                'fd' => $fd
+                'fd' => $fd,
+                'userName' => $user->name,
+                'id' => $user->id
             ]
         ]);
 
+    }
+
+    /**
+     * 转发好友消息
+     */
+    public function friendMsg($userId, $friendId, $msg)
+    {
+        //得到好友的Fd
+        $friendFd = User::query()
+            ->where('id', $friendId)
+            ->first()
+            ->fd;
+
+        //插入消息,双方消息反插
+        ChatMsgRecord::query()->create([
+            'msg' => $msg,
+            'friend_id' => $friendId,
+            'user_id' => $userId,
+        ]);
+        ChatMsgRecord::query()->create([
+            'msg' => $msg,
+            'friend_id' => $userId,
+            'user_id' => $friendId,
+        ]);
+
+        //如果当前好友在线想他推送消息
+        if (!is_null($friendFd)) {
+            $this->send($friendFd, [
+                'msg' => 'friendMsg',
+                'data' => [
+                    'friend_id' => $userId,
+                    'friend_fd' => $friendFd,
+                    'msg'=>$msg
+                ]
+            ]);
+        }
     }
 
     /**
