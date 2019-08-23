@@ -18,6 +18,7 @@ class HandleEvent
      */
     public function OnOpen(Server $ws, Request $request)
     {
+        //发送fd绑定消息
         $ws->push($request->fd, json_encode([
             'code' => 0,
             'msg' => 'bindFd',
@@ -37,6 +38,7 @@ class HandleEvent
     {
         $request = json_decode($frame->data, true);
         HandleMessageEvent::setWs($ws);
+        //已msg作为函数名 data中的数据作为参数,实现一个简单的路由调用
         App::call(HandleMessageEvent::class . '@' . $request['msg'], $request['data'] ?? []);
     }
 
@@ -61,7 +63,9 @@ class HandleEvent
         foreach (spl_autoload_functions() as $function) {
             spl_autoload_unregister($function);
         }
+        //设置进程名称方便辨认
         swoole_set_process_name('chat: master process');
+        //记录Pid用于重启或者停止进程
         file_put_contents(config('chat.settings.pid_file'), $server->master_pid);
     }
 
@@ -72,6 +76,7 @@ class HandleEvent
      */
     public function onManagerStart(Server $server)
     {
+        //设置进程名称方便辨认
         swoole_set_process_name('chat: manager process');
     }
 

@@ -6,8 +6,16 @@ namespace App\Service\Chat\Swoole;
 
 use App\Models\Chat\ChatMsgRecord;
 use App\Models\User;
+use App\Repository\Chat\ChatRepository;
+use App\Repository\User\UserRepository;
 use Swoole\WebSocket\Server;
 
+/**
+ * 消息处理类
+ *
+ * Class HandleMessageEvent
+ * @package App\Service\Chat\Swoole
+ */
 class HandleMessageEvent
 {
     /**
@@ -28,6 +36,14 @@ class HandleMessageEvent
     }
 
     /**
+     * 清除连接实例
+     */
+    public static function clearWs()
+    {
+        static::$ws = null;
+    }
+
+    /**
      * 绑定Fd
      *
      * @param $userId
@@ -35,29 +51,21 @@ class HandleMessageEvent
      */
     public function bindFd($userId, $fd)
     {
-        $user = User::query()
-            ->where('id', $userId)
-            ->first();
-        $user->update([
-            'fd' => $fd
-        ]);
+        $userRepository = app(UserRepository::class);
 
+        $user = $userRepository->idGetUser($userId);
+        //fd绑定
+        $userRepository->fdBind($fd, $userId);
+
+        //通知连接用户绑定成功
         $this->send($fd, [
             'msg' => 'OK',
             'code' => 0
         ]);
 
-        //通知他的好友上线信息
-        $fds = User\UserFriend::query()
-            ->with('friend:id,fd')
-            ->where('user_id', $userId)
-            ->get()
-            ->pluck('friend')
-            ->pluck('fd')->reject(function ($value) {
-                return is_null($value);
-            })->values()->toArray();
+        $friendFds = $userRepository->getAllFriendFd($userId);
 
-        $this->sendFds($fds, [
+        $this->sendFds($friendFds, [
             'msg' => 'friendOnline',
             'data' => [
                 'fd' => $fd,
@@ -74,22 +82,9 @@ class HandleMessageEvent
     public function friendMsg($userId, $friendId, $msg)
     {
         //得到好友的Fd
-        $friendFd = User::query()
-            ->where('id', $friendId)
-            ->first()
-            ->fd;
-
-        //插入消息,双方消息反插
-        ChatMsgRecord::query()->create([
-            'msg' => $msg,
-            'friend_id' => $friendId,
-            'user_id' => $userId,
-        ]);
-        ChatMsgRecord::query()->create([
-            'msg' => $msg,
-            'friend_id' => $userId,
-            'user_id' => $friendId,
-        ]);
+        $friendFd = app(UserRepository::class)->userIdGetFd($friendId);
+        //插入消息
+        app(ChatRepository::class)->createMsg($userId, $friendId, $msg);
 
         //如果当前好友在线想他推送消息
         if (!is_null($friendFd)) {

@@ -10,6 +10,7 @@ use App\Models\User\UserColumn;
 use App\Service\Chat\Swoole\HandleMessageEvent;
 use App\Service\Search\User\Contract\SearchUserInterface;
 use App\Service\Search\User\MysqlSearchDriver;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\App;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 
@@ -113,6 +114,15 @@ class TestController extends Controller
                 return is_null($value);
             })->values()->toArray();
         dd($user);
+    }
+
+    public function t10()
+    {
+        User::query()->orWhere(function (\Illuminate\Database\Eloquent\Builder $query) {
+            dd($query);
+            $query->where('friend_id', 1)
+                ->where('user_id',  1);
+        });
     }
 }
 

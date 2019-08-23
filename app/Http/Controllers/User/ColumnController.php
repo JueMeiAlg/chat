@@ -6,8 +6,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\StatusCode;
-use App\Models\User\UserColumn;
-use App\Models\User\UserFriend;
+use App\Repository\User\UserRepository;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -19,6 +18,24 @@ use Illuminate\Support\Facades\Auth;
 class ColumnController extends Controller
 {
     /**
+     * 数据仓库对象
+     *
+     * @var UserRepository
+     */
+    protected $userRepository;
+
+    /**
+     * 注入仓库服务
+     *
+     * ColumnController constructor.
+     * @param UserRepository $userRepository
+     */
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+    /**
      * 存储栏目数据
      *
      * @return \Illuminate\Http\JsonResponse
@@ -29,8 +46,9 @@ class ColumnController extends Controller
         $field = $this->formVerif([
             'name' => 'required'
         ]);
-        $field['user_id'] = Auth::id();
-        $id = UserColumn::query()->create($field)->id;
+
+        $id = $this->userRepository->addFriendColumn($field['name'], Auth::id())->id;
+
         return $this->Json(StatusCode::SUCCESS, ['data' => ['id' => $id]]);
     }
 
@@ -46,55 +64,21 @@ class ColumnController extends Controller
         $field = $this->formVerif([
             'name' => 'required'
         ]);
-        UserColumn::query()
-            ->where('id', $id)
-            ->update($field);
+        $this->userRepository->updateColumn($field['name'], $id);
+
         return $this->Json(StatusCode::SUCCESS);
     }
 
     /**
      * 删除分栏信息,如果分栏下有好友信息,自动移动到其他分栏下
      *
-     * @param $id
+     * @param int $id 分栏Id
      * @return \Illuminate\Http\JsonResponse
+     * @throws \App\Exceptions\ApiException
      */
     public function destroy($id)
     {
-        //他的其他分组
-        $column = UserColumn::query()
-            ->where('user_id', Auth::id())
-            ->orderByDesc('id')
-            ->where('id', '!=', $id)
-            ->first();
-
-        //如果没有数据 说明在删除最后一个分栏信息,最后一个不允许删除
-        if (is_null($column)) {
-            return $this->Json(StatusCode::ERROR, ['msg' => '最后一个分栏不允许删除']);
-        }
-
-        //查出这个分栏下关联的好友信息
-        $friendIds = UserFriend::query()
-            ->where('column_id', $id)
-            ->pluck('friend_id')->toArray();
-
-        //删除关联信息
-        UserFriend::query()
-            ->where('column_id', $id)
-            ->where('user_id', Auth::id())
-            ->delete();
-
-        //重写跟新分栏建立关联关系
-        foreach ($friendIds as $friend) {
-            UserFriend::query()->create([
-                'column_id' => $column->id,
-                'friend_id' => $friend,
-                'user_id' => Auth::id(),
-            ]);
-        }
-        //删除栏目信息
-        UserColumn::query()
-            ->where('id', $id)
-            ->delete();
+        $this->userRepository->destroyColumn($id, Auth::id());
 
         return $this->Json(StatusCode::SUCCESS, ['msg' => '删除成功,如果下面有好友,会自动移动到其他分组中']);
     }
@@ -106,10 +90,8 @@ class ColumnController extends Controller
      */
     public function index()
     {
-        $columnFriend = UserColumn::query()
-            ->where('user_id', Auth::id())
-            ->with('friend')
-            ->get();
+        $columnFriend = $this->userRepository->columnFriend(Auth::id());
+
         return $this->Json(StatusCode::SUCCESS, ['data' => $columnFriend]);
     }
 }

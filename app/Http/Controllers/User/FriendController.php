@@ -9,6 +9,7 @@ use App\Http\StatusCode;
 use App\Models\User\FriendAuth;
 use App\Models\User\UserColumn;
 use App\Models\User\UserFriend;
+use App\Repository\User\UserRepository;
 use App\Service\Search\User\Contract\SearchUserInterface;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,23 +22,35 @@ use Illuminate\Support\Facades\Auth;
 class FriendController extends Controller
 {
     /**
+     * 数据仓库对象
+     *
+     * @var UserRepository
+     */
+    protected $userRepository;
+
+    /**
+     * 注入仓库服务
+     *
+     * FriendController constructor.
+     * @param UserRepository $userRepository
+     */
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+    /**
      * 删除好友
      *
-     * @param $id
+     * @param int $id 好友Id
+     *
      * @return \Illuminate\Http\JsonResponse
+     * @throws \App\Exceptions\ApiException
      */
     public function destroy($id)
     {
-        //删除好友表中的数据
-        UserFriend::query()
-            ->where('user_id', Auth::id())
-            ->where('friend_id', $id)
-            ->delete();
-        //双方互相删除
-        UserFriend::query()
-            ->where('friend_id', Auth::id())
-            ->where('user_id', $id)
-            ->delete();
+        $this->userRepository->destroyFriend($id, Auth::id());
+
         return $this->Json(StatusCode::SUCCESS);
     }
 
@@ -50,21 +63,21 @@ class FriendController extends Controller
     public function searchFriend()
     {
         $field = $this->formVerif([
-            'phone' => 'required'
+            'phone' => 'required',
+
         ]);
-        $users = app(SearchUserInterface::class)
-            ->setPhone($field['phone'])
-            ->setPage(request()->get('page', 1))
-            ->setLimit(request()->get('limit', 10))
-            ->search();
+        $page = request()->get('page', 1);
+        $limit = request()->get('limit', 10);
+        $users = $this->userRepository->searchFriend($field['phone'], $page, $limit);
 
         return $this->Json(StatusCode::SUCCESS, ['data' => $users]);
     }
 
     /**
-     * 添加好友
+     * 添加好友,或者拒绝好友都是这个函数处理
      *
      * @return \Illuminate\Http\JsonResponse
+     * @throws \App\Exceptions\ApiException
      * @throws \App\Exceptions\FromVerif
      */
     public function store()
@@ -74,39 +87,14 @@ class FriendController extends Controller
             'status' => 'required',
             'reason' => 'nullable',
         ]);
-        //修改信息状态3
+        //修改信息状态
+        $this->userRepository->updateFriendAuth(Auth::id(), $field['friend_id'], $field['status'], $field['reason']);
 
-        FriendAuth::query()
-            ->where('user_id', Auth::id())
-            ->where('friend_id', $field['friend_id'])
-            ->update([
-                'status' => $field['status'],
-                'reason' => $field['reason'],
-            ]);
+
         if ($field['status'] == FriendAuth::PASS) {
-            //好友记录反插 双方都有
-            $columnId = UserColumn::query()
-                ->where('user_id', Auth::id())
-                ->orderByDesc('id')
-                ->first()->id;
 
-            UserFriend::query()
-                ->create([
-                    'user_id' => Auth::id(),
-                    'friend_id' => $field['friend_id'],
-                    'column_id' => $columnId,
-                ]);
-            $columnId = UserColumn::query()
-                ->where('user_id', $field['friend_id'])
-                ->orderByDesc('id')
-                ->first()->id;
+            $this->userRepository->addFriend($field['friend_id'], Auth::id());
 
-            UserFriend::query()
-                ->create([
-                    'user_id' => $field['friend_id'],
-                    'friend_id' => Auth::id(),
-                    'column_id' => $columnId,
-                ]);
         }
         return $this->Json(StatusCode::SUCCESS);
     }
@@ -123,13 +111,8 @@ class FriendController extends Controller
             'friend_id' => 'required',
             'msg' => 'required',
         ]);
-        //插入消息
-        FriendAuth::query()
-            ->create([
-                'user_id' => $field['friend_id'],
-                'msg' => $field['msg'],
-                'friend_id' => Auth::id(),
-            ]);
+        $this->userRepository->addFriendAuth(Auth::id(), $field['friend_id'], $field['msg']);
+
         return $this->Json(StatusCode::SUCCESS);
     }
 
@@ -143,17 +126,7 @@ class FriendController extends Controller
         $page = request()->get('page', 1);
         $limit = request()->get('limit', 10);
 
-        $msg = FriendAuth::query()
-            ->with('friend')
-            ->where('user_id', Auth::id())
-            ->skip(($page - 1) * $limit)
-            ->take($limit)
-            ->orderByDesc('created_at')
-            ->get();
-
-        $total = FriendAuth::query()
-            ->where('user_id', Auth::id())
-            ->count();
+        [$msg, $total] = $this->userRepository->friendAuthList(Auth::id(), $page, $limit);
 
         return $this->Json(StatusCode::SUCCESS, ['data' => $msg, 'total' => $total]);
     }
@@ -165,9 +138,8 @@ class FriendController extends Controller
      */
     public function friendAuthCount()
     {
-        $count = FriendAuth::query()
-            ->where('status', FriendAuth::INIT)
-            ->count();
+        $count = $this->userRepository->friendAuthUntreatedCount(Auth::id());
+
         return $this->Json(StatusCode::SUCCESS, ['data' => ['count' => $count]]);
     }
 }

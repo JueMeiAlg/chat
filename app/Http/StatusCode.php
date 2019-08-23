@@ -8,6 +8,7 @@ class StatusCode
 {
     const SUCCESS = ['code' => 0, 'msg' => '请求成功'];
     const ERROR = ['code' => -1, 'msg' => '请求失败'];
+    const LAST_COLUMN_NOT_DESTROY = ['code' => -1, 'msg' => '最后一个好友分栏不允许删除'];
 
     /**
      * 登录相关
