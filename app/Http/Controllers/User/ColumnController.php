@@ -31,7 +31,7 @@ class ColumnController extends Controller
         ]);
         $field['user_id'] = Auth::id();
         $id = UserColumn::query()->create($field)->id;
-        return $this->Json(StatusCode::SUCCESS, ['data'=>['id'=>$id]]);
+        return $this->Json(StatusCode::SUCCESS, ['data' => ['id' => $id]]);
     }
 
     /**

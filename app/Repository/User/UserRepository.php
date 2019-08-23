@@ -52,6 +52,51 @@ class UserRepository
             ->where('fd', $fd)
             ->firstOrFail();
     }
+
+    /**
+     * 根据用户id获得fd
+     *
+     * @param int $userId
+     * @return int
+     */
+    public function userIdGetFd(int $userId)
+    {
+        return User::query()
+            ->where('id', $userId)
+            ->firstOrFail()
+            ->fd;
+    }
+
+    /**
+     * 获得所有好友Id
+     *
+     * @param int $userId
+     * @return array
+     */
+    public function getAllFriendId(int $userId)
+    {
+        return User\UserFriend::query()
+            ->where('user_id', $userId)
+            ->pluck('friend_id')
+            ->toArray();
+    }
+
+    /**
+     * 获得我所有好友的fd
+     *
+     * @param int $userId
+     * @return array
+     */
+    public function getAllFriendFd(int $userId)
+    {
+        $friendId = $this->getAllFriendId($userId);
+       return User::query()
+            ->whereIn('id', $friendId)
+            ->whereNotNull('fd')
+            ->pluck('fd')
+            ->toArray();
+    }
+
     /**
      * 添加用户
      *
