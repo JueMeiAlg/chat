@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Service\Chat\Swoole\HandleEvent;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
+use Swoole\Process;
 use Swoole\WebSocket\Server;
 
 class ChatServerManage extends Command
@@ -99,14 +100,65 @@ class ChatServerManage extends Command
         $this->swoole->start();
     }
 
+    /**
+     * 停止服务
+     *
+     * @return int
+     */
     public function stop()
     {
+        $pidFile = config('chat.settings.pid_file');
+
+        if (!file_exists($pidFile)) {
+            $this->warn('chat好像没有在运行');
+            return 0;
+        }
+
+        $pid = file_get_contents($pidFile);
+
+        if (self::kill($pid, 0)) {
+            if (self::kill($pid, SIGTERM)) {
+                // 确保主进程退出
+                $time = 1;
+                $waitTime = 60;
+                $this->info("The max time of waiting to forcibly stop is {$waitTime}s.");
+                while (self::kill($pid, 0)) {
+                    if ($time > $waitTime) {
+                        $this->warn("Swoole [PID={$pid}] cannot be stopped gracefully in {$waitTime}s, will be stopped forced right now.");
+                        return 1;
+                    }
+                    $this->info("Waiting Swoole[PID={$pid}] to stop. [{$time}]");
+                    sleep(1);
+                    $time++;
+                }
+                if (file_exists($pidFile)) {
+                    unlink($pidFile);
+                }
+                $this->info("Swoole [PID={$pid}] is stopped.");
+                return 0;
+            } else {
+                $this->error("Swoole [PID={$pid}] is stopped failed.");
+                return 1;
+            }
+        } else {
+            $this->warn("Swoole [PID={$pid}] does not exist, or permission denied.");
+            return 0;
+        }
 
     }
 
+    /**
+     * 重启服务
+     *
+     * @return int|void
+     */
     public function restart()
     {
-
+        $code = $this->stop();
+        if ($code !== 0) {
+            return $code;
+        }
+        return $this->start();
     }
 
     /**
@@ -132,5 +184,14 @@ class ChatServerManage extends Command
         app()->singleton('swoole', function () {
             return $this->swoole;
         });
+    }
+
+    public static function kill($pid, $sig)
+    {
+        try {
+            return Process::kill($pid, $sig);
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }

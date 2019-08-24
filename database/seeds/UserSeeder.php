@@ -12,7 +12,6 @@ class UserSeeder extends Seeder
     public function run()
     {
         $this->insert('13686840083', '123456');
-        $this->insert('13686840082', '123456');
     }
 
     public function insert(string $phone, string $password)
