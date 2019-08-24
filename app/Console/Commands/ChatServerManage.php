@@ -59,10 +59,9 @@ class ChatServerManage extends Command
     {
         $help = $this->option('h');
         if ($help) {
-          $this->outputHelp();
+            $this->outputHelp();
             return;
         }
-        
         $action = $this->argument('action');
         $option = $this->option('d');
 

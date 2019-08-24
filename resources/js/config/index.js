@@ -14,3 +14,12 @@ export default {
         serverUrl: '/static/UEditor/php/controller.php'
     },
 }
+
+// 引入JSON工具类
+import JsonHandler from '../utils/jsonHandler'
+import basedata from './basedata.json'
+
+/**
+ * 暴露其他配置信息
+ */
+export const BaseData = new JsonHandler(basedata);

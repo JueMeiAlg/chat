@@ -1,7 +1,13 @@
 import Cookies from "js-cookie";
 import {chatMsgRecord} from '@/api/chat'
+import {BaseData} from "@/config";
 
-var wsServer = 'ws://127.0.0.1:9502';
+let port = BaseData.get('server', 'port');
+let host = BaseData.get('server', 'host');
+let agreement = BaseData.get('server', 'agreement');
+
+var wsServer = agreement + host + ":" + port;
+
 var websocket = new WebSocket(wsServer);
 
 websocket.onmessage = function (evt) {
