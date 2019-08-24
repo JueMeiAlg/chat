@@ -16,7 +16,8 @@ class ChatServerManage extends Command
      * @var string
      */
     protected $signature = 'chat {action? : start|stop|restart}
-    {--d : 以守护进程方式"启动或重启chat"}';
+    {--d : 以守护进程方式"启动或重启chat"}
+    {--h : 查看支持的命令"}';
 
     /**
      * 程序描述
@@ -56,9 +57,16 @@ class ChatServerManage extends Command
      */
     public function handle()
     {
+        $help = $this->option('h');
+        if ($help) {
+          $this->outputHelp();
+            return;
+        }
+        
         $action = $this->argument('action');
-
         $option = $this->option('d');
+
+
         if (is_null($action)) {
             $action = $this->choice('选择具体执行的命令?', ['start', 'stop', 'restart'], 2);
             if ($option == false) {
@@ -85,10 +93,17 @@ class ChatServerManage extends Command
         }
     }
 
+    /**
+     * 启动服务
+     */
     public function start()
     {
+        //步骤条
+        $bar = $this->output->createProgressBar(3);
+        $bar->advance();//步骤1
         $this->setSwoole();
 
+        $bar->advance();//步骤2
         $event = new HandleEvent();
         $this->swoole->on('Open', [$event, 'OnOpen']);
         $this->swoole->on('Message', [$event, 'OnMessage']);
@@ -97,6 +112,9 @@ class ChatServerManage extends Command
         $this->swoole->on('WorkerStart', [$event, 'onWorkerStart']);
         $this->swoole->on('WorkerError', [$event, 'onWorkerError']);
         $this->swoole->on('Start', [$event, 'onStart']);
+
+        $bar->advance();//步骤3
+        echo PHP_EOL;
         $this->info('服务已启动!');
         $this->swoole->start();
     }
@@ -187,6 +205,13 @@ class ChatServerManage extends Command
         });
     }
 
+    /**
+     * 终止进程
+     *
+     * @param $pid
+     * @param $sig
+     * @return bool
+     */
     public static function kill($pid, $sig)
     {
         try {
@@ -194,5 +219,22 @@ class ChatServerManage extends Command
         } catch (\Exception $e) {
             return false;
         }
+    }
+
+    /**
+     * 输出命令帮助
+     */
+    public function outputHelp()
+    {
+        $headers = ['命令名称', '指令'];
+        $users = [
+            ['启动服务', 'php artisan chat start'],
+            ['停止服务', 'php artisan chat stop'],
+            ['重启服务', 'php artisan chat restart'],
+            ['守护进程的形式启动', 'php artisan chat start --d'],
+            ['守护进程的形式重启', 'php artisan chat restart --d'],
+            ['查看支持的命令', 'php artisan chat --h'],
+        ];
+        $this->table($headers, $users);
     }
 }

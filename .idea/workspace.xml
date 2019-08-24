@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="003058b5-3100-47c1-b465-fb7e9026028f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/app/Console/Commands/ChatServerManage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/ChatServerManage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/chat.pid" beforeDir="false" afterPath="$PROJECT_DIR$/storage/chat.pid" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +24,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Console/Commands/ChatServerManage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+            <state relative-caret-position="246">
+              <caret line="234" column="58" lean-forward="true" selection-start-line="234" selection-start-column="58" selection-end-line="234" selection-end-column="58" />
+              <folding>
+                <element signature="e#491#567#0#PHP" />
+                <element signature="e#650#702#0#PHP" />
+                <element signature="e#837#912#0#PHP" />
+                <element signature="e#2163#2186#0#PHP" />
+                <element signature="e#2385#2434#0#PHP" />
+                <element signature="e#3851#3905#0#PHP" />
+                <element signature="e#4078#4115#0#PHP" />
+                <element signature="e#4120#4773#0#PHP" />
+                <element signature="e#4888#4977#0#PHP" />
+                <element signature="e#4779#4960#0#PHP" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -237,19 +248,6 @@
               <item name="chat" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Console" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Console" type="462c0819:PsiDirectoryNode" />
-              <item name="Commands" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -334,18 +332,18 @@
       <workItem from="1566520805198" duration="1201000" />
       <workItem from="1566540891848" duration="3147000" />
       <workItem from="1566620751025" duration="14404000" />
-      <workItem from="1566637589805" duration="574000" />
+      <workItem from="1566637589805" duration="1662000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20229000" />
+    <option name="totallyTimeSpent" value="21317000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49836066" weight="0.2708018" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49836066" visible="true" weight="0.2708018" />
       <window_info id="Structure" order="1" sideWeight="0.50163937" side_tool="true" weight="0.24962178" />
       <window_info id="Favorites" order="2" sideWeight="0.50163937" side_tool="true" weight="0.24962178" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -359,7 +357,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49924356" weight="0.3409836" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49924356" weight="0.49016392" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50075644" side_tool="true" weight="0.3295082" />
       <window_info anchor="bottom" id="TypeScript" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -761,27 +759,10 @@
         <state relative-caret-position="-648" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="-592">
-            <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/pcntl/pcntl.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
           <caret line="493" column="9" selection-start-line="493" selection-start-column="9" selection-end-line="493" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/ChatServerManage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -791,6 +772,35 @@
           <caret line="69" column="57" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="57" />
           <folding>
             <element signature="e#1098#1210#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="353">
+            <caret line="51" column="58" selection-start-line="51" selection-start-column="58" selection-end-line="51" selection-end-column="58" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/ChatServerManage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="234" column="58" lean-forward="true" selection-start-line="234" selection-start-column="58" selection-end-line="234" selection-end-column="58" />
+          <folding>
+            <element signature="e#491#567#0#PHP" />
+            <element signature="e#650#702#0#PHP" />
+            <element signature="e#837#912#0#PHP" />
+            <element signature="e#2163#2186#0#PHP" />
+            <element signature="e#2385#2434#0#PHP" />
+            <element signature="e#3851#3905#0#PHP" />
+            <element signature="e#4078#4115#0#PHP" />
+            <element signature="e#4120#4773#0#PHP" />
+            <element signature="e#4888#4977#0#PHP" />
+            <element signature="e#4779#4960#0#PHP" />
           </folding>
         </state>
       </provider>
