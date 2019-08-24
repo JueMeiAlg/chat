@@ -50,7 +50,7 @@
 | 8.storage软连接 | php artisan storage:link|
 | 10.给予缓存文件合适的权限 | chmod -R 755 storage  |
 | 11.运行程序  | `php artisan chat {start\stop\restart}`  --d 是否守护进程模式运行|
-| 12.修改客户端访问地址  | /resource/basedata.json 中更改你具体的连接地址|
+| 12.修改客户端访问地址  | /resource/js/config/basedata.json 中更改你具体的连接地址|
 | 13.访问地址  | yourURL/ 默认登录账户13686840083 123456 |
 
 #### 其他
