@@ -50,7 +50,8 @@ class HandleEvent
      */
     public function OnClose(Server $ws, int $fd)
     {
-
+        HandleMessageEvent::setWs($ws);
+        App::call(HandleMessageEvent::class . '@close', ['fd' => $fd]);
     }
 
     /**

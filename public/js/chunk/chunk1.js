@@ -83,6 +83,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -118,6 +121,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     forgetPwd: function forgetPwd() {
       this.$message.success('请联系管理员');
+    },
+    register: function register() {
+      this.$router.push('/register');
     }
   })
 });
@@ -136,7 +142,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.loginDlog-footer-text p[data-v-64ad20fd] {\n    line-height: 30px;\n}\n.forget-password[data-v-64ad20fd] {\n    margin-right: 45px;\n    text-decoration: none;\n    color: #666666;\n}\n.content-left[data-v-64ad20fd] {\n    float: left;\n    width: 300px;\n    margin-right: 60px;\n}\n.body[data-v-64ad20fd] {\n    padding: 40px 60px;\n    overflow: hidden;\n}\n.content-right[data-v-64ad20fd] {\n    float: left;\n    padding: 60px 0 60px 60px;\n    border-left: 1px solid #e6e6e6;\n}\n.oauth-bt[data-v-64ad20fd] {\n    width: 170px;\n}\n.oauth[data-v-64ad20fd] {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n}\n.oauth li[data-v-64ad20fd] {\n    line-height: 55px;\n}\n.oauth-text[data-v-64ad20fd] {\n    margin-top: 0;\n    font-size: 100%;\n    font-weight: 500;\n    line-height: 1.7;\n    margin-bottom: 27px;\n    color: #666666;\n    text-align: center;\n}\n.login[data-v-64ad20fd] {\n    width: 100%;\n    height: 100%;\n    background-color: #487779;\n}\n.loginDlog[data-v-64ad20fd] {\n    background-color: white;\n    width: 715px;\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    transform: translate(-50%, -50%);\n}\n.loginDlog-footer[data-v-64ad20fd] {\n    height: 70px;\n    background-color: #f5f5f5;\n    padding: 0 60px;\n    color: #66b7ff;\n}\n.logo[data-v-64ad20fd] {\n    width: 240px;\n    height: 94px;\n    background: url(/img/logo.png) no-repeat;\n}\n.logo a[data-v-64ad20fd] {\n    display: block;\n    width: 151px;\n    height: 94px;\n}\n", ""]);
+exports.push([module.i, "\n.loginDlog-footer-text p[data-v-64ad20fd] {\n    line-height: 30px;\n}\n.forget-password[data-v-64ad20fd] {\n    margin-right: 10px;\n    text-decoration: none;\n    color: #666666;\n}\n.content-left[data-v-64ad20fd] {\n    float: left;\n    width: 300px;\n    margin-right: 60px;\n}\n.body[data-v-64ad20fd] {\n    padding: 40px 60px;\n    overflow: hidden;\n}\n.content-right[data-v-64ad20fd] {\n    float: left;\n    padding: 60px 0 60px 60px;\n    border-left: 1px solid #e6e6e6;\n}\n.oauth-bt[data-v-64ad20fd] {\n    width: 170px;\n}\n.oauth[data-v-64ad20fd] {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n}\n.oauth li[data-v-64ad20fd] {\n    line-height: 55px;\n}\n.oauth-text[data-v-64ad20fd] {\n    margin-top: 0;\n    font-size: 100%;\n    font-weight: 500;\n    line-height: 1.7;\n    margin-bottom: 27px;\n    color: #666666;\n    text-align: center;\n}\n.login[data-v-64ad20fd] {\n    width: 100%;\n    height: 100%;\n    background-color: #487779;\n}\n.loginDlog[data-v-64ad20fd] {\n    background-color: white;\n    width: 715px;\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    transform: translate(-50%, -50%);\n}\n.loginDlog-footer[data-v-64ad20fd] {\n    height: 70px;\n    background-color: #f5f5f5;\n    padding: 0 60px;\n    color: #66b7ff;\n}\n.logo[data-v-64ad20fd] {\n    width: 240px;\n    height: 94px;\n    background: url(/img/logo.png) no-repeat;\n}\n.logo a[data-v-64ad20fd] {\n    display: block;\n    width: 151px;\n    height: 94px;\n}\n.up-form-width[data-v-64ad20fd] {\n    width: 100%\n}\n.up-form-width[data-v-64ad20fd] .el-form-item__content {\n    width: 100% !important;\n}\n", ""]);
 
 // exports
 
@@ -191,103 +197,114 @@ var render = function() {
   return _c("div", { staticClass: "login" }, [
     _c("div", { staticClass: "loginDlog" }, [
       _c("div", { staticClass: "body" }, [
-        _c(
-          "div",
-          { staticClass: "content-left" },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "el-form",
-              {
-                ref: "form",
-                attrs: { model: _vm.form, "label-width": "80px" }
-              },
-              [
-                _c(
-                  "el-form-item",
-                  { attrs: { label: "手机号" } },
-                  [
-                    _c("el-input", {
-                      staticStyle: { width: "250px" },
-                      model: {
-                        value: _vm.form.phone,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "phone", $$v)
-                        },
-                        expression: "form.phone "
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  { attrs: { label: "密  码" } },
-                  [
-                    _c("el-input", {
-                      staticStyle: { width: "250px" },
-                      attrs: { type: "password" },
-                      model: {
-                        value: _vm.form.password,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "password", $$v)
-                        },
-                        expression: "form.password"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  { staticStyle: { "margin-bottom": "0!important" } },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "forget-password",
-                        on: { click: _vm.forgetPwd }
-                      },
-                      [_vm._v("忘记密码?")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-button",
-                      {
-                        staticStyle: { padding: "10px 30px" },
-                        attrs: { type: "success", size: "small" },
-                        on: { click: _vm.onSubmit }
-                      },
-                      [
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "icon ",
-                            attrs: { "aria-hidden": "true" }
+        _c("div", { staticClass: "content-left" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "up-form-width" },
+            [
+              _c(
+                "el-form",
+                {
+                  ref: "form",
+                  attrs: { model: _vm.form, "label-width": "80px" }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "手机号" } },
+                    [
+                      _c("el-input", {
+                        staticStyle: { width: "250px" },
+                        model: {
+                          value: _vm.form.phone,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "phone", $$v)
                           },
-                          [
-                            _c("use", {
-                              attrs: { "xlink:href": "#icon-denglu" }
-                            })
-                          ]
-                        ),
-                        _vm._v(
-                          "\n                            登录\n                        "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            )
-          ],
-          1
-        ),
+                          expression: "form.phone "
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "密  码" } },
+                    [
+                      _c("el-input", {
+                        staticStyle: { width: "250px" },
+                        attrs: { type: "password" },
+                        model: {
+                          value: _vm.form.password,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "password", $$v)
+                          },
+                          expression: "form.password"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { staticStyle: { "margin-bottom": "0!important" } },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "forget-password",
+                          on: { click: _vm.forgetPwd }
+                        },
+                        [_vm._v("忘记密码?")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "forget-password",
+                          on: { click: _vm.register }
+                        },
+                        [_vm._v("注册账号")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-button",
+                        {
+                          staticStyle: { padding: "10px 30px" },
+                          attrs: { type: "success", size: "small" },
+                          on: { click: _vm.onSubmit }
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "icon ",
+                              attrs: { "aria-hidden": "true" }
+                            },
+                            [
+                              _c("use", {
+                                attrs: { "xlink:href": "#icon-denglu" }
+                              })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                登录\n                            "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "content-right" }, [
           _c("h3", { staticClass: "oauth-text" }, [_vm._v("第三方账号登录")]),

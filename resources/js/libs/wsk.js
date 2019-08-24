@@ -15,6 +15,12 @@ websocket.onerror = function (evt, e) {
     console.log('Error occured: ' + evt.data, e);
 };
 
+//心跳包发送
+setInterval(function () {
+    wsk.heartBeat();
+    console.log('心跳包发送')
+}, 1000 * 15);
+
 /**
  * 绑定Fd
  */
@@ -49,14 +55,14 @@ function friendOnline(response) {
             }
         })
     });
-    window.vueApp.$store.state.talk.currentBeinTalkFriend.forEach(item=>{
+    window.vueApp.$store.state.talk.currentBeinTalkFriend.forEach(item => {
         if (item.id == response.data.id) {
             //更改fd状态
             item.fd = fd;
             return;
         }
     });
-    window.vueApp.$store.state.talk.friendList.forEach(item=>{
+    window.vueApp.$store.state.talk.friendList.forEach(item => {
         if (item.id == response.data.id) {
             //更改fd状态
             item.fd = fd;
@@ -81,11 +87,52 @@ function friendMsg(response) {
     if (window.vueApp.$store.state.talk.currentBeinTalkFriend.id == response.data.friend_id) {
         //加入到当前正在聊天的vuex状态中
         window.vueApp.$store.state.talk.currentBeingTalkRecord.push({
-            user_id:response.data.friend_id,
-            msg:response.data.msg
-        })
+            user_id: response.data.friend_id,
+            msg: response.data.msg
+        });
+        //显示最新的聊天记录
+        window.document.querySelector(".talk").scrollTop = window.document.querySelector(".talk").scrollHeight;
     }
 
+}
+
+/**
+ * 好友下线消息处理
+ *
+ * @param response
+ */
+function friendOffline(response) {
+    let fd = response.data.fd;
+
+    window.vueApp.$notify({
+        title: '好友下线通知',
+        message: `你的好友${response.data.userName}下线啦`,
+        position: 'top-left'
+    });
+
+    window.vueApp.$store.state.friend.columnFriend.forEach(item => {
+        item.friend.forEach(friendItem => {
+            if (friendItem.id == response.data.id) {
+                //更改fd状态
+                friendItem.fd = null;
+                return;
+            }
+        })
+    });
+    window.vueApp.$store.state.talk.currentBeinTalkFriend.forEach(item => {
+        if (item.id == response.data.id) {
+            //更改fd状态
+            item.fd = null;
+            return;
+        }
+    });
+    window.vueApp.$store.state.talk.friendList.forEach(item => {
+        if (item.id == response.data.id) {
+            //更改fd状态
+            item.fd = null;
+            return;
+        }
+    });
 }
 
 var wsk = {
@@ -166,23 +213,31 @@ var wsk = {
     sendBindFd() {
         this.send('bindFd', {userId: Cookies.get('userId'), fd: Cookies.get('fd')})
     },
+
     /**
      * 发送好友消息
      *
      * @param friend
      * @param msg
      */
-    sendMsg(friend,msg) {
+    sendMsg(friend, msg) {
         this.send('friendMsg', {
-            userId:window.vueApp.$store.state.user.userId,
-            friendId:friend,
-            msg:msg
+            userId: window.vueApp.$store.state.user.userId,
+            friendId: friend,
+            msg: msg
         });
 
         window.vueApp.$store.state.talk.currentBeingTalkRecord.push({
-            user_id:window.vueApp.$store.state.user.userId,
-            msg:msg
+            user_id: window.vueApp.$store.state.user.userId,
+            msg: msg
         })
+    },
+
+    /**
+     * 发送心跳包
+     */
+    heartBeat() {
+        this.send('heartBeat', []);
     }
 };
 

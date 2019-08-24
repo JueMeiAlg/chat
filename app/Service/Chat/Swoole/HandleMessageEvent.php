@@ -78,6 +78,10 @@ class HandleMessageEvent
 
     /**
      * 转发好友消息
+     *
+     * @param $userId
+     * @param $friendId
+     * @param $msg
      */
     public function friendMsg($userId, $friendId, $msg)
     {
@@ -93,10 +97,43 @@ class HandleMessageEvent
                 'data' => [
                     'friend_id' => $userId,
                     'friend_fd' => $friendFd,
-                    'msg'=>$msg
+                    'msg' => $msg
                 ]
             ]);
         }
+    }
+
+    /**
+     * 心跳包处理
+     */
+    public function heartBeat()
+    {
+        //todo OR nothing
+    }
+
+    /**
+     * 客户断开连接消息
+     *
+     * @param $fd
+     */
+    public function close($fd)
+    {
+        $userRepository = app(UserRepository::class);
+        //获取用户信息
+        $user = $userRepository->fdGetUser($fd);
+        //清除这个fd的绑定状态
+        $userRepository->clearFd($fd);
+        //获得他的所有好友的Fd
+        $friendFds = $userRepository->getAllFriendFd($user->id);
+        //通知他的好友下线信息
+       $this->sendFds($friendFds, [
+            'msg' => 'friendOffline',
+            'data' => [
+                'fd' => $fd,
+                'userName' => $user->name,
+                'id' => $user->id
+            ]
+        ]);
     }
 
     /**

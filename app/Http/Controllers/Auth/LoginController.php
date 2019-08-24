@@ -42,6 +42,7 @@ class LoginController extends Controller
            'phone'=>'required',
            'password'=>'required',
         ]);
+        $field['name'] = randomEnSTR(5);
         $user = app(UserRepository::class)->addUser($field);
         return $this->Json(StatusCode::SUCCESS, ['data'=>$user]);
     }

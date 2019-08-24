@@ -102,8 +102,8 @@
                 msg: '',
             }
         },
-        created() {
-
+        updated(){
+            window.document.querySelector(".talk").scrollTop = window.document.querySelector(".talk").scrollHeight;
         },
         methods: {
             removeFriendChat(index) {
@@ -112,6 +112,7 @@
                 }
                 this.$store.state.talk.friendList.splice(index, 1);
             },
+
             /**
              * 关闭正在交谈的好友对话框
              */
@@ -130,16 +131,20 @@
                 this.$store.state.talk.friendList = [];
                 this.msg = "";
             },
+
             setBeingChatFriend(friend) {
                 this.msg = "";
                 this.$store.commit('setCurrentBeinTalkFriend', friend);
             },
+
             /**
              * 发送消息
              */
             sendMsg(){
                 wsk.sendMsg(this.$store.state.talk.currentBeinTalkFriend.id, this.msg);
                 this.msg = "";
+                //显示最新的聊天记录
+                window.document.querySelector(".talk").scrollTop = window.document.querySelector(".talk").scrollHeight;
             }
         }
     }

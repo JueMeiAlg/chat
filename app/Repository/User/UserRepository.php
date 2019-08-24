@@ -93,6 +93,21 @@ class UserRepository
     }
 
     /**
+     * 清除fd绑定状态
+     *
+     * @param int $fd
+     * @return int
+     */
+    public function clearFd(int $fd)
+    {
+        return User::query()
+            ->where('fd', $fd)
+            ->update([
+                'fd'=>null
+            ]);
+    }
+
+    /**
      * 获得所有好友Id
      *
      * @param int $userId

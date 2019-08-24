@@ -28,6 +28,20 @@ export const userInfo = (id) => {
         method: 'get',
     })
 };
+/**
+ * 注册
+ *
+ * @param data
+ * @returns {ClientRequest | ClientHttp2Stream | * | never | Promise<AxiosResponse<T>> | Promise<any | never>}
+ */
+export const register = (data) => {
+    return axios.request({
+        url: 'register',
+        data,
+        method: 'post',
+    })
+};
+
 
 /**
  * 根据Fd获取用户信息

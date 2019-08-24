@@ -540,11 +540,12 @@
                     return;
                 }
                 storeColumn({name: this.newColumnName}).then((response) => {
-                    this.columnFriend.push({
+                    this.$store.state.friend.columnFriend.push({
                         name: this.newColumnName,
                         friend: [],
                         id: response.data.data.id
                     });
+
                     this.newColumnName = "";
                     this.newColumnBox = false;
                 });
@@ -581,8 +582,9 @@
              * 删除分栏
              */
             destroyColumnInfo() {
+                console.log(this.$store.state);
                 destroyColumn(this.currentHandelColumnId).then((response) => {
-                    this.columnFriend.splice(this.currentHandelColumnIndex, 1);
+                    this.$store.state.friend.columnFriend.splice(this.currentHandelColumnIndex, 1);
                     this.currentHandelColumnId = 0;
                     //重新拉取分栏及好友信息
                     this.getColumnFriend();
@@ -603,7 +605,7 @@
              */
             updateColumnInfo() {
                 updateColumn(this.currentHandelColumnId, {name: this.newColumnName}).then((response) => {
-                    this.columnFriend.forEach(item => {
+                    this.$store.state.friend.columnFriend.forEach(item => {
                         if (item.id == this.currentHandelColumnId) {
                             //刷新名称
                             item.name = this.newColumnName;
@@ -642,10 +644,10 @@
                 }).then(() => {
                     destroyFriend(this.currentHandelUserId).then((response) => {
                         //动态移除占位
-                        this.columnFriend.forEach((colItem, colIndex) => {
+                        this.$store.state.friend.columnFriend.forEach((colItem, colIndex) => {
                             colItem.friend.forEach((friendItem, friIndex) => {
                                 if (friendItem.id == this.currentHandelUserId) {
-                                    this.columnFriend[colIndex].friend.splice(this.currentHandelUserIndex, 1);
+                                    this.$store.state.friend.columnFriend[colIndex].friend.splice(this.currentHandelUserIndex, 1);
                                 }
                             })
                         });
@@ -672,10 +674,10 @@
              * @param userId
              */
             userIdMappingColumn(userId) {
-                for (let columnItem = 0; columnItem < this.columnFriend.length; columnItem++) {
-                    for (let friendItem = 0; friendItem < this.columnFriend[columnItem].friend.length; friendItem++) {
-                        if (this.columnFriend[columnItem].friend[friendItem].id == this.currentHandelUserId) {
-                            this.currentHandelColumnObj = this.columnFriend[columnItem];
+                for (let columnItem = 0; columnItem < this.$store.state.friend.columnFriend.length; columnItem++) {
+                    for (let friendItem = 0; friendItem < this.$store.state.friend.columnFriend[columnItem].friend.length; friendItem++) {
+                        if (this.$store.state.friend.columnFriend[columnItem].friend[friendItem].id == this.currentHandelUserId) {
+                            this.currentHandelColumnObj = this.$store.state.friend.columnFriend[columnItem];
                             return this.currentHandelColumnObj
                         }
                     }
@@ -770,9 +772,9 @@
              * 指定好友Id是否存在
              */
             isExistFriend(friendId) {
-                for (let columnIndex = 0; columnIndex < this.columnFriend.length; columnIndex++) {
-                    for (let friendIndex = 0; friendIndex < this.columnFriend[columnIndex].friend.length; friendIndex++) {
-                        if (this.columnFriend[columnIndex].friend[friendIndex].id == friendId) {
+                for (let columnIndex = 0; columnIndex < this.$store.state.friend.columnFriend.length; columnIndex++) {
+                    for (let friendIndex = 0; friendIndex < this.$store.state.friend.columnFriend[columnIndex].friend.length; friendIndex++) {
+                        if (this.$store.state.friend.columnFriend[columnIndex].friend[friendIndex].id == friendId) {
                             return true
                         }
                     }

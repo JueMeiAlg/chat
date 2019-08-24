@@ -6,23 +6,26 @@
                     <h1 class="logo">
                         <a></a>
                     </h1>
-                    <el-form ref="form" :model="form" label-width="80px">
-                        <el-form-item label="手机号">
-                            <el-input style="width: 250px" v-model="form.phone "></el-input>
-                        </el-form-item>
-                        <el-form-item label="密  码">
-                            <el-input style="width: 250px" type="password" v-model="form.password"></el-input>
-                        </el-form-item>
-                        <el-form-item style="margin-bottom:0!important;">
-                            <a @click="forgetPwd" class="forget-password">忘记密码?</a>
-                            <el-button style="padding: 10px 30px;" type="success" size="small" @click="onSubmit">
-                                <svg class="icon " aria-hidden="true">
-                                    <use xlink:href="#icon-denglu"></use>
-                                </svg>
-                                登录
-                            </el-button>
-                        </el-form-item>
-                    </el-form>
+                    <div class="up-form-width">
+                        <el-form ref="form" :model="form" label-width="80px">
+                            <el-form-item label="手机号">
+                                <el-input style="width: 250px" v-model="form.phone "></el-input>
+                            </el-form-item>
+                            <el-form-item label="密  码">
+                                <el-input style="width: 250px" type="password" v-model="form.password"></el-input>
+                            </el-form-item>
+                            <el-form-item style="margin-bottom:0!important;">
+                                <a @click="forgetPwd" class="forget-password">忘记密码?</a>
+                                <a @click="register" class="forget-password">注册账号</a>
+                                <el-button style="padding: 10px 30px;" type="success" size="small" @click="onSubmit">
+                                    <svg class="icon " aria-hidden="true">
+                                        <use xlink:href="#icon-denglu"></use>
+                                    </svg>
+                                    登录
+                                </el-button>
+                            </el-form-item>
+                        </el-form>
+                    </div>
                 </div>
                 <div class="content-right">
                     <h3 class="oauth-text">第三方账号登录</h3>
@@ -101,6 +104,9 @@
             },
             forgetPwd(){
                 this.$message.success('请联系管理员')
+            },
+            register(){
+                this.$router.push('/register');
             }
         }
     }
@@ -111,7 +117,7 @@
         line-height: 30px;
     }
     .forget-password {
-        margin-right: 45px;
+        margin-right: 10px;
         text-decoration: none;
         color: #666666;
     }
@@ -177,5 +183,11 @@
         display: block;
         width: 151px;
         height: 94px;
+    }
+    .up-form-width {
+        width: 100%
+    }
+    .up-form-width >>> .el-form-item__content {
+        width: 100% !important;
     }
 </style>

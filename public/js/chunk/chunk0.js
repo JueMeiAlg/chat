@@ -112,7 +112,9 @@ __webpack_require__.r(__webpack_exports__);
       msg: ''
     };
   },
-  created: function created() {},
+  updated: function updated() {
+    window.document.querySelector(".talk").scrollTop = window.document.querySelector(".talk").scrollHeight;
+  },
   methods: {
     removeFriendChat: function removeFriendChat(index) {
       if (this.$store.state.talk.currentBeinTalkFriend.id == this.$store.state.talk.friendList[index].id) {
@@ -152,7 +154,9 @@ __webpack_require__.r(__webpack_exports__);
      */
     sendMsg: function sendMsg() {
       _libs_wsk__WEBPACK_IMPORTED_MODULE_0__["default"].sendMsg(this.$store.state.talk.currentBeinTalkFriend.id, this.msg);
-      this.msg = "";
+      this.msg = ""; //显示最新的聊天记录
+
+      window.document.querySelector(".talk").scrollTop = window.document.querySelector(".talk").scrollHeight;
     }
   }
 });
@@ -719,7 +723,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["storeColumn"])({
         name: this.newColumnName
       }).then(function (response) {
-        _this3.columnFriend.push({
+        _this3.$store.state.friend.columnFriend.push({
           name: _this3.newColumnName,
           friend: [],
           id: response.data.data.id
@@ -763,8 +767,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     destroyColumnInfo: function destroyColumnInfo() {
       var _this4 = this;
 
+      console.log(this.$store.state);
       Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["destroyColumn"])(this.currentHandelColumnId).then(function (response) {
-        _this4.columnFriend.splice(_this4.currentHandelColumnIndex, 1);
+        _this4.$store.state.friend.columnFriend.splice(_this4.currentHandelColumnIndex, 1);
 
         _this4.currentHandelColumnId = 0; //重新拉取分栏及好友信息
 
@@ -791,7 +796,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["updateColumn"])(this.currentHandelColumnId, {
         name: this.newColumnName
       }).then(function (response) {
-        _this5.columnFriend.forEach(function (item) {
+        _this5.$store.state.friend.columnFriend.forEach(function (item) {
           if (item.id == _this5.currentHandelColumnId) {
             //刷新名称
             item.name = _this5.newColumnName;
@@ -834,10 +839,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function () {
         Object(_api_friend__WEBPACK_IMPORTED_MODULE_0__["destroyFriend"])(_this6.currentHandelUserId).then(function (response) {
           //动态移除占位
-          _this6.columnFriend.forEach(function (colItem, colIndex) {
+          _this6.$store.state.friend.columnFriend.forEach(function (colItem, colIndex) {
             colItem.friend.forEach(function (friendItem, friIndex) {
               if (friendItem.id == _this6.currentHandelUserId) {
-                _this6.columnFriend[colIndex].friend.splice(_this6.currentHandelUserIndex, 1);
+                _this6.$store.state.friend.columnFriend[colIndex].friend.splice(_this6.currentHandelUserIndex, 1);
               }
             });
           });
@@ -862,10 +867,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * @param userId
      */
     userIdMappingColumn: function userIdMappingColumn(userId) {
-      for (var columnItem = 0; columnItem < this.columnFriend.length; columnItem++) {
-        for (var friendItem = 0; friendItem < this.columnFriend[columnItem].friend.length; friendItem++) {
-          if (this.columnFriend[columnItem].friend[friendItem].id == this.currentHandelUserId) {
-            this.currentHandelColumnObj = this.columnFriend[columnItem];
+      for (var columnItem = 0; columnItem < this.$store.state.friend.columnFriend.length; columnItem++) {
+        for (var friendItem = 0; friendItem < this.$store.state.friend.columnFriend[columnItem].friend.length; friendItem++) {
+          if (this.$store.state.friend.columnFriend[columnItem].friend[friendItem].id == this.currentHandelUserId) {
+            this.currentHandelColumnObj = this.$store.state.friend.columnFriend[columnItem];
             return this.currentHandelColumnObj;
           }
         }
@@ -965,9 +970,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * 指定好友Id是否存在
      */
     isExistFriend: function isExistFriend(friendId) {
-      for (var columnIndex = 0; columnIndex < this.columnFriend.length; columnIndex++) {
-        for (var friendIndex = 0; friendIndex < this.columnFriend[columnIndex].friend.length; friendIndex++) {
-          if (this.columnFriend[columnIndex].friend[friendIndex].id == friendId) {
+      for (var columnIndex = 0; columnIndex < this.$store.state.friend.columnFriend.length; columnIndex++) {
+        for (var friendIndex = 0; friendIndex < this.$store.state.friend.columnFriend[columnIndex].friend.length; friendIndex++) {
+          if (this.$store.state.friend.columnFriend[columnIndex].friend[friendIndex].id == friendId) {
             return true;
           }
         }

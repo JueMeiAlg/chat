@@ -1,6 +1,7 @@
 <?php
 
 Route::post('login', 'Auth\LoginController@login');
+Route::post('register', 'Auth\LoginController@register');
 
 
 Route::group(['prefix' => 'user', 'namespace' => 'User', 'middleware' => 'auth:api'], function () {
@@ -8,6 +9,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'middleware' => 'auth:a
     Route::get('{id}/info', 'UserController@userInfo');
     //根据fd获取用户信息
     Route::get('{fd}/fd/info', 'UserController@fdInfo');
+
     Route::group(['prefix' => 'friend'], function () {
         //搜索好友
         Route::post('search', 'FriendController@searchFriend');
