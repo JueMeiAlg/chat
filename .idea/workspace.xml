@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="003058b5-3100-47c1-b465-fb7e9026028f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Console/Commands/ChatServerManage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/ChatServerManage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/chat.pid" beforeDir="false" afterPath="$PROJECT_DIR$/storage/chat.pid" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,18 +21,12 @@
     <favorites_list name="chat" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Console/Commands/ChatServerManage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="111" column="8" lean-forward="true" selection-start-line="111" selection-start-column="8" selection-end-line="111" selection-end-column="8" />
-              <folding>
-                <element signature="e#2385#2435#0#PHP" />
-                <element signature="e#3851#3906#0#PHP" />
-                <element signature="e#2450#2487#0#PHP" />
-                <element signature="e#2492#3145#0#PHP" />
-              </folding>
+            <state relative-caret-position="351">
+              <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -41,7 +34,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Service/Chat/Swoole/HandleEvent.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
+            <state relative-caret-position="1647">
               <caret line="69" column="57" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="57" />
               <folding>
                 <element signature="e#1098#1210#0#PHP" />
@@ -341,14 +334,15 @@
       <workItem from="1566520805198" duration="1201000" />
       <workItem from="1566540891848" duration="3147000" />
       <workItem from="1566620751025" duration="14404000" />
+      <workItem from="1566637589805" duration="574000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19655000" />
+    <option name="totallyTimeSpent" value="20229000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49836066" weight="0.2708018" />
@@ -777,16 +771,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Service/Chat/Swoole/HandleEvent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="69" column="57" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="57" />
-          <folding>
-            <element signature="e#1098#1210#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/pcntl/pcntl.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -796,13 +780,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Commands/ChatServerManage.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="111" column="8" lean-forward="true" selection-start-line="111" selection-start-column="8" selection-end-line="111" selection-end-column="8" />
+        <state relative-caret-position="351">
+          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Service/Chat/Swoole/HandleEvent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1647">
+          <caret line="69" column="57" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="57" />
           <folding>
-            <element signature="e#2385#2435#0#PHP" />
-            <element signature="e#3851#3906#0#PHP" />
-            <element signature="e#2450#2487#0#PHP" />
-            <element signature="e#2492#3145#0#PHP" />
+            <element signature="e#1098#1210#0#PHP" />
           </folding>
         </state>
       </provider>

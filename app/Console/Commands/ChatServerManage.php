@@ -57,6 +57,7 @@ class ChatServerManage extends Command
     public function handle()
     {
         $action = $this->argument('action');
+
         $option = $this->option('d');
         if (is_null($action)) {
             $action = $this->choice('选择具体执行的命令?', ['start', 'stop', 'restart'], 2);
@@ -65,13 +66,11 @@ class ChatServerManage extends Command
             }
         }
 
-        if ($option == 'false' || $option == false) {
+        if ($option === 'false' || $option === false) {
             config(['chat.settings.daemonize' => false]);
         } else {
             config(['chat.settings.daemonize' => true]);
         }
-
-        $this->setSwoole();
 
         switch ($action) {
             case 'start':
@@ -88,6 +87,8 @@ class ChatServerManage extends Command
 
     public function start()
     {
+        $this->setSwoole();
+
         $event = new HandleEvent();
         $this->swoole->on('Open', [$event, 'OnOpen']);
         $this->swoole->on('Message', [$event, 'OnMessage']);

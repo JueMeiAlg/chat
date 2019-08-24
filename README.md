@@ -49,5 +49,5 @@
 | 8.运行数据填充 | php artisan db:seed |
 | 8.storage软连接 | php artisan storage:link|
 | 10.给予缓存文件合适的权限 | chmod -R 755 storage  |
-| 11.运行程序  | `php artisan chat {start\stop\restart}` |
+| 11.运行程序  | `php artisan chat {start\stop\restart}`  --d 是否守护进程模式运行|
 | 12.访问地址  | yourURL/ 默认登录账户13686840083 123456 |
